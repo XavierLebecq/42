@@ -12,24 +12,41 @@
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+static	size_t	get_width(int n)
 {
-	char	*str;
+	size_t	width;
 
-	if (!(str = (char *)malloc(sizeof(char) * 12)))
-		return (NULL);
-	if (n == -2147483648)
+	width = (n <= 0);
+	while (n)
+	{
+		n /= 10;
+		width++;
+	}
+	return (width);
+}
+
+char			*ft_itoa(int n)
+{
+	char			*num;
+	int				rem;
+	size_t			i;
+	const char		neg = (n < 0);
+	const size_t	width = get_width(n);
+
+	if (n == INT_MIN)
 		return (ft_strdup("-2147483648"));
-	if (n < 0)
+	if (!(num = ft_calloc(width + 1, sizeof(char))))
+		return (NULL);
+	n = (neg) ? -n : n;
+	i = 0;
+	while (i < width)
 	{
-		str[0] = '-';
-		str[1] = '\0';
-		str = ft_strjoin(str, ft_itoa(-n));
+		rem = n % 10;
+		n = n / 10;
+		num[i] = "0123456789"[rem];
+		i++;
 	}
-	else if (n >= 10)
-	{
-		str[0] = n + '0';
-		str[1] = '\0';
-	}
-	return (str);
+	if (neg)
+		num[i - 1] = '-';
+	return (ft_strrev(num));
 }
