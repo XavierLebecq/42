@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:06:56 by xlebecq           #+#    #+#             */
+/*   Updated: 2023/11/14 18:42:06 by xlebecq          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//#include <stdio.h>
+#include "libft.h"
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else 
+		return (0);
+}
+/*
+int	main(void)
+{
+	char	c;
+	int		alpha;
+
+	c = '0';
+	alpha = ft_isalpha(c);
+	printf("%d", alpha);
+}
+*/
