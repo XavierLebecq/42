@@ -60,8 +60,8 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-$(NAME): $(OBJ) $(OBJB)
-	ar rc $(NAME) $(OBJ) $(OBJB)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 %.o: %.c
@@ -84,5 +84,5 @@ re: fclean all
 .PHONY: all clean fclean re
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC) $(SRCB)
-	gcc -nostartfiles -shared -o libft.so $(OBJ) $(OBJB)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)

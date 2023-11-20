@@ -12,41 +12,50 @@
 
 #include "libft.h"
 
-static	size_t	get_width(int n)
+static int
+	ft_abs(int nbr)
 {
-	size_t	width;
-
-	width = (n <= 0);
-	while (n)
-	{
-		n /= 10;
-		width++;
-	}
-	return (width);
+	return ((nbr < 0) ? -nbr : nbr);
 }
 
-char			*ft_itoa(int n)
+static void
+	ft_strrev(char *str)
 {
-	char			*num;
-	int				rem;
-	size_t			i;
-	const char		neg = (n < 0);
-	const size_t	width = get_width(n);
+	size_t	length;
+	size_t	i;
+	char	tmp;
 
-	if (n == INT_MIN)
-		return (ft_strdup("-2147483648"));
-	if (!(num = ft_calloc(width + 1, sizeof(char))))
-		return (NULL);
-	n = (neg) ? -n : n;
+	length = ft_strlen(str);
 	i = 0;
-	while (i < width)
+	while (i < length / 2)
 	{
-		rem = n % 10;
-		n = n / 10;
-		num[i] = "0123456789"[rem];
+		tmp = str[i];
+		str[i] = str[length - i - 1];
+		str[length - i - 1] = tmp;
 		i++;
 	}
-	if (neg)
-		num[i - 1] = '-';
-	return (ft_strrev(num));
+}
+
+char
+	*ft_itoa(int n)
+{
+	char	*str;
+	int		is_neg;
+	size_t	length;
+
+	is_neg = (n < 0);
+	if (!(str = ft_calloc(11 + is_neg, sizeof(*str))))
+		return (NULL);
+	if (n == 0)
+		str[0] = '0';
+	length = 0;
+	while (n != 0)
+	{
+		str[length++] = '0' + ft_abs(n % 10);
+		n = (n / 10);
+	}
+	if (is_neg)
+		str[length] = '-';
+	ft_strrev(str);
+	return (str);
 }
