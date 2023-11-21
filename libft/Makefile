@@ -12,7 +12,7 @@
 
 NAME=libft.a
 CC=clang
-CFLAGS=-Wall -Wextra -Werror -g2
+CFLAGS=-Wall -Wextra -Werror -g
 RM=rm -f
 LDFLAGS=-L.
 LDLIBS=-lft
@@ -51,17 +51,22 @@ SRC= 		ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c \
 
-SRCB =		ft_lstdelone.c \
+SRCB =		ft_lstadd_front.c \
+		ft_lstnew.c \
+		ft_lstsize.c \
+		ft_lstdelone.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
-		ft_lstnew.c \
+		ft_lstclear.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c		
 
 OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(OBJB)
+	ar rc $(NAME) $(OBJ) $(OBJB)
 	ranlib $(NAME)
 
 %.o: %.c
@@ -84,5 +89,5 @@ re: fclean all
 .PHONY: all clean fclean re
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC) $(SRCB)
+	gcc -nostartfiles -shared -o libft.so $(OBJ) $(OBJB)

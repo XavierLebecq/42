@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:16:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/16 11:37:45 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/11/20 22:17:29 by xlebecq           #+#    #+#             */
+/*   Updated: 2023/11/20 22:17:29 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*new;
-	new = (t_list *)malloc(sizeof(t_list) * 1);
-	if (new == NULL)
-		return (NULL);
-	if (content == NULL)
-	{
-		new->content = NULL;
-		new->content_size = 0;
-	}
+	t_list *tmp;
+
+	tmp = ft_lstlast(*lst);
+	if (!tmp)
+		*lst = new;
 	else
-	{
-		new->content = malloc(content_size);
-		if (new->content == NULL)
-			return (NULL);
-		ft_memmove(new->content, content_size);
-		new->content_size = content_size;
-	}
-	new->next = NULL;
-	return (new);
+		tmp->next = new;
 }
