@@ -6,13 +6,13 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 18:00:37 by xlebecq           #+#    #+#              #
-#    Updated: 2023/11/20 14:52:08 by xlebecq          ###   ########.fr        #
+#    Updated: 2023/11/27 14:21:40 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libft.a
 CC=clang
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror -g2
 RM=rm -f
 LDFLAGS=-L.
 LDLIBS=-lft
@@ -28,8 +28,8 @@ SRC= 		ft_atoi.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_memcpy.c \
-		ft_memmove.c \ 
-		ft_memset.c\
+		ft_memmove.c \
+		ft_memset.c \
 		ft_putchar_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
@@ -59,7 +59,7 @@ SRCB =		ft_lstadd_front.c \
 		ft_lstmap.c \
 		ft_lstclear.c \
 		ft_lstlast.c \
-		ft_lstadd_back.c		
+		ft_lstadd_back.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -70,11 +70,11 @@ $(NAME): $(OBJ) $(OBJB)
 	ranlib $(NAME)
 
 %.o: %.c
-	$(CC) -I. -o $@ -c $< $(CFLAGS) 
+	$(CC) $(CFLAGS) -I libft.h -o $@ -c $? 
 
 all: $(NAME)
 
-bonus : $(OBJ) $(OBJB)
+bonus : $(OBJB) $(OBJB)
 	ar rc $(NAME) $(OBJ) $(OBJB)
 	ranlib $(NAME)
 
