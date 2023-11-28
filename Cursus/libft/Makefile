@@ -12,7 +12,7 @@
 
 NAME=libft.a
 CC=clang
-CFLAGS=-Wall -Wextra -Werror -g2
+CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 LDFLAGS=-L.
 LDLIBS=-lft
@@ -70,7 +70,7 @@ $(NAME): $(OBJ) $(OBJB)
 	ranlib $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I libft.h -o $@ -c $? 
+	$(CC) $(CFLAGS) -I libft.h -o $@ -c $< 
 
 all: $(NAME)
 

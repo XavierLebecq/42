@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t total;
+	size_t	total;
 	char	*ret;
 
 	if (count == 0 || size == 0)
@@ -22,9 +22,9 @@ void	*ft_calloc(size_t count, size_t size)
 	total = count * size;
 	if (total / count != size && total / size != count)
 		return (NULL);
-	*ret = (char *)malloc(total);
+	ret = (char *)malloc(total);
 	if (ret == NULL)
-		ret == NULL;
+		ret = NULL;
 	else
 		ft_bzero(ret, total);
 	return (ret);
