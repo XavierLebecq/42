@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:53:56 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:35:33 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:56:47 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	j;
 	char	*str;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!str)

@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:30:56 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:36:54 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:30:06 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,16 @@
 
 char	*ft_strtrim(char const *s, char const *set)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	k;
-	char			*str;
+	unsigned int	start;
+	unsigned int	end;
 
-	i = 0;
-	k = 0;
 	if (!s || !set)
 		return (NULL);
-	while (s[i] && ft_strchr(set, s[i]))
-		i++;
-	if (s[i] == '\0')
-		return (ft_strdup(""));
-	j = ft_strlen(s) - 1;
-	while (j > i && ft_strchr(set, s[j]))
-		j--;
-	str = (char *)malloc(sizeof(char) * (j - i + 2));
-	if (str == NULL)
-		return (NULL);
-	while (k < j - i + 1)
-	{
-		str[k] = s[i + k];
-		k++;
-	}
-	str[k] = '\0';
-	return (str);
+	start = 0;
+	end = ft_strlen(s);
+	while (s[start] && ft_strchr(set, s[start]))
+		start++;
+	while (end > start && ft_strchr(set, s[end - 1]))
+		end--;
+	return (ft_substr(s, start, end - start));
 }
