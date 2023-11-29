@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 07:55:10 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 07:55:18 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:14:11 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	ft_atoi(const char *nptr)
 		res = res * 10 + nptr[i] - '0';
 		i++;
 	}
-	return ((int)(res * sign));
+	return (res * sign);
 }
