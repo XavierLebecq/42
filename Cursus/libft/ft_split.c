@@ -6,12 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:32:52 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:11:36 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:24:39 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 size_t	ft_countsletter(const char *s, char c)
 {

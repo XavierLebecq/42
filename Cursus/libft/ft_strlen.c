@@ -6,11 +6,10 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:31:28 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:11:54 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:19:10 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "libft.h"
 
 size_t	ft_strlen(const char *s)

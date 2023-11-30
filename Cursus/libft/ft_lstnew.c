@@ -6,12 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:16:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:11:07 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:23:54 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_list	*ft_lstnew(void *content)
 {
