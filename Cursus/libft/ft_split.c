@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:32:52 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/30 19:24:39 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/12/08 18:03:35 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_split(const char *s, char c)
 	size_t	len;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	i = 0;
 	letter = malloc(sizeof(char *) * (ft_countsletter(s, c) + 1));
 	if (!letter)
@@ -55,6 +55,6 @@ char	**ft_split(const char *s, char c)
 		else
 			++s;
 	}
-	letter[i] = 0;
+	letter[i] = NULL;
 	return (letter);
 }

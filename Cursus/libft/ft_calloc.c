@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:40:28 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/29 15:22:50 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/12/08 18:06:44 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*ret;
 
 	if (nmemb == 0 || size == 0)
-		return ((void *)malloc(1));
+		return (malloc(0));
 	total = nmemb * size;
 	if (total / nmemb != size && total / size != nmemb)
 		return (NULL);

@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 18:00:37 by xlebecq           #+#    #+#              #
-#    Updated: 2023/11/27 14:21:40 by xlebecq          ###   ########.fr        #
+#    Updated: 2023/12/08 16:06:01 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,8 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-$(NAME): $(OBJ) $(OBJB)
-	ar rc $(NAME) $(OBJ) $(OBJB)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 %.o: %.c

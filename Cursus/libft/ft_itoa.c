@@ -5,48 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:25:17 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/28 16:07:56 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/12/04 15:10:39 by xlebecq           #+#    #+#             */
+/*   Updated: 2023/12/04 17:37:38 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_sign(char *str, long *nb)
+size_t	ft_nbrlen(int nbr, int base)
 {
-	if ((*nb) == 0)
-		str[0] = '0';
-	if ((*nb) < 0)
-	{
-		str[0] = '-';
-		*nb = -*nb;
+	size_t	len;
+
+	len = 0;
+	if (nbr == 0)
 		return (1);
+	if (nbr < 0 && base == 10)
+		len += 1;
+	while (nbr)
+	{
+		nbr /= base;
+		len += 1;
 	}
-	return (0);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t		i;
-	size_t		nbr;
-	short int	j;
-	char		str[13];
-	long		nb;
+	size_t	i;
+	size_t	n_size;
+	char	*str;
 
-	nb = n;
-	j = 0;
-	nbr = 1000000000;
-	ft_bzero(str, 13);
-	i = ft_sign(str, &nb);
-	while (nbr != 0)
+	i = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	n_size = ft_nbrlen(n, 10);
+	str = (char *)malloc(sizeof(char) * (n_size + 1));
+	if (!str)
+		return (NULL);
+	str[n_size] = 0;
+	if (n < 0)
 	{
-		if (nb / nbr != 0 || j != 0)
-		{
-			str[i++] = (nb / nbr) + 48;
-			j++;
-		}
-		nb %= nbr;
-		nbr /= 10;
+		str[0] = '-';
+		n *= -1;
+		i += 1;
 	}
-	return (ft_strdup(str));
+	while (i < n_size--)
+	{
+		str[n_size] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (str);
 }
