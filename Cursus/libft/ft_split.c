@@ -6,11 +6,26 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:32:52 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/12/08 18:03:35 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:24:35 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	free_letter_array(char **letter)
+{
+	size_t	i;
+
+	i = 0;
+	if (!letter)
+		return ;
+	while (letter[i])
+	{
+		free(letter[i]);
+		i++;
+	}
+	free(letter);
+}
 
 size_t	ft_countsletter(const char *s, char c)
 {
@@ -31,26 +46,40 @@ size_t	ft_countsletter(const char *s, char c)
 	return (letter);
 }
 
+static char	*get_next_word(const char **s, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (**s && **s != c)
+	{
+		++len;
+		++(*s);
+	}
+	return (ft_substr(*s - len, 0, len));
+}
+
 char	**ft_split(const char *s, char c)
 {
 	char	**letter;
 	size_t	i;
-	size_t	len;
 
 	if (!s)
 		return (NULL);
 	i = 0;
 	letter = malloc(sizeof(char *) * (ft_countsletter(s, c) + 1));
 	if (!letter)
-		return (0);
+		return (NULL);
 	while (*s)
 	{
 		if (*s != c)
 		{
-			len = 0;
-			while (*s && *s != c && ++len)
-				++s;
-			letter[i++] = ft_substr(s - len, 0, len);
+			letter[i++] = get_next_word(&s, c);
+			if (!letter[i - 1])
+			{
+				free_letter_array(letter);
+				return (NULL);
+			}
 		}
 		else
 			++s;

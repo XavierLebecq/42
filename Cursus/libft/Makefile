@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 18:00:37 by xlebecq           #+#    #+#              #
-#    Updated: 2023/12/08 16:06:01 by xlebecq          ###   ########.fr        #
+#    Updated: 2023/12/11 16:59:23 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC= 		ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c \
+		ft_toupper.c
 
 SRCB =		ft_lstadd_front.c \
 		ft_lstnew.c \
@@ -65,17 +65,17 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -I libft.h -c $< -o $@
+
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I libft.h -o $@ -c $< 
-
 all: $(NAME)
 
-bonus : $(OBJB) $(OBJB)
-	ar rc $(NAME) $(OBJ) $(OBJB)
+bonus : $(OBJB)
+	ar rc $(NAME) $(OBJB)
 	ranlib $(NAME)
 
 clean:

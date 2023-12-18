@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:21:17 by xlebecq           #+#    #+#             */
-/*   Updated: 2023/11/23 08:14:14 by xlebecq          ###   ########.fr       */
+/*   Updated: 2023/12/18 16:15:07 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (0);
-	while (lst->next)
+	while (lst->nexti != NULL)
 		lst = lst->next;
 	return (lst);
 }
