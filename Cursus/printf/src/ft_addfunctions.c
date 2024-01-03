@@ -6,16 +6,16 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 19:51:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/01/02 00:51:25 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/01/03 16:27:51 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_putchar_rtn(char c, int *input_count)
+void	ft_putchar_rtn(char c, int *input_count)
 {
-		write(1, &c, 1);
-		(*input_count)++;
+	write(1, &c, 1);
+	(*input_count)++;
 }
 
 void	ft_putstr_rtn(char *s, int *input_count)
@@ -23,10 +23,11 @@ void	ft_putstr_rtn(char *s, int *input_count)
 	if (!s)
 		*input_count += write(1, "NULL", 4);
 	else
-		*ret_value += write(1, s, ft_strlen(s));
+		*input_count += write(1, s, ft_strlen(s));
 }
 
-void	ft_putnbr_base(unsigned long long n, char *base, int *input_count, char c)
+void	ft_putnbr_base(unsigned long long n, char *base,
+		int *input_count, char c)
 {
 	if (c == 'p')
 	{
@@ -34,7 +35,7 @@ void	ft_putnbr_base(unsigned long long n, char *base, int *input_count, char c)
 			ft_putstr_rtn("0x", input_count);
 		else if (n == 0)
 		{
-			ft_putstr("NULL", input_count);
+			ft_putstr_rtn("NULL", input_count);
 			return ;
 		}
 		c++;
@@ -43,15 +44,15 @@ void	ft_putnbr_base(unsigned long long n, char *base, int *input_count, char c)
 	{
 		if (n >= 16)
 			ft_putnbr_base(n / 16, base, input_count, c);
-		ft_putchar(base[n % 16], input_count);
+		ft_putchar_rtn(base[n % 16], input_count);
 	}
 }
 
-void	ft_putnbr(int nm int *input_count)
+void	ft_putnbr(int n, int *input_count)
 {
 	if (n < 0)
 	{
-		if (n == -2147483648", 11)
+		if (n == -2147483648)
 		{
 			write(1, "-2147483648", 11);
 			*input_count += 11;
@@ -69,5 +70,13 @@ void	ft_putnbr(int nm int *input_count)
 		ft_putchar_rtn(n + '0', input_count);
 }
 
-
-
+void	ft_putnbr_unsigned(unsigned int n, int *input_count)
+{
+	if (n > 9)
+	{
+		ft_putnbr_unsigned(n / 10, input_count);
+		n = n % 10;
+	}
+	if (n < 10)
+		ft_putchar_rtn(n + '0', input_count);
+}
