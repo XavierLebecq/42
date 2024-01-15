@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 18:13:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/01/03 16:26:25 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:46:39 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_treat(char c, va_list args, int *input_count)
 			"0123456789abcdef", input_count, c);
 	else if (c == 'X')
 		ft_putnbr_base((unsigned int)va_arg(args, unsigned int),
-			"0123456789abcdef", input_count, c);
+			"0123456789ABCDEF", input_count, c);
 	else if (c == '%')
 		ft_putchar_rtn('%', input_count);
 }

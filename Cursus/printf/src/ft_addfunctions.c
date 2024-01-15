@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 19:51:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/01/03 16:27:51 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:56:20 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putchar_rtn(char c, int *input_count)
 void	ft_putstr_rtn(char *s, int *input_count)
 {
 	if (!s)
-		*input_count += write(1, "NULL", 4);
+		*input_count += write(1, "(null)", 6);
 	else
 		*input_count += write(1, s, ft_strlen(s));
 }
@@ -35,7 +35,7 @@ void	ft_putnbr_base(unsigned long long n, char *base,
 			ft_putstr_rtn("0x", input_count);
 		else if (n == 0)
 		{
-			ft_putstr_rtn("NULL", input_count);
+			ft_putstr_rtn("(nil)", input_count);
 			return ;
 		}
 		c++;
