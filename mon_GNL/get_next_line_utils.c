@@ -3,11 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 04:33:31 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/01/24 04:33:33 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/03/19 11:15:52 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
