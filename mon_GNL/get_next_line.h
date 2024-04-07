@@ -6,7 +6,7 @@
 /*   By: krakren <krakren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 04:33:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/07 09:53:50 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/07 16:58:37 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 typedef struct s_list
 {
-	char		content;
+	char			*content;
 	struct s_list	*next;
 }					t_list;
 
-void	get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif
