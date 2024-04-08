@@ -12,98 +12,97 @@
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(char *content)
+char    *ft_strchr(const char *s, int c)
 {
-	t_list	*new_node;
-	int		i;
-
-	i = 0;
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	while (content[i] != '\0' && i < BUFFER_SIZE)
-	{
-		new_node->content[i] = content[i];
-		i++;
-	}
-	new_node->content[i] = '\0';
-	new_node->next = NULL;
-	return (new_node);
+    while (*s != '\0')
+    {
+        if (*s == (char)c)
+            return ((char *)s);
+        s++;
+    }
+    if (c == 0)
+        return ((char *)s);
+    return (NULL);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+size_t  ft_strlen(const char *s)
 {
-	t_list	*temp;
+    size_t  length;
 
-	if (!*lst)
-	{
-		*lst = new;
-	}
-	else
-	{
-		temp = *lst;
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = new;
-	}
+    length = 0;
+    while (s[length])
+        length++;
+    return (length);
 }
 
-void	ft_lstclear(t_list **lst)
+char    *ft_strdup(const char *s1)
 {
-	t_list	*temp;
+    char    *copy;
+    size_t  i;
 
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		free(*lst);
-		*lst = temp;
-	}
+    i = 0;
+    copy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+    if (!copy)
+        return (NULL);
+    while (s1[i])
+    {
+        copy[i] = s1[i];
+        i++;
+    }
+    copy[i] = '\0';
+    return (copy);
 }
 
-char	*ft_strchr(const char *s, int c)
+t_list  *ft_lstnew(void *content)
 {
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
+    t_list  *new_element;
+    char    *content_copy;
+
+    new_element = (t_list *)malloc(sizeof(t_list));
+    if (!new_element)
+        return (NULL);
+    content_copy = ft_strdup(content);
+    if (!content_copy)
+    {
+        free (new_element);
+        return (NULL);
+    }
+    new_element->content = content_copy;
+    new_element->next = NULL;
+    return (new_element);
 }
 
-int	ft_strchr_index(const char *s, int c)
+void    ft_lstadd_back(t_list **alst, t_list *new)
 {
-	int	i;
+    t_list  *last;
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return (i);
-		s++;
-	}
-	if (c == '\0')
-		return (i);
-	return (-1);
+    if (!*alst)
+    {
+        *alst = new;
+        return ;
+    }
+    last = *alst;
+    while (last->next)
+        last = last->next;
+    last->next = new;
 }
 
-size_t	ft_strlen(const char *s)
+size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-    size_t len;
+    size_t  i;
 
-	len	= 0;
-    while (s[len])
-        len++;
-    return len;
+    i = 0;
+    if (dstsize != 0)
+    {
+        while (src[i] != '0' && i < (dstsize - 1))
+        {
+            dst[i] = src[i];
+            i++;
+        }
+        dst[i] = '\0';
+    }
+    while (src[i] != '\0')
+        i++;
+    return (i);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-    char *d = dest;
-    const char *s = src;
-    while (n--)
-        *d++ = *s++;
-    return dest;
-}

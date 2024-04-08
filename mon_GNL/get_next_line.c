@@ -12,40 +12,67 @@
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(void *content)
+char	*concatenate_nodes(t_list *head)
 {
-	t_list *new_element;
-	
-	new_element = (t_list *)malloc(sizeof(t_list));
-	if (!new_element)
-		return (NULL);
-	new_element->content = content;
-	new_element->next = NULL;
-	return (new_element);
+	size_t	total_lenght = 0;
+	t_list	*current;
+	char	*result;
+	char	*dest;
 
+	current = head;
+	while (current != NULL)
+	{
+		total_lenght = total_lenght + ft_strlen(current->content);
+		current = current->next;
+	}
+	result = malloc(total_lenght + 1);
+	if (!result)
+		return (NULL);
+	dest = result;
+	current = head;
+	while (current != NULL)
+	{
+		ft_strlcpy(dest, current->content, ft_strlen(current->content) + 1);
+		dest += ft_strlen(current->content);
+		current = current->next;
+	}
+	*dest = '\0';
+	return (result);
 }
+
 char	*get_next_line(int fd)
 {
-	char	*str;
-	int		read_bytes;
-	t_list	*new_node;
+	char			*buffer;
+	int				read_bytes;
+	static t_list	*head = NULL;
+	char			*newline_ptr;
+	char			*final_line;
 
+	newline_ptr = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!str)
+
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 		return (NULL);
-	read_bytes = read(fd, str, BUFFER_SIZE);
-	if (read_bytes <= 0)
+	read_bytes = 1;
+	while (read_bytes > 0)
 	{
-		free(str);
-		return (NULL);
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes > 0)
+		{
+			buffer[read_bytes] = '\0';
+			newline_ptr = ft_strchr(buffer, '\n');
+			ft_lstadd_back(&head, ft_lstnew(buffer));
+		}
+		if (newline_ptr != NULL)
+			break;
 	}
-	str[read_bytes] = '\0';
-	printf ("str = %s\n", str);
-	new_node = ft_lstnew(str);
-	printf ("new_node = %s\n", new_node->content);
-	return (str);
+	free(buffer);
+	if (read_bytes < 0)
+		return (NULL);
+	final_line = concatenate_nodes(head);
+	return (final_line);
 }
 
 int	main(int argc, char **argv)
@@ -63,7 +90,7 @@ int	main(int argc, char **argv)
 		perror("open");
 		return (1);
 	}
-	get_next_line(fd);
+	printf("GNL = %s\n", get_next_line(fd));
 	close (fd);
 	return (0);
 }
