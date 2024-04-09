@@ -74,6 +74,10 @@ t_list  *ft_lstnew(void *content)
 
 void    ft_lstadd_back(t_list **alst, t_list *new)
 {
+	printf("&alst = %p\n", &alst);
+	printf("Adresse de **alst : %p\n", (void**) &(*alst));
+	printf("*alst = %p\n", *alst);
+	printf("alst = %p\n", alst);
     t_list  *last;
 
     if (!*alst)

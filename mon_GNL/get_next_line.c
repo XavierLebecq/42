@@ -47,7 +47,10 @@ char	*get_next_line(int fd)
 	static t_list	*head = NULL;
 	char			*newline_ptr;
 	char			*final_line;
+	
 
+	printf ("&head = %p\n", &head);
+	printf ("head = %p\n", head);
 	newline_ptr = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
