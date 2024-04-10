@@ -74,10 +74,6 @@ t_list  *ft_lstnew(void *content)
 
 void    ft_lstadd_back(t_list **alst, t_list *new)
 {
-	printf("&alst = %p\n", &alst);
-	printf("Adresse de **alst : %p\n", (void**) &(*alst));
-	printf("*alst = %p\n", *alst);
-	printf("alst = %p\n", alst);
     t_list  *last;
 
     if (!*alst)
@@ -98,7 +94,7 @@ size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize)
     i = 0;
     if (dstsize != 0)
     {
-        while (src[i] != '0' && i < (dstsize - 1))
+        while (src[i] != '\0' && i < (dstsize - 1))
         {
             dst[i] = src[i];
             i++;

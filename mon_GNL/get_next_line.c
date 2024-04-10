@@ -40,17 +40,52 @@ char	*concatenate_nodes(t_list *head)
 	return (result);
 }
 
-char	*get_next_line(int fd)
+/*
+static int	add_line_to_list(t_list **head, char *buffer, ssize_t read_bytes)
 {
+	t_list  *new_node;
+	char	*content;
+	ssize_t	i;
+	int		includes_newline;
+	int		addtional_lenght;
+	
+	i = 0;
+	additional_lenght = 0;
+	includes_newline = 0;
+	while (i < read_bytes)
+	{
+		if (buffer[i] == '\n')
+		{
+			includes_newline = 1;
+			break;
+		}
+		i++;
+	}
+	if (includes_newline = 1)
+		additional_lenght = 1
+	content = (char *)malloc(sizeof(char) * (i + 1 + additional_lenght + 1));
+	if (!content)
+		return (-1);
+ 	ft_strlcpy(content, buffer, i + 1 + additional_length);
+	new_node = ft_lstnew(content);
+	if (!new_node)
+	{
+		free(content);
+		return (-1);
+	}
+	ft_lstadd_back(head, new_node);
+	return includes_newline;
+}
+*/
+
+char	*get_next_line(int fd)
+{	
+	static t_list	*head = NULL;
 	char			*buffer;
 	int				read_bytes;
-	static t_list	*head = NULL;
 	char			*newline_ptr;
 	char			*final_line;
 	
-
-	printf ("&head = %p\n", &head);
-	printf ("head = %p\n", head);
 	newline_ptr = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
