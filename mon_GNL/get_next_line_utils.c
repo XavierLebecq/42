@@ -6,11 +6,25 @@
 /*   By: krakren <krakren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 04:33:31 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/04 23:28:48 by krakren          ###   ########.fr       */
+/*   Updated: 2024/04/10 23:48:23 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*
+char	*ft_strcpy(char *dest, const char *src)
+{
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return dest;
+}
+*/
 
 char    *ft_strchr(const char *s, int c)
 {
@@ -35,6 +49,7 @@ size_t  ft_strlen(const char *s)
     return (length);
 }
 
+/*
 char    *ft_strdup(const char *s1)
 {
     char    *copy;
@@ -52,24 +67,26 @@ char    *ft_strdup(const char *s1)
     copy[i] = '\0';
     return (copy);
 }
+*/
 
 t_list  *ft_lstnew(void *content)
 {
-    t_list  *new_element;
+    t_list  *new_node;
     char    *content_copy;
 
-    new_element = (t_list *)malloc(sizeof(t_list));
-    if (!new_element)
+    new_node = (t_list *)malloc(sizeof(t_list));
+    if (!new_node)
         return (NULL);
-    content_copy = ft_strdup(content);
+    content_copy = malloc(ft_strlen(content) + 1);
     if (!content_copy)
     {
-        free (new_element);
+        free (new_node);
         return (NULL);
     }
-    new_element->content = content_copy;
-    new_element->next = NULL;
-    return (new_element);
+	ft_strlcpy(content_copy, (char *)content, ft_strlen((char *)content) + 1);
+    new_node->content = content_copy;
+    new_node->next = NULL;
+    return (new_node);
 }
 
 void    ft_lstadd_back(t_list **alst, t_list *new)

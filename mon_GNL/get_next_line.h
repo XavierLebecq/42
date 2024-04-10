@@ -6,7 +6,7 @@
 /*   By: krakren <krakren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 04:33:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/07 16:58:37 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/11 00:12:46 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+//char    *ft_strcpy(char *dest, const char *src);
 char	*get_next_line(int fd);
 char    *ft_strchr(const char *s, int c);
 size_t  ft_strlen(const char *s);
-char    *ft_strdup(const char *s1);
+//char    *ft_strdup(const char *s1);
 t_list  *ft_lstnew(void *content);
 void    ft_lstadd_back(t_list **alst, t_list *new);
 size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char    *concatenate_nodes(t_list *head);
+void	clear_nodes_until_newline(t_list **head);
 
 #endif
