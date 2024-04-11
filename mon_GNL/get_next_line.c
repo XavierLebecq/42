@@ -6,26 +6,50 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:04:24 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/11 00:06:57 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/11 03:26:57 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void clear_nodes_until_newline(t_list **head) {
-    t_list *tmp;
-    while (*head && !ft_strchr((*head)->content, '\n')) {
-        tmp = *head;
-        *head = (*head)->next;
-        free(tmp->content);
-        free(tmp);
-    }
-    if (*head && ft_strchr((*head)->content, '\n')) {
-        tmp = *head;
-        *head = (*head)->next;
-        free(tmp->content);
-        free(tmp);
-    }
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_node;
+	char	*content_copy;
+
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	content_copy = malloc(ft_strlen(content) + 1);
+	if (!content_copy)
+	{
+		free (new_node);
+		return (NULL);
+	}
+	ft_strlcpy(content_copy, (char *)content, ft_strlen((char *)content) + 1);
+	new_node->content = content_copy;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+void	clear_nodes_until_newline(t_list **head)
+{
+	t_list	*tmp;
+
+	while (*head && !ft_strchr((*head)->content, '\n'))
+	{
+		tmp = *head;
+		*head = (*head)->next;
+		free(tmp->content);
+		free(tmp);
+	}
+	if (*head && ft_strchr((*head)->content, '\n'))
+	{
+		tmp = *head;
+		*head = (*head)->next;
+		free(tmp->content);
+		free(tmp);
+	}
 }
 
 char	*concatenate_nodes(t_list *head)
@@ -57,7 +81,7 @@ char	*concatenate_nodes(t_list *head)
 	return (result);
 }
 
-static int	add_line_to_list(t_list **head, char *buffer, ssize_t read_bytes)
+static int	add_line_to_list(t_list **head, char *buffer, ssize_t read_bytes, char **remainder)
 {
 	t_list	*new_node;
 	char	*content;
@@ -90,12 +114,18 @@ static int	add_line_to_list(t_list **head, char *buffer, ssize_t read_bytes)
 		return (-1);
 	}
 	ft_lstadd_back(head, new_node);
+	if (includes_newline && (i + 1 < read_bytes))
+	{
+		free(*remainder);
+		*remainder = ft_strdup(&buffer[i + 1]);
+	}
 	return (includes_newline);
 }
 
 char	*get_next_line(int fd)
 {
 	static t_list	*head = NULL;
+	static char		*remainder = NULL;
 	char			*buffer;
 	int				read_bytes;
 	char			*final_line;
@@ -103,6 +133,12 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (remainder)
+	{
+		found_newline = add_line_to_list(&head, remainder, ft_strlen(remainder), &remainder);
+		free(remainder);
+		remainder = NULL;
+	}
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
@@ -114,7 +150,7 @@ char	*get_next_line(int fd)
 		if (read_bytes > 0)
 		{
 			buffer[read_bytes] = '\0';
-			found_newline = add_line_to_list(&head, buffer, read_bytes);
+			found_newline = add_line_to_list(&head, buffer, read_bytes, &remainder);
 			if (found_newline == -1)
 			{
 				free (buffer);
@@ -148,8 +184,10 @@ int	main(int argc, char **argv)
 	printf("GNL = %s", get_next_line(fd));
 	printf("GNL = %s", get_next_line(fd));
 	printf("GNL = %s", get_next_line(fd));
-
+	printf("GNL = %s", get_next_line(fd));
+	printf("GNL = %s", get_next_line(fd));
+	printf("GNL = %s", get_next_line(fd));
+	printf("GNL = %s", get_next_line(fd));
 	close (fd);
 	return (0);
 }
-

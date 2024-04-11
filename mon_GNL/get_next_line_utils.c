@@ -6,120 +6,83 @@
 /*   By: krakren <krakren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 04:33:31 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/10 23:48:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/11 03:05:39 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*
-char	*ft_strcpy(char *dest, const char *src)
+char	*ft_strchr(const char *s, int c)
 {
-	while (*src)
+	while (*s != '\0')
 	{
-		*dest = *src;
-		dest++;
-		src++;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	*dest = '\0';
-	return dest;
+	if (c == 0)
+		return ((char *)s);
+	return (NULL);
 }
-*/
 
-char    *ft_strchr(const char *s, int c)
+size_t	ft_strlen(const char *s)
 {
-    while (*s != '\0')
-    {
-        if (*s == (char)c)
-            return ((char *)s);
-        s++;
-    }
-    if (c == 0)
-        return ((char *)s);
-    return (NULL);
+	size_t	length;
+
+	length = 0;
+	while (s[length])
+		length++;
+	return (length);
 }
 
-size_t  ft_strlen(const char *s)
+char	*ft_strdup(const char *s1)
 {
-    size_t  length;
+	char	*copy;
+	size_t	i;
 
-    length = 0;
-    while (s[length])
-        length++;
-    return (length);
+	i = 0;
+	copy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!copy)
+		return (NULL);
+	while (s1[i])
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
 }
 
-/*
-char    *ft_strdup(const char *s1)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-    char    *copy;
-    size_t  i;
+	t_list	*last;
 
-    i = 0;
-    copy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-    if (!copy)
-        return (NULL);
-    while (s1[i])
-    {
-        copy[i] = s1[i];
-        i++;
-    }
-    copy[i] = '\0';
-    return (copy);
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	last = *alst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
 }
-*/
 
-t_list  *ft_lstnew(void *content)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-    t_list  *new_node;
-    char    *content_copy;
+	size_t	i;
 
-    new_node = (t_list *)malloc(sizeof(t_list));
-    if (!new_node)
-        return (NULL);
-    content_copy = malloc(ft_strlen(content) + 1);
-    if (!content_copy)
-    {
-        free (new_node);
-        return (NULL);
-    }
-	ft_strlcpy(content_copy, (char *)content, ft_strlen((char *)content) + 1);
-    new_node->content = content_copy;
-    new_node->next = NULL;
-    return (new_node);
+	i = 0;
+	if (dstsize != 0)
+	{
+		while (src[i] != '\0' && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }
-
-void    ft_lstadd_back(t_list **alst, t_list *new)
-{
-    t_list  *last;
-
-    if (!*alst)
-    {
-        *alst = new;
-        return ;
-    }
-    last = *alst;
-    while (last->next)
-        last = last->next;
-    last->next = new;
-}
-
-size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-    size_t  i;
-
-    i = 0;
-    if (dstsize != 0)
-    {
-        while (src[i] != '\0' && i < (dstsize - 1))
-        {
-            dst[i] = src[i];
-            i++;
-        }
-        dst[i] = '\0';
-    }
-    while (src[i] != '\0')
-        i++;
-    return (i);
-}
-
