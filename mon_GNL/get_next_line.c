@@ -5,189 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 10:04:24 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/11 03:26:57 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/04/12 00:11:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-t_list	*ft_lstnew(void *content)
+void	ft_read(int fd, t_list **head)
 {
-	t_list	*new_node;
-	char	*content_copy;
+	int		*read_bytes;
+	char	*buffer;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	content_copy = malloc(ft_strlen(content) + 1);
-	if (!content_copy)
+	while (!ft_find_nl(*head))
 	{
-		free (new_node);
-		return (NULL);
+		buffer = (char *)malloc(sizeof(char) * (BUFFER SIZE + 1));
+		if (!buffer)
+			return ;
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (!read_bytes)
+		{
+			free(buffer);
+			return ;
+		}
+		buffer[read_bytes] = '\0';
+		ft_lstadd_back(head, buffer);
 	}
-	ft_strlcpy(content_copy, (char *)content, ft_strlen((char *)content) + 1);
-	new_node->content = content_copy;
-	new_node->next = NULL;
-	return (new_node);
 }
 
-void	clear_nodes_until_newline(t_list **head)
+void	ft_lstadd_back(t_list **head, char *buffer)
 {
-	t_list	*tmp;
+	t_list	*last_node;
+	t_list	*new_node;
 
-	while (*head && !ft_strchr((*head)->content, '\n'))
+	last_node = ft_lst last(*head);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return ;
+	if (!last_node)
+		*head = new_node;
+	else
+		last_node->next = new_node;
+	new_node->content = buffer;
+	new_node->next = NULL;
+}
+
+int	ft_find_nl(t_list *node)
+{
+	int	i;
+
+	if (!node)
+		return (0);
+	while (node)
 	{
-		tmp = *head;
-		*head = (*head)->next;
-		free(tmp->content);
-		free(tmp);
+		i = 0;
+		while (node->content[i] != '\0' && i < BUFFER_SIZE)
+		{
+			if (node->content[i] == '\n')
+				return (1);
+			i++;
+		}
+		node = node->next;
 	}
-	if (*head && ft_strchr((*head)->content, '\n'))
-	{
-		tmp = *head;
-		*head = (*head)->next;
-		free(tmp->content);
-		free(tmp);
-	}
+	return (0);
 }
 
 char	*concatenate_nodes(t_list *head)
 {
-	size_t	total_lenght;
-	t_list	*current;
-	char	*result;
-	char	*dest;
+	int		len;
+	char	*line;
 
-	total_lenght = 0;
-	current = head;
-	while (current != NULL)
-	{
-		total_lenght = total_lenght + ft_strlen(current->content);
-		current = current->next;
-	}
-	result = malloc(total_lenght + 1);
-	if (!result)
+	if (!head)
 		return (NULL);
-	dest = result;
-	current = head;
-	while (current != NULL)
-	{
-		ft_strlcpy(dest, current->content, ft_strlen(current->content) + 1);
-		dest += ft_strlen(current->content);
-		current = current->next;
-	}
-	*dest = '\0';
-	return (result);
-}
-
-static int	add_line_to_list(t_list **head, char *buffer, ssize_t read_bytes, char **remainder)
-{
-	t_list	*new_node;
-	char	*content;
-	ssize_t	i;
-	int		includes_newline;
-	int		additional_lenght;
-
-	i = 0;
-	additional_lenght = 0;
-	includes_newline = 0;
-	while (i < read_bytes)
-	{
-		if (buffer[i] == '\n')
-		{
-			includes_newline = 1;
-			break ;
-		}
-		i++;
-	}
-	if (includes_newline == 1)
-		additional_lenght = 1;
-	content = (char *)malloc(sizeof(char) * (i + 1 + additional_lenght));
-	if (!content)
-		return (-1);
-	ft_strlcpy(content, buffer, (i + 1 + additional_lenght));
-	new_node = ft_lstnew(content);
-	if (!new_node)
-	{
-		free(content);
-		return (-1);
-	}
-	ft_lstadd_back(head, new_node);
-	if (includes_newline && (i + 1 < read_bytes))
-	{
-		free(*remainder);
-		*remainder = ft_strdup(&buffer[i + 1]);
-	}
-	return (includes_newline);
+	len = ft_lstsize(head);
+	line = (char *)malloc(sizeof(char) * (len + 1));
+	if (!line)
+		return (NULL);
+	ft_strcpy(head, line);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
 	static t_list	*head = NULL;
-	static char		*remainder = NULL;
-	char			*buffer;
-	int				read_bytes;
 	char			*final_line;
-	int				found_newline;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read (fd, NULL, 0) < 0)
 		return (NULL);
-	if (remainder)
-	{
-		found_newline = add_line_to_list(&head, remainder, ft_strlen(remainder), &remainder);
-		free(remainder);
-		remainder = NULL;
-	}
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	read_bytes = 1;
-	found_newline = 0;
-	while (read_bytes > 0 && !found_newline)
-	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes > 0)
-		{
-			buffer[read_bytes] = '\0';
-			found_newline = add_line_to_list(&head, buffer, read_bytes, &remainder);
-			if (found_newline == -1)
-			{
-				free (buffer);
-				return (NULL);
-			}
-		}
-	}
-	free(buffer);
-	if (read_bytes < 0)
+	ft_read(fd, &head);
+	if (!head)
 		return (NULL);
 	final_line = concatenate_nodes(head);
-	clear_nodes_until_newline(&head);
+	ft_lstclean(&list);
 	return (final_line);
-}
-
-int	main(int argc, char **argv)
-{
-	int	fd;
-
-	if (argc < 2)
-	{
-		printf("usage: %s <file>\n", argv[0]);
-		return (1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		perror("open");
-		return (1);
-	}
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	printf("GNL = %s", get_next_line(fd));
-	close (fd);
-	return (0);
 }
