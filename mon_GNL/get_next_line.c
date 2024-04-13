@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/13 01:33:33 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/13 11:56:17 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ int	ft_find_nl(t_list *lst)
 
 void	ft_create_lst(t_list **lst, char *buffer)
 {
-	t_list	*new_lst;
+	t_list	*new;
 	t_list	*last;
 
-	new_lst = malloc(sizeof(t_list));
-	if (!new_lst)
+	new = malloc(sizeof(t_list));
+	if (!new)
 	{
 		free(buffer);
 		return ;
 	}
-	new_lst->content = buffer;
-	new_lst->next = NULL;
+	new->content = buffer;
+	new->next = NULL;
 	if (!*lst)
-		*lst = new_lst;
+		*lst = new;
 	else
 	{
 		last = ft_lstlast(*lst);
-		last->next = new_lst;
+		last->next = new;
 	}
 }
 /*
@@ -112,18 +112,18 @@ char	*concatenate_lst(t_list *lst)
 char	*get_next_line(int fd)
 {
 	static t_list	*lst = NULL;
-	char			*final_line;
+	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, NULL, 0) < 0)
 		return (NULL);
 	ft_read(&lst, fd);
 	if (!lst)
 		return (NULL);
-	final_line = concatenate_lst(lst);
+	line = concatenate_lst(lst);
 	ft_rest(&lst);
-	return (final_line);
+	return (line);
 }
-/*
+
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -150,4 +150,4 @@ int	main(int argc, char **argv)
 	close (fd);
 	return (0);
 }
-*/
+
