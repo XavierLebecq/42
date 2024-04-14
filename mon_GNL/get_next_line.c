@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/13 11:56:17 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/14 18:33:27 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	ft_create_lst(t_list **lst, char *buffer)
 {
 	t_list	*new;
 	t_list	*last;
-
+	
+	printf ("valeur de lst dans create = %p\n", lst);
 	new = malloc(sizeof(t_list));
 	if (!new)
 	{
@@ -113,6 +114,9 @@ char	*get_next_line(int fd)
 {
 	static t_list	*lst = NULL;
 	char			*line;
+
+	printf("valeur de lst = %p\n", lst);
+	printf("adresse de lst = %p\n", &lst);
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, NULL, 0) < 0)
 		return (NULL);
