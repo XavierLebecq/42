@@ -12,35 +12,60 @@
 
 #include "get_next_line_bonus.h"
 
+void	ft_create_list(t_list **lst, char *buffer)
+{
+	t_list	*new;
+	t_list	*last;
+
+	new = malloc(t_list *)malloc(sizeof(t_list));
+	if (!new)	
+	{
+		free(buffer);
+		return ;
+	}
+	new->content = buffer;
+	new->next = NULL;
+	if (!*lst)
+		*lst = new;
+	else
+	{
+		last = ft_lstlast(*lst);
+		last->next = new;
+	}	
+}
+
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+
 void	ft_read(t_list **lst, int fd)
 {
 	int		read_bytes;
 	char	*buffer;
 
-//	while (!ft_find_nl(*lst))
-//	{
-		buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!buffer)
-			return ;
-		read_bytes = read (fd, buffer, BUFFER_SIZE);
-		if (!read_bytes)
-		{
-			free(buffer);
-			return ;
-		}
-		buffer[read_bytes] = '\0';
-		printf ("buffer= %s\n", buffer);
-//	}
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return ;
+	read_bytes = read (fd, buffer, BUFFER_SIZE);
+	if (!read_bytes)
+	{
+		free(buffer);
+		return ;
+	}
+	buffer[read_bytes] = '\0';
+	printf ("buffer= %s\n", buffer);
+	ft_create_lst(lst, buffer)
 }
 
 char	*get_next_line(int fd)
 {
 	static t_list	*lst = NULL;
-
-	printf ("valeur de lst = %p\n", lst);
-	printf ("adresse de lst = %p\n", &lst);
-	
-	printf ("valeur de *lst = %p\n", &*lst);	
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, NULL, 0) < 0)
 		return (NULL);
