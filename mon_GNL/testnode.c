@@ -17,17 +17,37 @@ typedef struct blabla
 {
 	char			*content;
 	struct blabla	*next;
-}					pokito;
+}					t_list;
+
+
+void	ft_lst(t_list **lst)
+{
+	printf("2valeur de lst = %p\n", lst);
+	printf("2adresse de lst = %p\n", &lst);
+	printf("2valeur de *lst = %p\n", *lst);
+}
+
+void	ft_list(t_list *lst)
+{
+	printf("3valeur de lst = %p\n", lst);
+	printf("3adresse de lst = %p\n", &lst);
+}
+
+void ft_liste(t_list lst)
+{
+
+}
 
 int	main()
 {
 	char	*str;
-	pokito	*new_node;
+	static t_list *lst = NULL;
 
-	str = "bonjour";
-	new_node = malloc (sizeof(pokito));
-	new_node->content = str;
-	new_node->next = NULL;
-	printf ("%s", new_node->content);
+	printf ("1valeur de lst = %p\n", lst);
+	printf ("1adresse de lst = %p\n", &lst);
+
+	ft_lst(&lst);
+	ft_list(lst);
+//	ft_liste(*lst);
 	return (0);
 }
