@@ -6,29 +6,36 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/29 10:43:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/29 18:23:26 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "get_next_line.h"
 
-int	ft_find_nl(t_list *lst)
+int	ft_read(t_list **lst, int fd)
 {
-	int	i;
+	int		read_bytes;
+	char	*buffer;
 
-	if (!lst)
-		return (0);
-	while (lst)
+	while (!ft_find_nl(*lst))
 	{
-		i = 0;
-		while (lst->content[i] != '\0' && i < BUFFER_SIZE)
+		buffer = malloc(BUFFER_SIZE + 1);
+		if (!buffer)
+			return (1);
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
 		{
-			if (lst->content[i] == '\n')
-				return (1);
-			i += 1;
+			free (buffer);
+			return (1);
 		}
-		lst = lst->next;
+		if (!read_bytes)
+		{
+			free(buffer);
+			return (0);
+		}
+		buffer[read_bytes] = '\0';
+		ft_create_lst(lst, buffer);
 	}
 	return (0);
 }
@@ -54,45 +61,6 @@ void	ft_create_lst(t_list **lst, char *buffer)
 		last->next = new;
 	}
 }
-/*
-void	ft_create_lst(t_list **lst, char *buffer)
-{
-	t_list	*last_lst;
-	t_list	*new_lst;
-
-	last_lst = ft_lstlast(*lst);
-	new_lst = malloc(sizeof(t_list));
-	if (!new_lst)
-		return ;
-	if (!last_lst)
-		*lst = new_lst;
-	else
-		last_lst->next = new_lst;
-	new_lst->content = buffer;
-	new_lst->next = NULL;
-}
-*/
-
-void	ft_read(t_list **lst, int fd)
-{
-	int		read_bytes;
-	char	*buffer;
-
-	while (!ft_find_nl(*lst))
-	{
-		buffer = malloc(BUFFER_SIZE + 1);
-		if (!buffer)
-			return ;
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (!read_bytes)
-		{
-			free(buffer);
-			return ;
-		}
-		buffer[read_bytes] = '\0';
-		ft_create_lst(lst, buffer);
-	}
-}
 
 char	*concatenate_lst(t_list *lst)
 {
@@ -109,14 +77,41 @@ char	*concatenate_lst(t_list *lst)
 	return (line);
 }
 
+void	ft_create_line(t_list *lst, char *line)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (lst)
+	{
+		i = 0;
+		while (lst->content[i] != '\0')
+		{
+			if (lst->content[i] == '\n')
+			{
+				line[j] = '\n';
+				line[j + 1] = '\0';
+				return ;
+			}
+			line[j] = lst->content[i];
+			j += 1;
+			i += 1;
+		}
+		lst = lst->next;
+	}
+	line[j] = '\0';
+}
+
 char	*get_next_line(int fd)
 {
 	static t_list	*lst = NULL;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, NULL, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);lst
+	if (ft_read(&lst, fd) == 1)
 		return (NULL);
-	ft_read(&lst, fd);
 	if (!lst)
 		return (NULL);
 	line = concatenate_lst(lst);

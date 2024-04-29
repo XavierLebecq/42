@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:25:13 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/12 23:44:11 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/29 14:58:47 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 void	ft_create_lst(t_list **lst, char *buffer);
-void	ft_read(t_list **lst, int fd);
+int		ft_read(t_list **lst, int fd);
 int		ft_find_nl(t_list *lst);
 char	*concatenate_lst(t_list *lst);
 void	ft_rest(t_list **lst);

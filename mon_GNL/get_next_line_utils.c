@@ -6,11 +6,31 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:45:26 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/29 10:42:17 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/29 15:57:24 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_find_nl(t_list *lst)
+{
+	int	i;
+
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		i = 0;
+		while (lst->content[i] != '\0' && i < BUFFER_SIZE)
+		{
+			if (lst->content[i] == '\n')
+				return (1);
+			i += 1;
+		}
+		lst = lst->next;
+	}
+	return (0);
+}
 
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -45,55 +65,6 @@ int	ft_lstsize_nl(t_list *lst)
 	return (j);
 }
 
-void	ft_create_line(t_list *lst, char *line)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (lst)
-	{
-		i = 0;
-		while (lst->content[i] != '\0')
-		{
-			if (lst->content[i] == '\n')
-			{
-				line[j] = '\n';
-				line[j + 1] = '\0';
-				return ;
-			}
-			line[j] = lst->content[i];
-			j += 1;
-			i += 1;
-		}
-		lst = lst->next;
-	}
-	line[j] = '\0';
-}
-
-void	ft_clear_lst(t_list **lst, t_list *lst_rest, char *rest)
-{
-	t_list	*temp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		free((*lst)->content);
-		free(*lst);
-		*lst = temp;
-	}
-	*lst = NULL;
-	if (lst_rest->content[0])
-		*lst = lst_rest;
-	else
-	{
-		free(rest);
-		free(lst_rest);
-	}
-}
-
 void	ft_rest(t_list **lst)
 {
 	int		i;
@@ -119,4 +90,27 @@ void	ft_rest(t_list **lst)
 	lst_rest->content = rest;
 	lst_rest->next = NULL;
 	ft_clear_lst(lst, lst_rest, rest);
+}
+
+void	ft_clear_lst(t_list **lst, t_list *lst_rest, char *rest)
+{
+	t_list	*temp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		free((*lst)->content);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = NULL;
+	if (lst_rest->content[0])
+		*lst = lst_rest;
+	else
+	{
+		free(rest);
+		free(lst_rest);
+	}
 }
