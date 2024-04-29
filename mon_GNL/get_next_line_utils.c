@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:45:26 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/13 00:17:06 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/29 10:42:17 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*ft_lstlast(t_list *lst)
 int	ft_lstsize_nl(t_list *lst)
 {
 	int	i;
-	int j;
+	int	j;
 
 	j = 0;
 	while (lst)
@@ -48,7 +48,7 @@ int	ft_lstsize_nl(t_list *lst)
 void	ft_create_line(t_list *lst, char *line)
 {
 	int	i;
-	int j;
+	int	j;
 
 	j = 0;
 	while (lst)
@@ -76,7 +76,7 @@ void	ft_clear_lst(t_list **lst, t_list *lst_rest, char *rest)
 	t_list	*temp;
 
 	if (!lst)
-		return;
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;
@@ -120,4 +120,3 @@ void	ft_rest(t_list **lst)
 	lst_rest->next = NULL;
 	ft_clear_lst(lst, lst_rest, rest);
 }
-
