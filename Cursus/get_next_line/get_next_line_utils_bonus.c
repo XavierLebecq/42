@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 10:45:26 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/29 15:57:24 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/04/30 14:13:04 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/04/30 21:30:28 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_find_nl(t_list *lst)
 {
@@ -79,7 +79,7 @@ void	ft_rest(t_list **lst)
 		return ;
 	rest = malloc(BUFFER_SIZE + 1);
 	lst_rest = malloc(sizeof(t_list));
-	if (!rest || !lst_rest)
+	if (!lst_rest || !rest)
 		return ;
 	last_lst = ft_lstlast(*lst);
 	while (last_lst->content[i] != '\0' && last_lst->content[i] != '\n')

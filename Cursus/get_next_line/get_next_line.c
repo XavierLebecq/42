@@ -6,11 +6,10 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/29 18:23:26 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/04/30 21:53:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
 int	ft_read(t_list **lst, int fd)
@@ -108,8 +107,8 @@ char	*get_next_line(int fd)
 	static t_list	*lst = NULL;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);lst
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+		return (NULL);
 	if (ft_read(&lst, fd) == 1)
 		return (NULL);
 	if (!lst)
@@ -119,6 +118,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 /*
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -138,7 +138,7 @@ int	main(int argc, char **argv)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		printf ("GNL = %s", line);
+		printf ("%s", line);
 		free(line);
 		line = get_next_line(fd);
 	}

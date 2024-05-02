@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 23:25:13 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/29 14:58:47 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/04/14 13:30:58 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/04/30 18:13:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -28,7 +28,7 @@ typedef struct s_list
 }					t_list;
 
 char	*get_next_line(int fd);
-void	ft_create_lst(t_list **lst, char *buffer);
+void	ft_create_lst(t_list **lst, char *buffer, int fd);
 int		ft_read(t_list **lst, int fd);
 int		ft_find_nl(t_list *lst);
 char	*concatenate_lst(t_list *lst);
