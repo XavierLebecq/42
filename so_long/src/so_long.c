@@ -6,16 +6,27 @@
 /*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:44:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/29 17:55:46 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:57:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+
+typedef struct s_variable
+{
+	int	fd;
+	char *string;
+	char **map;
+}t_variable;
+
+
 int main(int argc, char **argv)
 {
-	int fd;
+	
+	t_variable i;
 
+	
 	if (argc != 2)
 	{
 		write (1, "Error, invalid number of arguments\n", 35);
@@ -24,15 +35,16 @@ int main(int argc, char **argv)
 	if (ft_strncmp(&argv[1][ft_strlen(argv[1])-4], ".ber", 4) != 0)
 		return (write (1, "Error, invalid map file extension\n", 34));
 		
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	i.fd = open(argv[1], O_RDONLY);
+	if (i.fd == -1)
 	{
 		perror("open");
 		exit (0);
 	}
-	char *string = get_next_line(fd);
-	ft_printf("%s\n", string);
-	free(string);
+	
+	i.string = get_next_line(i.fd);
+	ft_printf("%s\n", i.string);
+	free(i.string);
 	
 /*
 	char ** = NULL

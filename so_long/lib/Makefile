@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 18:00:37 by xlebecq           #+#    #+#              #
-#    Updated: 2024/05/29 17:53:03 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/05/30 13:50:54 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ bonus : $(OBJB)
 	ranlib $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(OBJB)
+	$(RM) $(OBJ) $(OBJB) $(OBJ_PRINTF) $(OBJ_GNL)
 
 fclean: clean
 	$(RM) $(NAME)

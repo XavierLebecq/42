@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:44:58 by xlebecq           #+#    #+#              #
-#    Updated: 2024/05/30 12:53:26 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/05/30 13:13:18 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HEADER_DIR= ./header/
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-LIB_DIR = ./libft/
+LIB_DIR = ./lib/
 
 LIB = $(LIB_DIR)libft.a
 
@@ -42,13 +42,13 @@ INCLUDES = -I$(MLX_DIR) -I$(HEADER_DIR) -I$(LIB_DIR)
 
 all: $(NAME)
 
-libft2:
+lib2:
 	make -C $(LIB_DIR)
 
 mlx:
 	make -C $(MLX_DIR) 
 
-$(NAME): mlx libft2 $(OBJ)
+$(NAME): mlx lib2 $(OBJ)
 	$(CC) $(OBJ) $(MLX) $(LIB) $(MLX_FLAG) -o $(NAME)
 
 %.o: %.c
