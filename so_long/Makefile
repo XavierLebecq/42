@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:44:58 by xlebecq           #+#    #+#              #
-#    Updated: 2024/05/29 18:08:06 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/05/30 12:53:26 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ HEADER_DIR= ./header/
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-LIBFT_DIR = ./libft/
+LIB_DIR = ./libft/
 
-LIBFT = $(LIBFT_DIR)libft.a
+LIB = $(LIB_DIR)libft.a
 
 MLX_DIR = ./minilibx-linux/
 
@@ -38,25 +38,25 @@ MLX_FLAG = -lX11 -lXext -Lm1x -L/usr/lib/X11
 
 MLX = $(MLX_DIR)libmlx.a
 
-INCLUDES = -I$(MLX_DIR) -I$(HEADER_DIR) -I$(LIBFT_DIR)
+INCLUDES = -I$(MLX_DIR) -I$(HEADER_DIR) -I$(LIB_DIR)
 
 all: $(NAME)
 
 libft2:
-	make -C $(LIBFT_DIR)
+	make -C $(LIB_DIR)
 
 mlx:
 	make -C $(MLX_DIR) 
 
 $(NAME): mlx libft2 $(OBJ)
-	$(CC) $(OBJ) $(MLX) $(LIBFT) $(MLX_FLAG) -o $(NAME)
+	$(CC) $(OBJ) $(MLX) $(LIB) $(MLX_FLAG) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
 	$(MAKE) -C $(MLX_DIR) clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIB_DIR) fclean
 	$(RM) $(OBJ)
 
 fclean: clean
