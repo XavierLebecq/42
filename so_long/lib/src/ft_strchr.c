@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:46 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/11/16 08:27:26 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/05/31 11:14:26 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "lib.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "mlx.h"
-# include "lib.h"
-# include <fcntl.h>
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
 
-
-int handle_key(int key);
-int close_window(void);
-
-#endif
-
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s + i);
+	return (NULL);
+}

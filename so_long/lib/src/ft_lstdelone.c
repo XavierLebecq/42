@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:46 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/11/16 10:48:15 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/05/31 11:13:21 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "lib.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "mlx.h"
-# include "lib.h"
-# include <fcntl.h>
-
-
-int handle_key(int key);
-int close_window(void);
-
-#endif
-
+void	ft_lstdelone(t_libft *lst, void (*del)(void *))
+{
+	if (lst && del)
+	{
+		del(lst->content);
+		free(lst);
+	}
+}

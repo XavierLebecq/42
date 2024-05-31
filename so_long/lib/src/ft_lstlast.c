@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:46 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/11/20 22:21:17 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/05/31 11:13:28 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "lib.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "mlx.h"
-# include "lib.h"
-# include <fcntl.h>
-
-
-int handle_key(int key);
-int close_window(void);
-
-#endif
-
+t_libft	*ft_lstlast(t_libft *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:46 by xlebecq          ###   ########.fr       */
+/*   Created: 2023/11/16 09:57:01 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/05/31 11:14:32 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "lib.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "mlx.h"
-# include "lib.h"
-# include <fcntl.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
 
-
-int handle_key(int key);
-int close_window(void);
-
-#endif
-
+	if (s != NULL && f != NULL)
+	{
+		i = 0;
+		while (s[i] != '\0')
+		{
+			f(i, s + i);
+			i++;
+		}
+	}
+}

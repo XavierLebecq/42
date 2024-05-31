@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:44:58 by xlebecq           #+#    #+#              #
-#    Updated: 2024/05/30 13:13:18 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/05/31 14:04:26 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,31 +14,31 @@ NAME = so_long
 
 CC = cc
 
+CFLAGS = -Wall -Wextra -Werror -g3
+
 RM = rm -f
-
-SRC_DIR = ./src/
-
-SRC = $(addprefix $(SRC_DIR), $(C_FILE))
-
-C_FILE = so_long.c windows_manager.c
-
-OBJ = $(SRC:.c=.o)
 
 HEADER_DIR= ./header/
 
-CFLAGS = -Wall -Wextra -Werror -g3
+SRC_DIR = ./src/
+
+SRC = $(addprefix $(SRC_DIR), $(C_FILES))
+
+C_FILES = so_long.c windows_manager.c
+
+OBJ = $(SRC:.c=.o)
 
 LIB_DIR = ./lib/
 
-LIB = $(LIB_DIR)libft.a
+LIB = $(LIB_DIR)lib.a
 
 MLX_DIR = ./minilibx-linux/
 
-MLX_FLAG = -lX11 -lXext -Lm1x -L/usr/lib/X11
+MLX_FLAG = -lX11 -lXext -Lmlx -L/usr/lib/X11
 
 MLX = $(MLX_DIR)libmlx.a
 
-INCLUDES = -I$(MLX_DIR) -I$(HEADER_DIR) -I$(LIB_DIR)
+INCLUDES = -I$(LIB_DIR) -I$(MLX_DIR) -I$(HEADER_DIR)
 
 all: $(NAME)
 
