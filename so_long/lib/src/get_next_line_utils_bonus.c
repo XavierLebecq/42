@@ -81,7 +81,7 @@ void	ft_rest(t_list **lst)
 	lst_rest = malloc(sizeof(t_list));
 	if (!lst_rest || !rest)
 		return ;
-	last_lst = ft_lstlast(*lst);
+	last_lst = ft_listlast(*lst);
 	while (last_lst->content[i] != '\0' && last_lst->content[i] != '\n')
 		i += 1;
 	while (last_lst->content[i] != '\0' && last_lst->content[++i])

@@ -100,6 +100,7 @@ typedef struct s_list
 
 char				*get_next_line(int fd);
 void				ft_create_lst(t_list **lst, char *buffer);
+void				ft_create_list(t_list **lst, char *buffer, int fd);
 int					ft_read(t_list **lst, int fd);
 int					ft_find_nl(t_list *lst);
 char				*concatenate_lst(t_list *lst);

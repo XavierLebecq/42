@@ -34,12 +34,12 @@ int	ft_read(t_list **lst, int fd)
 			return (0);
 		}
 		buffer[read_bytes] = '\0';
-		ft_create_lst(lst, buffer, fd);
+		ft_create_list(lst, buffer, fd);
 	}
 	return (0);
 }
 
-void	ft_create_lst(t_list **lst, char *buffer, int fd)
+void	ft_create_list(t_list **lst, char *buffer, int fd)
 {
 	t_list	*new;
 	t_list	*last;
