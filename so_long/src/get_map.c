@@ -6,7 +6,7 @@
 /*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:23:29 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/03 18:42:57 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/04 09:28:45 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void print_map(t_var *game)
     {
         ft_printf("%s", game->map[i]);
     }
+	ft_validate_map(game);
 }
 
 

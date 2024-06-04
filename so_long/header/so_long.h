@@ -6,7 +6,7 @@
 /*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/03 18:52:52 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/04 09:29:30 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	ft_check_map(char **argv, t_var *game);
 char	**read_map(t_var *game);
 size_t	ft_count_lines(t_var *game);
 void	print_map(t_var *game);
-int		validate_map(t_var *game);
+int		ft_validate_map(t_var *game);
 
 #endif
