@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:20:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/03 18:28:28 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/10 10:38:23 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ void	ft_check_map(char **argv, t_var *game)
         close (game->fd);
         exit(EXIT_FAILURE);
     }
+	if (!ft_is_rectangular(game))
+	{
+		ft_printf("Error: The map is not rectangular. \n");
+		close(game->fd);
+		exit(EXIT_FAILURE);
+	}
+/*	if (!ft_is_surrounded_by_walls(game))
+	{
+		ft_printf("Error: The map is not surrounded by walls. \n");
+		close(game->fd);
+		exit(EXIT_FAILURE);\
+	}
+*/
     print_map(game);
 }
 

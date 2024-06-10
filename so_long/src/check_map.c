@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:16:14 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/04 09:29:45 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/10 11:34:38 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 int	ft_validate_map(t_var *game)
 {
@@ -58,3 +59,50 @@ int	ft_validate_map(t_var *game)
 	}
 	return (1);
 }
+
+int	ft_is_rectangular(t_var *game)
+{
+	int	i;
+	size_t line_lenght;
+	printf("map_lines-%d\n", game->map_lines);
+	if (game->map_lines < 1)
+		return (0);
+
+	line_lenght = ft_strlen_whitout_nl(game->map[0]);
+	printf ("line lenght--->%zu\n", line_lenght);
+	printf ("ft_strlen(game_map[0])--->%zu\n", ft_strlen_whitout_nl(game->map[9]));
+	
+	i = 1;
+
+	while (i < game->map_lines)
+	{
+	
+		printf ("i -%d-\n", i);
+		if (ft_strlen_whitout_nl(game->map[i]) != line_lenght)
+		{
+			printf ("-map%zu-", ft_strlen_whitout_nl(game->map[i]));
+			printf ("-line%zu-", line_lenght);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+/*
+int	ft_is_surrounded_by_walls(t_var *game)
+{
+	int i;
+	
+	i = 0;
+	ft_printf("%s, game->map_lines")
+	i = 0;
+	while (game->map[game->map_lines - 1][i])
+	{
+		if (game->map[game->map_lines - 1][i] != '1')
+			return (0);
+		i++;
+	}	
+	return (1);
+
+}
+*/

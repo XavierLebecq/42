@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   new_fonctions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 10:44:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/10 06:43:54 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/06/10 11:35:06 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+size_t  ft_strlen_whitout_nl(const char *s)
 {
-	t_var game;
-	
-	ft_check_args(argc, argv, &game);
-	ft_validate_map(&game);
-	ft_display(&game);
+    size_t  i;
 
-    return 0;
+    i = 0;
+    while(s[i] != '\n')
+    {
+        i++;
+    }
+    return (i);
 }

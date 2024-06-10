@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:23:29 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/04 09:28:45 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/10 11:08:51 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ size_t  ft_count_lines(t_var *game)
         count++;
     }
     close (game->fd);
-    ft_printf("------>%d\n", count);
     return count;
 }
 
@@ -60,7 +59,6 @@ void print_map(t_var *game)
     {
         ft_printf("%s", game->map[i]);
     }
-	ft_validate_map(game);
 }
 
 

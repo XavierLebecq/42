@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:44:58 by xlebecq           #+#    #+#              #
-#    Updated: 2024/06/04 09:16:37 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/06/10 11:29:37 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = ./src/
 
 SRC = $(addprefix $(SRC_DIR), $(C_FILES))
 
-C_FILES = so_long.c windows_manager.c check_args.c get_map.c check_map.c
+C_FILES = so_long.c windows_manager.c check_args.c get_map.c check_map.c display.c new_fonctions.c
 
 OBJ = $(SRC:.c=.o)
 
