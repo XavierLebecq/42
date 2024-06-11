@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   windows_manager.c                                  :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 17:30:02 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/29 17:33:18 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/05/28 10:44:20 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/06/11 21:25:07 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int handle_key(int key)
-{
-    if (key == 65307)
-        exit(0);
-    return (0);
-}
+int	main(int argc, char **argv)
+{	
+	t_var	game;
 
-int close_window(void)
-{
-    exit(0);
-    return (0);
-}
+	ft_check_args(argc, argv, &game);
+	ft_count_lines(argv, &game);
+	read_map(&game);
+	ft_check_map(&game);
+	ft_validate_map(&game);
+	free_map(&game);
+	ft_display(&game);
 
+	return (0);
+}

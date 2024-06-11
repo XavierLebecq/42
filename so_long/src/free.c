@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 10:44:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/10 06:43:54 by xlebecq          ###   ########.fr       */
+/*   Created: 2024/06/11 19:09:09 by xlebecq           #+#    #+#             */
+/*   Updated: 2024/06/11 19:10:19 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+void	free_map(t_var *game)
 {
-	t_var game;
-	
-	ft_check_args(argc, argv, &game);
-	ft_validate_map(&game);
-	ft_display(&game);
+	int	i;
 
-    return 0;
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
 }
