@@ -36,19 +36,19 @@ OBJ_DIR			= $(addprefix $(OBJ_PATH), $(OBJ))
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR)
-	ar rcs $(NAME) $(OBJ_DIR)
-		ranlib $(NAME)
+	@ar rcs $(NAME) $(OBJ_DIR)
+		@ranlib $(NAME)
 
 $(OBJ_PATH)%.o: %.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
-	$(RM) $(OBJ_DIR)
-	$(RM) -r $(OBJ_PATH)
+	@$(RM) $(OBJ_DIR)
+	@$(RM) -r $(OBJ_PATH)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
