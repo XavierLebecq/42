@@ -6,18 +6,20 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/12 01:50:45 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/12 19:34:26 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	ft_strlen_whitout_nl(const char *s, t_var *game)
+int	ft_strlen_whitout_nl(const char *s)
 {
-	game->i = 0;
-	while (s[game->i] && s[game->i] != '\n')
-		game->i++;
-	return (game->i);
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
 }
 
 void	error_msg(char *msg, t_var *game)
@@ -36,13 +38,18 @@ void	perror_msg(char *msg)
 
 void	free_map(t_var *game)
 {
-	game->i = 0;
-	while (game->map[game->i])
+	int	i;
+	if (game->map)
 	{
-		free(game->map[game->i]);
-		game->i++;
+		i = 0;
+		while (game->map[i])
+		{
+			free(game->map[i]);
+			i++;
+		}
+		free(game->map);
 	}
-	free(game->map);
+	ft_printf("Memory for game->map has been freed.\n");
 }
 
 void	init_game(t_var *game)
@@ -56,3 +63,28 @@ void	init_game(t_var *game)
 	game->player_count = 0;
 	game->collectible_count = 0;
 }
+/*void find_player_position(t_var *game)
+{
+    int i = 0;
+    int j = 0;
+	int start_x = 0;
+	int start_y = 0;
+	printf("line_lenght = %d\n", game->line_lenght);
+    while (i < game->map_lines)
+    {
+        j = 0;
+        while (j < game->line_lenght)
+        {
+            if (game->map[i][j] == 'P')
+            {
+                start_x = i;
+				ft_printf ("start_x = %d\n", start_x);
+                start_y = j;
+				ft_printf ("start_y = %d\n", start_y);
+                return;
+            }
+            j++;
+        }
+        i++;
+    }
+}*/
