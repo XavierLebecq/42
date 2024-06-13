@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/12 19:34:26 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/13 17:13:21 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int	ft_strlen_whitout_nl(const char *s)
 	return (i);
 }
 
-void	error_msg(char *msg, t_var *game)
+void	ft_error_msg(char *msg, t_var *game)
 {
 	ft_printf("%s", msg);
 	if (game != NULL)
-		free_map(game);
+		ft_free_map(game);
 	exit(EXIT_FAILURE);
 }
 
-void	perror_msg(char *msg)
+void	ft_perror_msg(char *msg)
 {
 	perror(msg);
 	exit(EXIT_FAILURE);
 }
 
-void	free_map(t_var *game)
+void	ft_free_map(t_var *game)
 {
 	int	i;
 	if (game->map)
@@ -49,10 +49,9 @@ void	free_map(t_var *game)
 		}
 		free(game->map);
 	}
-	ft_printf("Memory for game->map has been freed.\n");
 }
 
-void	init_game(t_var *game)
+void	ft_init_game(t_var *game)
 {
 	game->line = NULL;
 	game->map = NULL;
@@ -62,29 +61,10 @@ void	init_game(t_var *game)
 	game->exit_count = 0;
 	game->player_count = 0;
 	game->collectible_count = 0;
+	game->line_lenght = 0;
+	game->i = 0;
+	game->j = 0;
+	game->fd = 0;
+	game->map_lines = 0;
+	game->valid_chars = "10CPE\n";
 }
-/*void find_player_position(t_var *game)
-{
-    int i = 0;
-    int j = 0;
-	int start_x = 0;
-	int start_y = 0;
-	printf("line_lenght = %d\n", game->line_lenght);
-    while (i < game->map_lines)
-    {
-        j = 0;
-        while (j < game->line_lenght)
-        {
-            if (game->map[i][j] == 'P')
-            {
-                start_x = i;
-				ft_printf ("start_x = %d\n", start_x);
-                start_y = j;
-				ft_printf ("start_y = %d\n", start_y);
-                return;
-            }
-            j++;
-        }
-        i++;
-    }
-}*/
