@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:23:29 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/13 17:16:20 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/20 22:47:32 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_count_lines(char **argv, t_var *game)
 	}
 	close(game->fd);
 	if (game->map_lines == 0)
-		ft_error_msg("Error: The map file is empty or could not be read.\n", NULL);
+		ft_error_msg("Error: The map file is empty or could not be read.\n",
+			NULL);
 	game->fd = open(argv[1], O_RDONLY);
 	if (game->fd == -1)
 		ft_perror_msg("Error opening file");

@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 06:21:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/13 17:10:53 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/13 18:47:23 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,7 @@ int	ft_handle_key(int key, t_var *game)
 {
 	if (key == 65307)
 	{
-		if (game->img)
-			mlx_destroy_image(game->mlx, game->img);
-		if (game->win)
-			mlx_destroy_window(game->mlx, game->win);
-		if (game->mlx)
-			mlx_destroy_display(game->mlx);
-		free(game->mlx);
+		ft_cleanup(game);
 		exit(0);
 	}
 	return (0);
@@ -30,13 +24,7 @@ int	ft_handle_key(int key, t_var *game)
 
 int	ft_close_window(t_var *game)
 {
-	if (game->img)
-		mlx_destroy_image(game->mlx, game->img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-		mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	ft_cleanup(game);
 	exit(0);
 	return (0);
 }
@@ -62,4 +50,5 @@ void	ft_display(t_var *game)
 	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
 	mlx_loop(game->mlx);
 	mlx_destroy_image(game->mlx, game->img);
+	ft_cleanup(game);
 }

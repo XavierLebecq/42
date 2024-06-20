@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/13 19:22:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/20 22:49:23 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_perror_msg(char *msg)
 void	ft_free_map(t_var *game)
 {
 	int	i;
+
 	if (game->map)
 	{
 		i = 0;
@@ -50,15 +51,15 @@ void	ft_free_map(t_var *game)
 		free(game->map);
 	}
 }
-void ft_cleanup(t_var *game)
-{
-    if (game->img)
-        mlx_destroy_image(game->mlx, game->img);
-    if (game->win)
-        mlx_destroy_window(game->mlx, game->win);
-    if (game->mlx)
-        mlx_destroy_display(game->mlx); // Only if using X11 or similar
-    free(game->mlx);
-    ft_free_map(game); // Assuming this frees the map correctly
-}
 
+void	ft_cleanup(t_var *game)
+{
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	ft_free_map(game);
+}
