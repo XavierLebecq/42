@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:24:10 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/20 23:13:55 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/20 23:29:35 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,67 @@
 
 void	ft_check_path(t_var *game)
 {
-	char	**visited;
 	int		i;
 	int		j;
-	int		exit_found;
 
 	i = 0;
 	j = 0;
-	visited = (char **)malloc((game->map_lines + 1) * sizeof(char *));
-	if (!visited)
-		free(visited);
+	game->visited = (char **)malloc((game->map_lines + 1) * sizeof(char *));
+	if (!game->visited)
+		free(game->visited);
 	while (i < game->map_lines)
 	{
-		visited[i] = (char *)malloc(game->line_lenght * sizeof(char));
-		if (!visited[i])
+		game->visited[i] = (char *)malloc(game->line_lenght * sizeof(char));
+		if (!game->visited[i])
 		{
-			free(visited[i]);
-			free(visited);
+			free(game->visited[i]);
+			free(game->visited);
 			ft_error_msg("Error: Memory allocation failed\n", game);
 		}
 		j = 0;
 		while (j < game->line_lenght)
 		{
-			visited[i][j] = 0;
+			game->visited[i][j] = 0;
 			j++;
 		}
 		i++;
 	}
 	ft_find_player_position(game, &game->start_x, &game->start_y);
-	ft_flood_fill(game, game->start_x, game->start_y, visited);
-	exit_found = 0;
+	ft_flood_fill(game, game->start_x, game->start_y, game->visited);
+	game->exit_found = 0;
 	i = 0;
 	while (i < game->map_lines)
 	{
 		j = 0;
 		while (j < game->line_lenght)
 		{
-			if (game->map[i][j] == 'E' && visited[i][j])
+			if (game->map[i][j] == 'E' && game->visited[i][j])
 			{
-				exit_found = 1;
+				game->exit_found = 1;
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
-	if (!exit_found)
+	if (!game->exit_found)
 	{	
 		i = 0;
 		while (i < game->map_lines)
 		{
-			free(visited[i]);
+			free(game->visited[i]);
 			i++;
 		}
-		free(visited);
+		free(game->visited);
 		ft_error_msg("Error : No valid path to the exit.\n", game);
 	}
 	i = 0;
 	while (i < game->map_lines)
 	{
-		free(visited[i]);
+		free(game->visited[i]);
 		i++;
 	}
-	free(visited);
+	free(game->visited);
 }
 
 void	ft_flood_fill(t_var *game, int x, int y, char **visited)

@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:20:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/20 22:30:19 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/20 23:21:39 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_init_struct(t_var *game)
 	game->fd = 0;
 	game->map_lines = 0;
 	game->valid_chars = "10CPE\n";
+	game->exit_found = 0;
 }
 
 void	ft_check_args(int argc, char **argv, t_var *game)

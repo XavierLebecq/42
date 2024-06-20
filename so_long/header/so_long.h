@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/20 23:10:43 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/20 23:19:21 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_var
 	const char *valid_chars;
 	int		start_x;
 	int		start_y;
+	char	**visited;
+	int		exit_found;
 }			t_var;
 
 int			ft_handle_key(int key, t_var *game);
