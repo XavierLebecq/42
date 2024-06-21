@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/20 23:19:21 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/21 23:36:32 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# define TILE_SIZE 64
 
 typedef struct s_var
 {
@@ -34,6 +36,7 @@ typedef struct s_var
 	void	*mlx;
 	void	*win;
 	void	*img;
+	void	*img_empty;
 	int		img_width;
 	int		img_height;
 	char	current_char;
@@ -44,6 +47,8 @@ typedef struct s_var
 	int		exit_found;
 }			t_var;
 
+void		ft_exit(t_var *game);
+void 		ft_check_exit(t_var *game);
 int			ft_handle_key(int key, t_var *game);
 int			ft_close_window(t_var *game);
 void		ft_check_args(int argc, char **argv, t_var *game);

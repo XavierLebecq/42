@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:44:58 by xlebecq           #+#    #+#              #
-#    Updated: 2024/06/13 18:18:50 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/06/21 22:38:25 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = ./src/
 
 SRC = $(addprefix $(SRC_DIR), $(C_FILES))
 
-C_FILES = main.c check_args.c get_map.c check_map.c utils.c display.c flood_fill.c
+C_FILES = main.c check_args.c get_map.c check_map.c utils.c display.c flood_fill.c player.c
 
 OBJ = $(SRC:.c=.o)
 
