@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:44:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/20 22:48:12 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/22 05:11:46 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	ft_validate_map(&game);
 	ft_is_rectangular(&game);
 	ft_is_surrounded_by_walls(&game);
+	ft_find_player_position2(&game);
 	ft_check_path(&game);
 	ft_display(&game);
 	return (0);

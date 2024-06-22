@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/21 23:36:32 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/22 06:47:33 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 typedef struct s_var
 {
+	int		move_count;
+	char	prev_tile;
 	int		i;
 	int		j;
 	int		fd;
@@ -37,6 +39,10 @@ typedef struct s_var
 	void	*win;
 	void	*img;
 	void	*img_empty;
+	void	*img_wall;
+	void	*img_collectible;
+	void	*img_exit;
+	void	*img_player;
 	int		img_width;
 	int		img_height;
 	char	current_char;
@@ -45,8 +51,11 @@ typedef struct s_var
 	int		start_y;
 	char	**visited;
 	int		exit_found;
+	int		player_x;
+	int		player_y;
 }			t_var;
 
+void		ft_render_map(t_var *game);
 void		ft_exit(t_var *game);
 void 		ft_check_exit(t_var *game);
 int			ft_handle_key(int key, t_var *game);
@@ -69,4 +78,7 @@ void		ft_flood_fill(t_var *game, int x, int y, char ** visited);
 void		ft_find_player_position(t_var *game, int *start_x, int *start_y);
 void		ft_check_path(t_var *game);
 void 		ft_cleanup(t_var *game);
+void 		ft_find_player_position2(t_var *game);
+void		ft_move_player(t_var *game, int x, int y);
+
 #endif
