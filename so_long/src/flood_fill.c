@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:24:10 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/21 23:00:17 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/24 23:47:17 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_check_exit(t_var *game)
 	ft_find_player_position(game, &game->start_x, &game->start_y);
 	ft_flood_fill(game, game->start_x, game->start_y, game->visited);
 	game->exit_found = 0;
+	game->collectible_found = 0;
+	
 	i = 0;
 	while (i < game->map_lines)
 	{

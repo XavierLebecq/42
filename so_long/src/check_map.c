@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:16:14 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 10:57:17 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/22 18:05:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_is_rectangular(t_var *game)
 		if (ft_strlen_whitout_nl(game->map[game->i]) != game->line_lenght)
 			ft_error_msg("Error: The map is not rectangular. \n", game);
 		game->i++;
-//		ft_printf ("\nmaplines -> %d\n", game->map_lines);
 	}
 	return (1);
 }

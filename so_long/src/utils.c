@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 05:30:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/22 17:57:57 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	ft_cleanup(t_var *game)
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
 	if (game->img_player)
- 		mlx_destroy_image(game->mlx, game->img_player);
-
+		mlx_destroy_image(game->mlx, game->img_player);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

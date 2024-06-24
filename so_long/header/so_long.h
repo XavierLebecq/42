@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 06:47:33 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/24 23:47:13 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_var
 	int		exit_found;
 	int		player_x;
 	int		player_y;
+	int		emptyline;
+	int		collectible_found;
 }			t_var;
 
 void		ft_render_map(t_var *game);

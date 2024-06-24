@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:20:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 11:19:41 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/24 23:00:39 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@ void	ft_init_struct(t_var *game)
 	game->exit_found = 0;
 	game->prev_tile = '0';
 	game->move_count = 0;
+	game->emptyline = 0;
 }
 
 void	ft_check_args(int argc, char **argv, t_var *game)
 {
 	if (argc != 2)
 		ft_error_msg("Error: invalid number of arguments.\n", NULL);
+	if (ft_strlen(argv[1]) == 4 && ft_strncmp(argv[1], ".ber", 4) == 0)
+		ft_error_msg("Error: invalid file name. The file name cannot be just '.ber'.\n", NULL);
 	if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".ber", 4) != 0)
 		ft_error_msg("Error: invalid file extension. Expected a '.ber' file.\n",
 			NULL);

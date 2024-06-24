@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:13:04 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/05/31 11:17:44 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/24 22:46:33 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,12 @@ void	ft_clear_lst(t_list **lst, t_list *lst_rest, char *rest)
 	}
 	*lst = NULL;
 	if (lst_rest->content[0])
+	{
 		*lst = lst_rest;
+	}	
 	else
 	{
 		free(rest);
 		free(lst_rest);
-	}
+	}	
 }

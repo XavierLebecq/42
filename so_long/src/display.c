@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 06:21:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 06:48:51 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/22 18:04:47 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_handle_key(int key, t_var *game)
 		ft_move_player(game, -1, 0);
 	else if (key == 'd')
 		ft_move_player(game, 1, 0);
-
 	return (0);
 }
 
@@ -43,144 +42,122 @@ void	ft_display(t_var *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_error_msg("Error initializing MLX\n", NULL);
-	game->win = mlx_new_window(game->mlx, game->line_lenght * TILE_SIZE, game->map_lines * TILE_SIZE, "So Long");
+	game->win = mlx_new_window(game->mlx, game->line_lenght * TILE_SIZE,
+			game->map_lines * TILE_SIZE, "So Long");
 	if (!game->win)
 		ft_error_msg("Error creating window\n", NULL);
-
-
-	game->img_empty = mlx_xpm_file_to_image(game->mlx, "/home/xlebecq/Documents/42/so_long/sprites/background.xpm", &game->img_width, &game->img_height);
-
-	game->img_player = mlx_xpm_file_to_image(game->mlx, "/home/xlebecq/Documents/42/so_long/sprites/player.xpm", &game->img_width, &game->img_height);
-	
-	game->img_collectible = mlx_xpm_file_to_image(game->mlx, "/home/xlebecq/Documents/42/so_long/sprites/collectible.xpm", &game->img_width, &game->img_height);
-
-	game->img_exit = mlx_xpm_file_to_image(game->mlx, "/home/xlebecq/Documents/42/so_long/sprites/exit.xpm", &game->img_width, &game->img_height);
-
-	game->img_wall = mlx_xpm_file_to_image(game->mlx, "/home/xlebecq/Documents/42/so_long/sprites/wall.xpm", &game->img_width, &game->img_height);
-
-
-	if (!game->img_empty || !game->img_player || !game->img_collectible || !game->img_exit || !game->img_wall)
+	game->img_empty = mlx_xpm_file_to_image(game->mlx,
+			"/home/xlebecq/Documents/42/so_long/sprites/background.xpm",
+			&game->img_width, &game->img_height);
+	game->img_player = mlx_xpm_file_to_image(game->mlx,
+			"/home/xlebecq/Documents/42/so_long/sprites/player.xpm",
+			&game->img_width, &game->img_height);
+	game->img_collectible = mlx_xpm_file_to_image(game->mlx,
+			"/home/xlebecq/Documents/42/so_long/sprites/collectible.xpm",
+			&game->img_width, &game->img_height);
+	game->img_exit = mlx_xpm_file_to_image(game->mlx,
+			"/home/xlebecq/Documents/42/so_long/sprites/exit.xpm",
+			&game->img_width, &game->img_height);
+	game->img_wall = mlx_xpm_file_to_image(game->mlx,
+			"/home/xlebecq/Documents/42/so_long/sprites/wall.xpm",
+			&game->img_width, &game->img_height);
+	if (!game->img_empty || !game->img_player || !game->img_collectible
+		|| !game->img_exit || !game->img_wall)
 	{
 		mlx_destroy_window(game->mlx, game->win);
 		ft_error_msg("Error loading image\n", NULL);
 	}
-
-
 	ft_render_map(game);
-
 	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
 	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
 	mlx_loop(game->mlx);
 	mlx_destroy_image(game->mlx, game->img);
 	ft_cleanup(game);
-
 }
 
-void ft_render_map(t_var *game)
+void	ft_render_map(t_var *game)
 {
-    int x;
-    int y;
-    void *img;
+	int		x;
+	int		y;
+	void	*img;
 
-    y = 0;
-    while (y < game->map_lines)
-    {
-        x = 0;
-        while (x < game->line_lenght)
-        {
-            img = NULL;
-            if (game->map[y][x] == '1')
-                img = game->img_wall;
-            else if (game->map[y][x] == 'C')
-                img = game->img_collectible;
-            else if (game->map[y][x] == 'E')
-                img = game->img_exit;
-            else
-                img = game->img_empty;
-
-            if (img)
-                mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
-
-            // Afficher le joueur par-dessus tout autre objet
-            if (game->map[y][x] == 'P')
-            {
-                img = game->img_player;
-                mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
-            }
-
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < game->map_lines)
+	{
+		x = 0;
+		while (x < game->line_lenght)
+		{
+			img = NULL;
+			if (game->map[y][x] == '1')
+				img = game->img_wall;
+			else if (game->map[y][x] == 'C')
+				img = game->img_collectible;
+			else if (game->map[y][x] == 'E')
+				img = game->img_exit;
+			else
+				img = game->img_empty;
+			if (img)
+				mlx_put_image_to_window(game->mlx, game->win, img, x
+					* TILE_SIZE, y * TILE_SIZE);
+			if (game->map[y][x] == 'P')
+			{
+				img = game->img_player;
+				mlx_put_image_to_window(game->mlx, game->win, img, x
+					* TILE_SIZE, y * TILE_SIZE);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
-
-#include <stdio.h>  // Inclure stdio.h pour utiliser printf
-
-void ft_move_player(t_var *game, int dx, int dy)
+void	ft_move_player(t_var *game, int dx, int dy)
 {
-    int new_x = game->player_x + dx;
-    int new_y = game->player_y + dy;
+	int	new_x;
+	int	new_y;
 
-    // Vérifiez si la nouvelle position est valide
-    if (new_x < 0 || new_x >= game->line_lenght || new_y < 0 || new_y >= game->map_lines)
-        return;
-
-    // Vérifiez si la nouvelle position n'est pas un mur
-    if (game->map[new_y][new_x] == '1')
-        return;
-
-    // Gérer la collecte des objets
-    if (game->map[new_y][new_x] == 'C')
-        game->collectible_count--;
-
-    // Gérer la sortie si tous les objets sont collectés
-    if (game->map[new_y][new_x] == 'E' && game->collectible_count == 0)
-    {
-        ft_cleanup(game);
-        exit(0);
-    }
-
-    // Restaurer la case précédente à son état original
-    if (game->prev_tile == 'E')
-        game->map[game->player_y][game->player_x] = 'E';
-    else
-        game->map[game->player_y][game->player_x] = '0';
-
-    // Sauvegarder l'état de la nouvelle case
-    game->prev_tile = game->map[new_y][new_x];
-    
-    // Déplacer le joueur à la nouvelle position
-    game->map[new_y][new_x] = 'P';
-    game->player_x = new_x;
-    game->player_y = new_y;
-
-    // Incrémenter le compteur de mouvements
-    game->move_count++;
-
-    // Afficher le compteur de mouvements dans le shell
-    printf("Nombre de mouvements: %d\n", game->move_count);
-
-    // Redessinez la carte
-    ft_render_map(game);
+	new_x = game->player_x + dx;
+	new_y = game->player_y + dy;
+	if (new_x < 0 || new_x >= game->line_lenght || new_y < 0
+		|| new_y >= game->map_lines)
+		return ;
+	if (game->map[new_y][new_x] == '1')
+		return ;
+	if (game->map[new_y][new_x] == 'C')
+		game->collectible_count--;
+	if (game->map[new_y][new_x] == 'E' && game->collectible_count == 0)
+	{
+		ft_cleanup(game);
+		exit(0);
+	}
+	if (game->prev_tile == 'E')
+		game->map[game->player_y][game->player_x] = 'E';
+	else
+		game->map[game->player_y][game->player_x] = '0';
+	game->prev_tile = game->map[new_y][new_x];
+	game->map[new_y][new_x] = 'P';
+	game->player_x = new_x;
+	game->player_y = new_y;
+	game->move_count++;
+	ft_printf("Nombre de mouvements: %d\n", game->move_count);
+	ft_render_map(game);
 }
 
-
-
-void ft_find_player_position2(t_var *game)
+void	ft_find_player_position2(t_var *game)
 {
-    int i, j;
+    int i;
+    int j;
 
-    for (i = 0; i < game->map_lines; i++)
-    {
-        for (j = 0; j < game->line_lenght; j++)
-        {
-            if (game->map[i][j] == 'P')
-            {
-                game->player_x = j;
-                game->player_y = i;
-                return;
-            }
-        }
-    }
+	for (i = 0; i < game->map_lines; i++)
+	{
+		for (j = 0; j < game->line_lenght; j++)
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->player_x = j;
+				game->player_y = i;
+				return ;
+			}
+		}
+	}
 }
