@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:28:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 17:57:57 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 08:50:29 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,21 @@ void	ft_cleanup(t_var *game)
 		mlx_destroy_image(game->mlx, game->img_empty);
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->img_collectible)
-		mlx_destroy_image(game->mlx, game->img_collectible);
+	if (game->img_collect)
+		mlx_destroy_image(game->mlx, game->img_collect);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
 	if (game->img_player)
+	{
 		mlx_destroy_image(game->mlx, game->img_player);
+		game->img_player = NULL;
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
-	free(game->mlx);
+		free(game->mlx);
+	}
 	ft_free_map(game);
 }

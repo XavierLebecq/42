@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:24:10 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/24 23:47:17 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:10:36 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_check_exit(t_var *game)
 	ft_flood_fill(game, game->start_x, game->start_y, game->visited);
 	game->exit_found = 0;
 	game->collectible_found = 0;
-	
 	i = 0;
 	while (i < game->map_lines)
 	{
@@ -57,10 +56,9 @@ void	ft_check_exit(t_var *game)
 		while (j < game->line_lenght)
 		{
 			if (game->map[i][j] == 'E' && game->visited[i][j])
-			{
 				game->exit_found = 1;
-				break ;
-			}
+			if (game->map[i][j] == 'C' && game->visited[i][j])
+				game->collectible_found++;
 			j++;
 		}
 		i++;
@@ -74,6 +72,14 @@ void	ft_exit(t_var *game)
 
 	if (!game->exit_found)
 	{	
+		i = -1;
+		while (++i < game->map_lines)
+			free(game->visited[i]);
+		free(game->visited);
+		ft_error_msg("Error : No valid path to the exit.\n", game);
+	}
+	if (game->collectible_found != game->collectible_count)
+	{
 		i = 0;
 		while (i < game->map_lines)
 		{
@@ -81,14 +87,11 @@ void	ft_exit(t_var *game)
 			i++;
 		}
 		free(game->visited);
-		ft_error_msg("Error : No valid path to the exit.\n", game);
+		ft_error_msg("Error : Not all collectibles are reachable.\n", game);
 	}
-	i = 0;
-	while (i < game->map_lines)
-	{
+	i = -1;
+	while (++i < game->map_lines)
 		free(game->visited[i]);
-		i++;
-	}
 	free(game->visited);
 }
 

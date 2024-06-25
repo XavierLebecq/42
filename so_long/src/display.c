@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 06:21:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/22 18:04:47 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:58:22 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,19 @@ void	ft_display(t_var *game)
 			game->map_lines * TILE_SIZE, "So Long");
 	if (!game->win)
 		ft_error_msg("Error creating window\n", NULL);
-	game->img_empty = mlx_xpm_file_to_image(game->mlx,
-			"/home/xlebecq/Documents/42/so_long/sprites/background.xpm",
+	game->img_empty = mlx_xpm_file_to_image(game->mlx, "sprites/background.xpm",
 			&game->img_width, &game->img_height);
-	game->img_player = mlx_xpm_file_to_image(game->mlx,
-			"/home/xlebecq/Documents/42/so_long/sprites/player.xpm",
+	game->img_player = mlx_xpm_file_to_image(game->mlx, "sprites/player.xpm",
 			&game->img_width, &game->img_height);
-	game->img_collectible = mlx_xpm_file_to_image(game->mlx,
-			"/home/xlebecq/Documents/42/so_long/sprites/collectible.xpm",
+	game->img_collect = mlx_xpm_file_to_image(game->mlx, "sprites/collect.xpm",
 			&game->img_width, &game->img_height);
-	game->img_exit = mlx_xpm_file_to_image(game->mlx,
-			"/home/xlebecq/Documents/42/so_long/sprites/exit.xpm",
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm",
 			&game->img_width, &game->img_height);
-	game->img_wall = mlx_xpm_file_to_image(game->mlx,
-			"/home/xlebecq/Documents/42/so_long/sprites/wall.xpm",
+	game->img_wall = mlx_xpm_file_to_image(game->mlx, "sprites/wall.xpm",
 			&game->img_width, &game->img_height);
-	if (!game->img_empty || !game->img_player || !game->img_collectible
+	if (!game->img_empty || !game->img_player || !game->img_collect
 		|| !game->img_exit || !game->img_wall)
-	{
-		mlx_destroy_window(game->mlx, game->win);
-		ft_error_msg("Error loading image\n", NULL);
-	}
+		ft_error_msg("Error loading image\n", game);
 	ft_render_map(game);
 	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
 	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
@@ -77,10 +69,10 @@ void	ft_display(t_var *game)
 
 void	ft_render_map(t_var *game)
 {
-	int		x;
-	int		y;
-	void	*img;
-
+	int x;
+	int y;
+	void *img;
+	
 	y = 0;
 	while (y < game->map_lines)
 	{
@@ -91,19 +83,18 @@ void	ft_render_map(t_var *game)
 			if (game->map[y][x] == '1')
 				img = game->img_wall;
 			else if (game->map[y][x] == 'C')
-				img = game->img_collectible;
+				img = game->img_collect;
 			else if (game->map[y][x] == 'E')
 				img = game->img_exit;
 			else
 				img = game->img_empty;
-			if (img)
-				mlx_put_image_to_window(game->mlx, game->win, img, x
-					* TILE_SIZE, y * TILE_SIZE);
+			mlx_put_image_to_window(game->mlx, game->win, img, x
+				* TILE_SIZE, y * TILE_SIZE);
 			if (game->map[y][x] == 'P')
 			{
 				img = game->img_player;
-				mlx_put_image_to_window(game->mlx, game->win, img, x
-					* TILE_SIZE, y * TILE_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img,
+					x * TILE_SIZE, y * TILE_SIZE);
 			}
 			x++;
 		}
@@ -145,12 +136,14 @@ void	ft_move_player(t_var *game, int dx, int dy)
 
 void	ft_find_player_position2(t_var *game)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-	for (i = 0; i < game->map_lines; i++)
+	i = 0;
+	while (i < game->map_lines)
 	{
-		for (j = 0; j < game->line_lenght; j++)
+		j = 0;
+		while (j < game->line_lenght)
 		{
 			if (game->map[i][j] == 'P')
 			{
@@ -158,6 +151,8 @@ void	ft_find_player_position2(t_var *game)
 				game->player_y = i;
 				return ;
 			}
+			j++;
 		}
+		i++;
 	}
 }

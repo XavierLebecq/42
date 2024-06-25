@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/24 23:47:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:54:56 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,64 +23,71 @@
 
 typedef struct s_var
 {
-	int		move_count;
-	char	prev_tile;
-	int		i;
-	int		j;
-	int		fd;
-	char	*line;
-	int		map_lines;
-	char	**map;
-	int		exit_count;
-	int		player_count;
-	int		collectible_count;
-	int		line_lenght;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*img_empty;
-	void	*img_wall;
-	void	*img_collectible;
-	void	*img_exit;
-	void	*img_player;
-	int		img_width;
-	int		img_height;
-	char	current_char;
-	const char *valid_chars;
-	int		start_x;
-	int		start_y;
-	char	**visited;
-	int		exit_found;
-	int		player_x;
-	int		player_y;
-	int		emptyline;
-	int		collectible_found;
-}			t_var;
+	int			move_count;
+	char		prev_tile;
+	int			i;
+	int			j;
+	int			fd;
+	char		*line;
+	int			map_lines;
+	char		**map;
+	int			exit_count;
+	int			player_count;
+	int			collectible_count;
+	int			line_lenght;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*img_empty;
+	void		*img_wall;
+	void		*img_collect;
+	void		*img_exit;
+	void		*img_player;
+	int			img_width;
+	int			img_height;
+	char		current_char;
+	const char	*valid_chars;
+	int			start_x;
+	int			start_y;
+	char		**visited;
+	int			exit_found;
+	int			player_x;
+	int			player_y;
+	int			emptyline;
+	int			collectible_found;
+//	void		*imgx;
+//	int			x;
+//	int			y;
+}				t_var;
 
-void		ft_render_map(t_var *game);
-void		ft_exit(t_var *game);
-void 		ft_check_exit(t_var *game);
-int			ft_handle_key(int key, t_var *game);
-int			ft_close_window(t_var *game);
-void		ft_check_args(int argc, char **argv, t_var *game);
-void		ft_check_map(t_var *game);
-void		ft_read_map(t_var *game);
-void		ft_count_lines(char **argv, t_var *game);
-void		ft_validate_map(t_var *game);
-void		ft_display(t_var *game);
-int			ft_is_rectangular(t_var *game);
-void		ft_is_surrounded_by_walls(t_var *game);
-int			ft_strlen_whitout_nl(const char *s);
-void		ft_error_msg(char *msg, t_var *game);
-void		ft_perror_msg(char *msg);
-void		ft_free_map(t_var *game);
-void		ft_init_struct(t_var *game);
-int			ft_is_valid_position(t_var *game, int x, int y, char ** visited);
-void		ft_flood_fill(t_var *game, int x, int y, char ** visited);
-void		ft_find_player_position(t_var *game, int *start_x, int *start_y);
-void		ft_check_path(t_var *game);
-void 		ft_cleanup(t_var *game);
-void 		ft_find_player_position2(t_var *game);
-void		ft_move_player(t_var *game, int x, int y);
+void			ft_render_map(t_var *game);
+void			ft_exit(t_var *game);
+void			ft_check_exit(t_var *game);
+int				ft_handle_key(int key, t_var *game);
+int				ft_close_window(t_var *game);
+void			ft_check_args(int argc, char **argv, t_var *game);
+void			ft_check_map(t_var *game);
+void			ft_read_map(t_var *game);
+void			ft_count_lines(char **argv, t_var *game);
+void			ft_validate_map(t_var *game);
+void			ft_display(t_var *game);
+int				ft_is_rectangular(t_var *game);
+void			ft_is_surrounded_by_walls(t_var *game);
+int				ft_strlen_whitout_nl(const char *s);
+void			ft_error_msg(char *msg, t_var *game);
+void			ft_perror_msg(char *msg);
+void			ft_free_map(t_var *game);
+void			ft_init_struct(t_var *game);
+int				ft_is_valid_position(t_var *game, int x, int y, char **visited);
+void			ft_flood_fill(t_var *game, int x, int y, char **visited);
+void			ft_find_player_position(t_var *game, int *start_x,
+					int *start_y);
+void			ft_check_path(t_var *game);
+void			ft_cleanup(t_var *game);
+void			ft_find_player_position2(t_var *game);
+void			ft_move_player(t_var *game, int x, int y);
+//void			ft_hook(t_var *game);
+void			ft_cleanup_exit(t_var *game);
+//int				ft_handle_key(int key, t_var *game);
 
 #endif

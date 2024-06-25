@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:23:29 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/24 23:00:58 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:13:02 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,16 @@
 
 void	ft_count_lines(char **argv, t_var *game)
 {
-//	int	found_non_empty_line;
-
-//	found_non_empty_line = 0;
 	game->line = get_next_line(game->fd);
 	while (game->line)
 	{
-		
 		if (ft_strlen(game->line) > 1)
-		{
-//			if (found_non_empty_line && game->map_lines > 0
-//				&& ft_strlen(game->line) == 0)
-//			{
-//				free(game->line);
-//				ft_error_msg("Error: The map contains empty lines inside the map.\n",
-//					NULL);
-//			}
 			game->map_lines++;
-//			found_non_empty_line = 1;
-		}
-		else /*if (found_non_empty_line)*/
-		{
+		else
 			game->emptyline = 1;
-//			free(game->line);
-//			close(game->fd);
-//			ft_error_msg("Error: The map contains empty lines inside the map.\n",
-//				NULL);
-		}
 		free(game->line);
 		game->line = get_next_line(game->fd);
 	}
-		
 	close(game->fd);
 	if (game->emptyline == 1)
 		ft_error_msg("Error: The map contains empty lines inside the map.\n",
@@ -72,22 +51,8 @@ void	ft_read_map(t_var *game)
 	{
 		if (ft_strlen(game->line) > 1)
 		{
-			if (found_non_empty_line && index > 0 && ft_strlen(game->map[index
-                                - 1]) == 0)
-			{
-				free(game->line);
-				ft_error_msg("Error: The map contains empty lines inside the map.\n",
-					game);
-			}
 			game->map[index] = game->line;
 			index++;
-			found_non_empty_line = 1;
-		}
-		else if (found_non_empty_line)
-		{
-			free(game->line);
-			ft_error_msg("Error: The map contains empty lines inside the map.\n",
-				game);
 		}
 		else
 		{

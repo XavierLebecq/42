@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:37:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/21 22:56:03 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 09:51:35 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,12 @@ int	ft_is_valid_position(t_var *game, int x, int y, char **visited)
 	return (x > 0 && x < game->map_lines && y >= 0 && y < game->line_lenght
 		&& game->map[x][y] != '1' && !visited[x][y]);
 }
+
+
+
+// void	ft_hook(t_var *game)
+// {
+// 	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
+// 	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
+// 	mlx_loop(game->mlx);
+// }
