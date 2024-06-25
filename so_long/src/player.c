@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:37:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/25 09:51:35 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 12:17:58 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,27 @@ int	ft_is_valid_position(t_var *game, int x, int y, char **visited)
 		&& game->map[x][y] != '1' && !visited[x][y]);
 }
 
+int	ft_handle_key(int key, t_var *game)
+{
+	if (key == 65307)
+	{
+		ft_cleanup(game);
+		exit(0);
+	}
+	else if (key == 'w')
+		ft_move_player(game, 0, -1);
+	else if (key == 's')
+		ft_move_player(game, 0, 1);
+	else if (key == 'a')
+		ft_move_player(game, -1, 0);
+	else if (key == 'd')
+		ft_move_player(game, 1, 0);
+	return (0);
+}
 
-
-// void	ft_hook(t_var *game)
-// {
-// 	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
-// 	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
-// 	mlx_loop(game->mlx);
-// }
+int	ft_close_window(t_var *game)
+{
+	ft_cleanup(game);
+	exit(0);
+	return (0);
+}

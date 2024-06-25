@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:20:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/25 10:58:05 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 11:43:29 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_init_struct(t_var *game)
 	game->prev_tile = '0';
 	game->move_count = 0;
 	game->emptyline = 0;
+	game->x = -1;
+	game->y = 0;
 }
 
 void	ft_check_args(int argc, char **argv, t_var *game)
@@ -59,4 +61,10 @@ void	ft_cleanup_exit(t_var *game)
 {
 	ft_cleanup(game);
 	exit(EXIT_FAILURE);
+}
+
+void	ft_hook(t_var *game)
+{
+	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
+	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
 }

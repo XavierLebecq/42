@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:58:37 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/25 10:54:56 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 12:10:47 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_var
 	int			player_y;
 	int			emptyline;
 	int			collectible_found;
-//	void		*imgx;
-//	int			x;
-//	int			y;
+	int			x;
+	int			y;
+	void		*imgx;
 }				t_var;
 
 void			ft_render_map(t_var *game);
@@ -86,8 +86,7 @@ void			ft_check_path(t_var *game);
 void			ft_cleanup(t_var *game);
 void			ft_find_player_position2(t_var *game);
 void			ft_move_player(t_var *game, int x, int y);
-//void			ft_hook(t_var *game);
+void			ft_hook(t_var *game);
 void			ft_cleanup_exit(t_var *game);
-//int				ft_handle_key(int key, t_var *game);
 
 #endif

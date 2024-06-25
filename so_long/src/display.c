@@ -6,36 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 06:21:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/25 10:58:22 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 12:17:00 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_handle_key(int key, t_var *game)
-{
-	if (key == 65307)
-	{
-		ft_cleanup(game);
-		exit(0);
-	}
-	else if (key == 'w')
-		ft_move_player(game, 0, -1);
-	else if (key == 's')
-		ft_move_player(game, 0, 1);
-	else if (key == 'a')
-		ft_move_player(game, -1, 0);
-	else if (key == 'd')
-		ft_move_player(game, 1, 0);
-	return (0);
-}
-
-int	ft_close_window(t_var *game)
-{
-	ft_cleanup(game);
-	exit(0);
-	return (0);
-}
 
 void	ft_display(t_var *game)
 {
@@ -60,8 +35,7 @@ void	ft_display(t_var *game)
 		|| !game->img_exit || !game->img_wall)
 		ft_error_msg("Error loading image\n", game);
 	ft_render_map(game);
-	mlx_hook(game->win, 2, 1L << 0, ft_handle_key, game);
-	mlx_hook(game->win, 17, 1L << 17, ft_close_window, game);
+	ft_hook(game);
 	mlx_loop(game->mlx);
 	mlx_destroy_image(game->mlx, game->img);
 	ft_cleanup(game);
@@ -69,36 +43,30 @@ void	ft_display(t_var *game)
 
 void	ft_render_map(t_var *game)
 {
-	int x;
-	int y;
-	void *img;
-	
-	y = 0;
-	while (y < game->map_lines)
+	game->y = -1;
+	while (++game->y < game->map_lines)
 	{
-		x = 0;
-		while (x < game->line_lenght)
+		game->x = -1;
+		while (++game->x < game->line_lenght)
 		{
-			img = NULL;
-			if (game->map[y][x] == '1')
-				img = game->img_wall;
-			else if (game->map[y][x] == 'C')
-				img = game->img_collect;
-			else if (game->map[y][x] == 'E')
-				img = game->img_exit;
+			game->imgx = NULL;
+			if (game->map[game->y][game->x] == '1')
+				game->imgx = game->img_wall;
+			else if (game->map[game->y][game->x] == 'C')
+				game->imgx = game->img_collect;
+			else if (game->map[game->y][game->x] == 'E')
+				game->imgx = game->img_exit;
 			else
-				img = game->img_empty;
-			mlx_put_image_to_window(game->mlx, game->win, img, x
-				* TILE_SIZE, y * TILE_SIZE);
-			if (game->map[y][x] == 'P')
+				game->imgx = game->img_empty;
+			mlx_put_image_to_window(game->mlx, game->win, game->imgx, game->x
+				* TILE_SIZE, game->y * TILE_SIZE);
+			if (game->map[game->y][game->x] == 'P')
 			{
-				img = game->img_player;
-				mlx_put_image_to_window(game->mlx, game->win, img,
-					x * TILE_SIZE, y * TILE_SIZE);
+				game->imgx = game->img_player;
+				mlx_put_image_to_window(game->mlx, game->win, game->imgx,
+					game->x * TILE_SIZE, game->y * TILE_SIZE);
 			}
-			x++;
 		}
-		y++;
 	}
 }
 
@@ -117,10 +85,7 @@ void	ft_move_player(t_var *game, int dx, int dy)
 	if (game->map[new_y][new_x] == 'C')
 		game->collectible_count--;
 	if (game->map[new_y][new_x] == 'E' && game->collectible_count == 0)
-	{
-		ft_cleanup(game);
-		exit(0);
-	}
+		ft_cleanup_exit(game);
 	if (game->prev_tile == 'E')
 		game->map[game->player_y][game->player_x] = 'E';
 	else
