@@ -1,3 +1,0 @@
-testfd > 1024)
-
-ca va ?

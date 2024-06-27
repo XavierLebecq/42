@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:59:00 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/04/30 21:53:08 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/06/25 13:54:40 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ char	*get_next_line(int fd)
 	ft_rest(&lst);
 	return (line);
 }
-/*
-#include <stdio.h>
+
+/*#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -144,5 +144,46 @@ int	main(int argc, char **argv)
 	}
 	close (fd);
 	return (0);
+}*/
+
+
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    int fd;
+    char *line;
+
+    if (argc < 2)
+    {
+        printf("usage: %s <file>\n", argv[0]);
+        return 1;
+    }
+
+    fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
+    {
+        perror("open");
+        return 1;
+    }
+
+    printf("File descriptor %d opened.\n", fd);
+
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
+        printf("%s\n", line);
+        free(line);
+        line = get_next_line(fd);
+    }
+
+    if (close(fd) == -1)
+    {
+        perror("close");
+        return 1;
+    }
+
+    printf("File descriptor %d closed.\n", fd);
+
+    return 0;
 }
-*/
