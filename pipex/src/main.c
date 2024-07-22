@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:54:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/06/27 01:51:44 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/07/23 01:14:25 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ char	*find_path(char *cmd, char **envp)
 	char	*join_path;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+	// printf("envp: %p\n", envp);
+	if (!envp || !envp[0])
+		return (ft_printf("Error: envp is NULL"), NULL);
+	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == 0)//-----------------------------<
 		i++;
 	dir_path = ft_split(envp[i] + 5, ':');
 	i = 0;
@@ -69,6 +72,13 @@ char	*find_path(char *cmd, char **envp)
 	free(dir_path);
 	return (NULL);
 }
+void	*free_secure(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	return (NULL);
+}
+
 void	ft_pipe(char *arg, char **envp)
 {
 	char	**cmd;
@@ -90,6 +100,7 @@ void	ft_pipe(char *arg, char **envp)
 	if (execve(path, cmd, envp) == -1)
 	{
 		ft_perror_msg("Error: execve failed");
+		// end();
 	}
 }
 
@@ -100,6 +111,8 @@ void	ft_process_child(char **argv, int *fd, char **envp)
 	input_file = open (argv[1], O_RDONLY);
 	if (input_file == -1)
 	{
+		close(fd[0]);
+		close(fd[1]);
 		ft_perror_msg("Error opening input_file");
 	}
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
@@ -137,6 +150,7 @@ int	main(int argc, char **argv, char **envp)
 	fd[0] = -1;
 	fd[1] = -1;
 
+	printf("argc: %p, %s\n", envp, envp[0]);
 	if (argc != 5)
 		ft_perror_msg("Error: invalid number of arguments.");
     if (pipe(fd) == -1)
