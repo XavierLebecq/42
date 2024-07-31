@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlebecq <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:16:52 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/07/31 14:33:19 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:19:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdlib.h>
 # include "lib.h"
 # include <errno.h>
+
+typedef struct s_list
 
 void	ft_error_msg(char *msg, int *fd);
 void	ft_perror_msg(char *msg);

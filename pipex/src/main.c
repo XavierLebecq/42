@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:54:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/07/31 14:11:18 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:17:13 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,27 @@ int	main(int argc, char **argv, char **envp)
 		ft_perror_msg("Error forking");
 	if (pid == 0)
 		ft_process_child(argv, fd, envp);
-	waitpid(pid, NULL, 0);
+	
 	ft_process_parent(argv, fd, envp);
+	waitpid(pid, NULL, 0);
 	return (EXIT_SUCCESS);
+}
+// takes in "ls -la", create the child, the child execute it
+pid_t ft_fork(char *argv, int fd,char **envp)
+{
+	int fd[2];
+	pid_t pid;
+	if (pipe(fd) == -1)
+		ft_perror_msg("Error creating pipe");
+	pid = fork();
+	if (pid == -1)
+		ft_perror_msg("Error forking");
+	if (pid == 0)
+	{
+		ft_process_child(argv, fd, envp);
+	}
+	else
+	{
+		return (pid);	
+	}
 }
