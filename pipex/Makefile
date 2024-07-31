@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 23:18:50 by xlebecq           #+#    #+#              #
-#    Updated: 2024/07/23 00:53:59 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/07/31 14:33:57 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = ./src/
 
 SRC = $(addprefix $(SRC_DIR), $(C_FILES))
 
-C_FILES = main.c
+C_FILES = main.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -97,9 +97,15 @@ files:
 	@rm -f
 	@touch $(INFILE)
 
+ARGS2 = "cat Makefile" "wc -l"
+INFILE = in_file
+OUTFILE = out_file
+
 a: $(NAMEE) files
-	@$(call random_shmol_cat, "teshting without environement variables..", "$(word 1, $^):", $(CLS), )
-	-env -i /bin/$(VALGRIND) ./$(word 1, $^) $(INFILE) $(ARGS2) $(OUTFILE);
+	@$(call random_shmol_cat, "teshting pipex no bonus", "$(word 1, $^): $(ARGS2)", $(CLS), )
+	$(VALGRIND) ./$(word 1, $^) $(INFILE) $(ARGS2) $(OUTFILE)
+	@echo "\033[38;5;210moutfile content ="
+	@cat $(OUTFILE)
 
 # 	TESTING bonus with heredoc
 #
@@ -148,11 +154,10 @@ define mandatory
  	read -p "" key
 endef
 # ---------------------------------------------------------------------- >
-INFILE = in_file
-OUTFILE = out_file
+
 OUTFILE_OK = out_file_ok
 
-ARGS2 = "ls -la" "wc -l"
+
 BASH2 = ls -la | wc -l
 
 ARGS3 = "cat" "cat"

@@ -6,37 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:54:45 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/07/23 01:14:25 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/07/31 14:11:18 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_error_msg(char *msg, int *fd)
-{
-	if (fd != NULL)
-	{
-		if (fd[0] != -1)
-			close (fd[0]);
-		if (fd[1] != -1)
-			close (fd[1]);
-	}
-	ft_printf ("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_perror_msg(char *msg)
-{
-//	if (fd != NULL)
-//	{
-//		if (fd[0] != -1)
-//			close(fd[0]);
-//		if (fd[1] != -1)
-//			close(fd[1]);
-//	}
-	perror(msg);
-	exit(EXIT_FAILURE);
-}
 
 char	*find_path(char *cmd, char **envp)
 {
@@ -46,14 +20,15 @@ char	*find_path(char *cmd, char **envp)
 	char	*join_path;
 
 	i = 0;
-	// printf("envp: %p\n", envp);
 	if (!envp || !envp[0])
 		return (ft_printf("Error: envp is NULL"), NULL);
-	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == 0)//-----------------------------<
+	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
+	if (!envp[i])
+		return (NULL);
 	dir_path = ft_split(envp[i] + 5, ':');
-	i = 0;
-	while (dir_path[i])
+	i = -1;
+	while (dir_path[++i])
 	{
 		join_path = ft_strjoin(dir_path[i], "/");
 		path = ft_strjoin(join_path, cmd);
@@ -61,21 +36,8 @@ char	*find_path(char *cmd, char **envp)
 		if (access(path, F_OK) == 0)
 			return (path);
 		free(path);
-		i++;
 	}
-	i = 0;
-	while (dir_path[i])
-	{
-		free(dir_path[i]);
-		i++;
-	}
-	free(dir_path);
-	return (NULL);
-}
-void	*free_secure(void *ptr)
-{
-	if (ptr)
-		free(ptr);
+	free_2d_array(dir_path);
 	return (NULL);
 }
 
@@ -85,14 +47,14 @@ void	ft_pipe(char *arg, char **envp)
 	char	*path;
 	int		i;
 
-	i = -1;
 	cmd = ft_split(arg, ' ');
 	if (!cmd)
 		ft_perror_msg("Error");
 	path = find_path(cmd[0], envp);
 	if (!path)
 	{	
-		while (cmd[i++])
+		i = -1;
+		while (cmd[++i])
 			free(cmd[i]);
 		free(cmd);
 		ft_perror_msg("Error");
@@ -100,7 +62,6 @@ void	ft_pipe(char *arg, char **envp)
 	if (execve(path, cmd, envp) == -1)
 	{
 		ft_perror_msg("Error: execve failed");
-		// end();
 	}
 }
 
@@ -136,26 +97,25 @@ void	ft_process_parent(char **argv, int *fd, char **envp)
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		ft_perror_msg("Error redirecting stdin");
 	if (dup2(output_file, STDOUT_FILENO) == -1)
-		ft_perror_msg("Error redirecting stdout");	
+		ft_perror_msg("Error redirecting stdout");
 	close(fd[0]);
 	close(fd[1]);
 	close(output_file);
 	ft_pipe(argv[3], envp);
 }
+
 int	main(int argc, char **argv, char **envp)
 {
-	int	fd[2];
+	int		fd[2];
 	pid_t	pid;
 
 	fd[0] = -1;
 	fd[1] = -1;
-
-	printf("argc: %p, %s\n", envp, envp[0]);
 	if (argc != 5)
 		ft_perror_msg("Error: invalid number of arguments.");
-    if (pipe(fd) == -1)
+	if (pipe(fd) == -1)
 	{
-        ft_perror_msg("Error creating pipe");
+		ft_perror_msg("Error creating pipe");
 	}
 	pid = fork();
 	if (pid == -1)
@@ -164,5 +124,5 @@ int	main(int argc, char **argv, char **envp)
 		ft_process_child(argv, fd, envp);
 	waitpid(pid, NULL, 0);
 	ft_process_parent(argv, fd, envp);
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
