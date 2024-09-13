@@ -6,13 +6,13 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 22:31:54 by xlebecq           #+#    #+#              #
-#    Updated: 2024/09/12 15:10:01 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/09/12 22:29:49 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CC = cc
+CC = clang
 
 CFLAGS = -Wall -Wextra -Werror -g3
 

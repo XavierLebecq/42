@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 23:18:50 by xlebecq           #+#    #+#              #
-#    Updated: 2024/08/08 10:40:34 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/09/13 00:10:45 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,11 @@ INCLUDES = -I$(LIB_DIR) -I$(HEADER_DIR)
 
 all: $(NAME)
 
-lib2:
+$(LIB):
 	make -C $(LIB_DIR)
 
 
-$(NAME): lib2 $(OBJ)
+$(NAME): $(LIB) $(OBJ)
 	$(CC) $(OBJ)  $(LIB) -o $(NAME)
 
 %.o: %.c

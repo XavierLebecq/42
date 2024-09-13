@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/12 20:46:36 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/09/13 15:36:16 by neo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,21 @@ t_swap	*ft_single_arg(char **argv)
 	t_swap *a;
 	char **tab;
 	int	i;
-	int arg;
+	int nbr;
 
 	i = 0;
-	arg = 0;
+	nbr = 0;
 	a = NULL;
 	tab = ft_split(argv[1], ' ');
 	if(!tab)
 		ft_error_msg();
 	while(tab[i])
 	{
-		arg = ft_atoi_check(tab[i]);
-		ft_lstaddback(&a, ft_stack_new(arg));
+		nbr = ft_atoi_check(tab[i]);
+		ft_lstaddback(&a, ft_stack_new(nbr));
 		i++;
 	}
 	ft_free_tab(tab);
-	free(tab);
 	return (a);
 }
 
@@ -57,6 +56,7 @@ t_swap	*ft_multi_arg(int argc, char **argv)
 t_swap	*init_list(int argc, char **argv)
 {
 	t_swap	*a;
+	a = NULL;
 	if (argc < 2)
 		ft_error_msg();
 	else if (argc == 2)
@@ -65,8 +65,8 @@ t_swap	*init_list(int argc, char **argv)
 		a = ft_multi_arg(argc, argv);
 	if (!a || ft_check_double(a))
 	{
-		ft_error_msg();
 		ft_free_list(&a);
+		ft_error_msg();
 	}
 	return (a);
 }	
@@ -74,6 +74,7 @@ t_swap	*init_list(int argc, char **argv)
 int main(int argc, char **argv)
 {
 	t_swap *a;
+	a = NULL;
 	a = init_list(argc, argv);
 	if (ft_check_order(a) == 1)
 		ft_sort(&a);

@@ -16,6 +16,7 @@ void	ft_int_three(t_swap **a)
 {
 	if (ft_int_min(*a) == (*a)->nbr)
 	{
+
 		ft_rra(a, 0);
 		ft_sa(a, 0);
 	}

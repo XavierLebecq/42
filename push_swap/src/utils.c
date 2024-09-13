@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/12 20:44:16 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/09/13 15:34:31 by neo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,19 +118,17 @@ void	ft_free_list(t_swap **lst)
 {
 	t_swap *temp;
 
-	if (!lst || !*lst)
+	if (!lst)
 		return;
-	if(!lst)
-		return;
+	temp = NULL;
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		printf("Freeing: %p\n", (void *)*lst);
-		(*lst)->nbr = 0;
+		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
 		free(*lst);
+		*lst = NULL;
 		*lst = temp;
 	}
-	*lst = NULL;
 }
 
 int	ft_check_order(t_swap *a)
