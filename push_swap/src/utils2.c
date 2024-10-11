@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:39:12 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/10 17:04:50 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/11 17:20:34 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int ft_position(t_swap *a, int nbr)
         index++;
         a = a->next;
     }
-    a->index = 0;
+//  a->index = 0;
     return (index);
 }

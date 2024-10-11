@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/10 20:33:34 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/11 17:45:31 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,38 +115,6 @@ int	ft_check_double(t_swap *a)
 	return (0);
 }
 
-void	ft_free_list(t_swap **lst)
-{
-	t_swap *temp;
-
-	if (!lst)
-		return;
-	temp = NULL;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
-		free(*lst);
-		*lst = NULL;
-		*lst = temp;
-	}
-}
-
-int	ft_check_order(t_swap *a)
-{
-	int	i;
-
-	i = a->nbr;
-	while (a)
-	{
-		if (i > a->nbr)
-			return (1);
-		i = a->nbr;
-		a = a->next;
-	}
-	return (0);
-}
-
 int	ft_lstsize2(t_swap *lst)
 {
 	size_t i;
@@ -199,4 +167,35 @@ int	ft_index_nbr(t_swap *a, int nbr)
 		a = a->next;
 	}
 	return (i);
+}
+
+int	ft_check_order(t_swap *a)
+{
+	int	i;
+
+	i = a->nbr;
+	while (a)
+	{
+		if (i > a->nbr)
+			return (1);
+		i = a->nbr;
+		a = a->next;
+	}
+	return (0);
+}
+void	ft_free_list(t_swap **lst)
+{
+	t_swap *temp;
+
+	if (!lst)
+		return;
+	temp = NULL;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
+		free(*lst);
+		*lst = NULL;
+		*lst = temp;
+	}
 }

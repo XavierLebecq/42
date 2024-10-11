@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/10 17:17:10 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/11 17:46:18 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@ void	ft_int_three(t_swap **a)
 	if (ft_int_min(*a) == (*a)->nbr)
 	{
 
-		ft_rra(a, 0);
-		ft_sa(a, 0);
+		ft_rra(a);
+		ft_sa(a);
 	}
 	else if (ft_int_max(*a) == (*a)->nbr)
 	{
-		ft_ra(a, 0);
+		ft_ra(a);
 		if (ft_check_order(*a) == 1)
-			ft_sa(a, 0);
+			ft_sa(a);
 	}
 	else
 	{
 		if(ft_index_nbr(*a, ft_int_max(*a)) == 1)
-			ft_rra(a, 0);
+			ft_rra(a);
 		else
-			ft_sa(a, 0);
+			ft_sa(a);
 	}
 }
-		
+
 void	ft_sort(t_swap **a, t_swap **b)
 {
 	if (ft_lstsize2(*a) == 2)
-		ft_sa(a, 0);
+		ft_sa(a);
 	else
 	{
 		ft_push_b(a, b);
@@ -48,9 +48,9 @@ void	ft_sort(t_swap **a, t_swap **b)
 void	ft_push_b(t_swap **a, t_swap **b)
 {
 	if(ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
-		ft_pb(a, b, 0);
+		ft_pb(a, b);
 	if(ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
-		ft_pb(a, b, 0);
+		ft_pb(a, b);
 	if (ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 		ft_sort_more_3(a, b);
 	if (ft_check_order(*a) == 1)
@@ -60,24 +60,24 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 {
 	int	index;
 	t_swap *temp;
-	printf("a->nbr =%ld\n", (*a)->nbr);
-	printf("sizelist=%d\n", ft_lstsize2(*a));
-	printf("order=%d\n", ft_check_order(*a));
+	printf("a->nbr = %ld\n", (*a)->nbr);
+	printf("sizelist = %d\n", ft_lstsize2(*a));
+	printf("check_order = %d\n", ft_check_order(*a));
 	while (ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 	{
 		temp = *a;
 		index = ft_cost(*a, *b);
-		printf("index =%d\n", index);
 		while (index >= 0)
 		{
+			printf("cost_rarb = %d\n", ft_cost_rarb(*a, *b, temp->nbr));
 			if (index == ft_cost_rarb(*a, *b, temp->nbr))
-				index = 1;
+				index = ft_apply_rarb_b(a, b, temp->nbr);
 			else if (index == ft_cost_rrarrb(*a, *b, temp->nbr))
-				index = 2;
+				index = ft_apply_rrarrb_b(a, b, temp->nbr);
 			else if (index == ft_cost_rarrb(*a, *b, temp->nbr))
-				index = 3;
+				index = ft_apply_rarrb_b(a, b, temp->nbr);
 			else if (index == ft_cost_rrarb(*a, *b, temp->nbr))
-				index = 4;
+				index = ft_apply_rrarb_b(a, b, temp->nbr);
 			else
 				temp = temp->next;
 		}
@@ -90,7 +90,8 @@ int	ft_cost(t_swap *a, t_swap *b)
 	t_swap	*temp;
 	
 	temp = a;
-	index = ft_cost_rrarrb(a, b, a->nbr); 
+	index = ft_cost_rrarrb(a, b, a->nbr);
+	printf("rrarrb index = %d\n", index); 
 	while (temp)
 	{
 		printf("temp->nbr =%ld\n", temp->nbr);
@@ -102,5 +103,6 @@ int	ft_cost(t_swap *a, t_swap *b)
 			index = ft_cost_rrarb(a, b, temp->nbr);
 		temp = temp->next;
 	}
+	printf("ft_cost index = %d\n", index);
 	return (index);
 }
