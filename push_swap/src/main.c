@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/13 15:36:16 by neo              ###   ########.fr       */
+/*   Updated: 2024/10/10 20:44:33 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ t_swap	*init_list(int argc, char **argv)
 int main(int argc, char **argv)
 {
 	t_swap *a;
+	t_swap *b;
+
 	a = NULL;
+	b = NULL;
 	a = init_list(argc, argv);
 	if (ft_check_order(a) == 1)
-		ft_sort(&a);
+		ft_sort(&a, &b);
 	ft_free_list(&a);
 }

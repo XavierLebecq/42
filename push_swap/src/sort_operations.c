@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/12 19:45:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/10 21:04:07 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sa(t_swap **a, int flag)
+void	ft_sa(t_swap **a)
 {
 	t_swap *temp;
 
@@ -22,11 +22,10 @@ void	ft_sa(t_swap **a, int flag)
 	*a = (*a)->next;
 	temp->next = (*a)->next;
 	(*a)->next = temp;
-	if (flag == 0)
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
 
-void	ft_rra(t_swap **a, int flag)
+void	ft_rra(t_swap **a)
 {
 	t_swap	*temp;
 	int	i;
@@ -47,11 +46,10 @@ void	ft_rra(t_swap **a, int flag)
 		i--;
 	}
 	temp->next = NULL;
-	if (flag == 0)
-		write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
-void	ft_ra(t_swap **a, int flag)
+void	ft_ra(t_swap **a)
 {
 	if (!*a || !(*a)->next)
 		return;
@@ -62,8 +60,7 @@ void	ft_ra(t_swap **a, int flag)
 	(*a)->next = temp;
 	*a = temp->next;
 	temp->next = NULL;
-	if (flag == 0)
-		write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
 

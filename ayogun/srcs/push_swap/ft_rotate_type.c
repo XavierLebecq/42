@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotate_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:04:06 by yogun             #+#    #+#             */
-/*   Updated: 2022/08/07 17:05:14 by yogun            ###   ########.fr       */
+/*   Updated: 2024/10/08 08:57:07 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_rotate_type_ab(t_stack *a, t_stack *b)
 	t_stack	*tmp;
 
 	tmp = a;
-	i = ft_case_rrarrb(a, b, a->nbr);
+	i = ft_case_rrarrb(a, b, a->nbr); 
 	while (tmp)
 	{
 		if (i > ft_case_rarb(a, b, tmp->nbr))

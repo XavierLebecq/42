@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 13:16:13 by yogun             #+#    #+#             */
-/*   Updated: 2022/09/01 20:31:05 by yogun            ###   ########.fr       */
+/*   Updated: 2024/10/08 07:30:35 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_find_index(t_stack *a, int nbr)
 // This function finds the correct place of the number in stack_b.
 // In other words, it check what index number nbr_push will get 
 // after it is being pushed to the stack_b.
+
 int	ft_find_place_b(t_stack *stack_b, int nbr_push)
 {
 	int		i;
@@ -53,7 +54,6 @@ int	ft_find_place_b(t_stack *stack_b, int nbr_push)
 	}
 	return (i);
 }
-
 // This function finds the correct place of the number in stack_a.
 // In other words, it check what index number nbr_push will get 
 // after it is being pushed to the stack_a.

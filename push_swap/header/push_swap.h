@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 22:47:59 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/12 20:06:55 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/10 17:20:22 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct	s_swap
 {
 	long			nbr;
-	long			i;
+	long			index;
 	struct s_swap	 *next;
 	struct s_swap	 *prev;
 }	t_swap;
@@ -38,7 +38,7 @@ t_swap	*ft_multi_arg(int argc, char **argv);
 void	ft_free_list(t_swap **lst);
 int		ft_check_order(t_swap *a);
 void	ft_sa(t_swap **a, int flag);
-void	ft_sort(t_swap **a);
+void	ft_sort(t_swap **a, t_swap **b);
 int		ft_lstsize2(t_swap *lst);
 void	ft_rra(t_swap **a, int flag);
 void	ft_int_three(t_swap **a);
@@ -46,5 +46,15 @@ int		ft_int_min(t_swap *a);
 int		ft_int_max(t_swap *a);
 void    ft_ra(t_swap **a, int flag);
 int		ft_index_nbr(t_swap *a, int nbr);
+void	ft_pb(t_swap **a, t_swap **b, int index);
+void	ft_push_b(t_swap **a, t_swap **b);
+void	ft_sort_more_3(t_swap **a, t_swap **b);
+int		ft_cost(t_swap *a, t_swap *b);
+int		ft_cost_rrarrb(t_swap *a, t_swap *b, int nbr);
+int		ft_index_b(t_swap *b, int nbr);
+int		ft_position(t_swap *a, int nbr);
+int		ft_cost_rrarb(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rarb(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rarrb(t_swap *a, t_swap *b, int nbr);
 
 #endif

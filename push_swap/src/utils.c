@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/09/13 15:34:31 by neo              ###   ########.fr       */
+/*   Updated: 2024/10/10 20:33:34 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ int	ft_atoi_check(char *str)
 		result = result * 10 + str[i] - '0';
 		i++;
 	}
-	if ((sign * result) > 2147483647 || (sign * result) < -2147483648)
+	result = (sign * result);
+	if (result > 2147483647 || result < -2147483648)
 		ft_error_msg();
-	return (result * sign);
+	return (result);
 }
 
 void	ft_free_tab(char **tab)
