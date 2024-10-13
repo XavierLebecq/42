@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int ft_cost_rrarrb(t_swap *a, t_swap *b, int nbr)
+int ft_cost_rrarrb_b(t_swap *a, t_swap *b, int nbr)
 {
     int index;
     
@@ -23,7 +23,7 @@ int ft_cost_rrarrb(t_swap *a, t_swap *b, int nbr)
         index = ft_lstsize2(a) - ft_position(a, nbr);
     return (index);
 }
-int ft_cost_rarb(t_swap *a, t_swap *b, int nbr)
+int ft_cost_rarb_b(t_swap *a, t_swap *b, int nbr)
 {
     int index;
     
@@ -32,7 +32,7 @@ int ft_cost_rarb(t_swap *a, t_swap *b, int nbr)
         index = ft_position(a, nbr);
     return (index);
 }
-int ft_cost_rrarb(t_swap *a, t_swap *b, int nbr)
+int ft_cost_rrarb_b(t_swap *a, t_swap *b, int nbr)
 {
     int index;
 
@@ -43,7 +43,7 @@ int ft_cost_rrarb(t_swap *a, t_swap *b, int nbr)
     return (index);
 }
 
-int ft_cost_rarrb(t_swap *a, t_swap *b, int nbr)
+int ft_cost_rarrb_b(t_swap *a, t_swap *b, int nbr)
 {
     int index;
 
@@ -51,5 +51,49 @@ int ft_cost_rarrb(t_swap *a, t_swap *b, int nbr)
     if (ft_index_b(b, nbr))
         index = ft_lstsize2(b) - ft_index_b(b, nbr);
     index = ft_position(a, nbr) + index;
+    return (index);
+}
+
+int ft_cost_rarb_a(t_swap *a, t_swap *b, int nbr)
+{
+    int index;
+
+    index = ft_index_a(a, nbr);
+    if (index < ft_position(b, nbr))
+        index = ft_position(b, nbr);
+    return (index);
+}
+
+int ft_cost_rrarrb_a(t_swap *a, t_swap *b, int nbr)
+{
+    int index;
+
+    index = 0;
+    if (ft_index_a(a, nbr))
+        index = ft_lstsize2(a) - ft_index_a(a, nbr);
+    if ((index < (ft_lstsize2(b) - ft_position(b, nbr))) && ft_position(b, nbr))
+        index = ft_lstsize2(b) - ft_position(b, nbr);
+    return (index);
+}
+
+int ft_cost_rarrb_a(t_swap *a, t_swap *b, int nbr)
+{
+    int index;
+
+    index = 0;
+    if (ft_position(b, nbr))
+        index = ft_lstsize2(b) - ft_position(b, nbr);
+    index = ft_index_a(a, nbr) + index;
+    return (index);
+}
+
+int ft_cost_rrarb_a(t_swap *a, t_swap *b, int nbr)
+{
+    int index;
+
+    index = 0;
+    if (ft_position(a, nbr))
+        index = ft_lstsize2(a) - ft_index_a(a, nbr);
+    index = ft_position(b, nbr) + index;
     return (index);
 }

@@ -42,6 +42,7 @@ void	ft_sort(t_swap **a, t_swap **b)
 	else
 	{
 		ft_push_b(a, b);
+		ft_push_a(a, b);
 	}
 	printf("test sorti de ft_sort\n");
 }
@@ -66,17 +67,17 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 	while (ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 	{
 		temp = *a;
-		index = ft_cost(*a, *b);
+		index = ft_cost_b(*a, *b);
 		while (index >= 0)
 		{
-			printf("cost_rarb = %d\n", ft_cost_rarb(*a, *b, temp->nbr));
-			if (index == ft_cost_rarb(*a, *b, temp->nbr))
+			printf("cost_rarb = %d\n", ft_cost_rarb_b(*a, *b, temp->nbr));
+			if (index == ft_cost_rarb_b(*a, *b, temp->nbr))
 				index = ft_apply_rarb_b(a, b, temp->nbr);
-			else if (index == ft_cost_rrarrb(*a, *b, temp->nbr))
+			else if (index == ft_cost_rrarrb_b(*a, *b, temp->nbr))
 				index = ft_apply_rrarrb_b(a, b, temp->nbr);
-			else if (index == ft_cost_rarrb(*a, *b, temp->nbr))
+			else if (index == ft_cost_rarrb_b(*a, *b, temp->nbr))
 				index = ft_apply_rarrb_b(a, b, temp->nbr);
-			else if (index == ft_cost_rrarb(*a, *b, temp->nbr))
+			else if (index == ft_cost_rrarb_b(*a, *b, temp->nbr))
 				index = ft_apply_rrarb_b(a, b, temp->nbr);
 			else
 				temp = temp->next;
@@ -84,25 +85,73 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 	}
 
 }
-int	ft_cost(t_swap *a, t_swap *b)
+int	ft_cost_b(t_swap *a, t_swap *b)
 {
 	int index;
 	t_swap	*temp;
 	
 	temp = a;
-	index = ft_cost_rrarrb(a, b, a->nbr);
+	index = ft_cost_rrarrb_b(a, b, a->nbr);
 	printf("rrarrb index = %d\n", index); 
 	while (temp)
 	{
 		printf("temp->nbr =%ld\n", temp->nbr);
-		if (index > ft_cost_rarb(a, b, temp->nbr))
-			index = ft_cost_rarb(a, b, temp->nbr);
-		if (index > ft_cost_rrarrb(a, b, temp->nbr))
-			index = ft_cost_rrarrb(a, b, temp->nbr);
-		if	(index > ft_cost_rrarb(a, b, temp->nbr))
-			index = ft_cost_rrarb(a, b, temp->nbr);
+		if (index > ft_cost_rarb_b(a, b, temp->nbr))
+			index = ft_cost_rarb_b(a, b, temp->nbr);
+		if (index > ft_cost_rrarrb_b(a, b, temp->nbr))
+			index = ft_cost_rrarrb_b(a, b, temp->nbr);
+		if	(index > ft_cost_rrarb_b(a, b, temp->nbr))
+			index = ft_cost_rrarb_b(a, b, temp->nbr);
 		temp = temp->next;
 	}
 	printf("ft_cost index = %d\n", index);
 	return (index);
+}
+
+void	ft_push_a(t_swap **a, t_swap **b)
+{
+	int	index;
+	t_swap	*temp;
+
+	while (*b)
+	{
+		temp = *b;
+		index = ft_cost_a(*a, *b);
+		while (index >= 0)
+		{
+			if (index == ft_cost_rarb_a(*a, *b, temp->nbr))
+				index = ft_apply_rarb_a(a, b, temp->nbr);
+			else if (index == ft_cost_rarrb_a(*a, *b, temp->nbr))
+				index = ft_apply_rarrb_a(a, b, temp->nbr);
+			else if (index == ft_cost_rrarrb_a(*a, *b, temp->nbr))
+				index = ft_apply_rrarrb_a(a, b, temp->nbr);
+			else if (index == ft_cost_rrarb_a(*a, *b, temp->nbr))
+				index = ft_apply_rrarb_a(a, b, temp->nbr);
+			else
+				temp = temp->next;
+		}
+	}
+}
+
+int	ft_cost_a(t_swap *a, t_swap *b)
+{
+	int index;
+	t_swap	*temp;
+
+	temp = 0;
+	index = ft_case_rrarrb_a(a, b, b->nbr);
+	while (temp)
+	{
+		if (index > ft_cost_rarb_a(a, b, temp->nbr))
+			index = ft_cost_rarb_a(a, b, temp->nbr);
+		if (index > ft_cost_rrarrb_a(a, b, temp->nbr))
+			index = ft_cost_rrarrb_a(a, b, temp->nbr);
+		if (index > ft_cost_rarrb_a(a, b, temp->nbr))
+			index = ft_cost_rarrb_a(a, b, temp->nbr);
+		if (index > ft_cost_rrarb_a(a, b, temp->nbr))
+			index = ft_cost_rrarb_a(a, b, temp->nbr);
+		temp = temp->next;
+
+	}
+	return (index)
 }

@@ -52,18 +52,22 @@ void    ft_ra(t_swap **a);
 int		ft_index_nbr(t_swap *a, int nbr);
 void	ft_pb(t_swap **a, t_swap **b);
 void	ft_push_b(t_swap **a, t_swap **b);
+void	ft_push_a(t_swap **a, t_swap **b);
 void	ft_sort_more_3(t_swap **a, t_swap **b);
-int		ft_cost(t_swap *a, t_swap *b);
-int		ft_cost_rrarrb(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_b(t_swap *a, t_swap *b);
+int		ft_cost_rrarrb_b(t_swap *a, t_swap *b, int nbr);
 int		ft_index_b(t_swap *b, int nbr);
 int		ft_position(t_swap *a, int nbr);
-int		ft_cost_rrarb(t_swap *a, t_swap *b, int nbr);
-int		ft_cost_rarb(t_swap *a, t_swap *b, int nbr);
-int		ft_cost_rarrb(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rrarb_b(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rarb_b(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rarrb_b(t_swap *a, t_swap *b, int nbr);
 int		ft_apply_rarb_b(t_swap **a, t_swap **b, int nbr);
 int		ft_apply_rrarrb_b(t_swap **a, t_swap **b, int nbr);
 int		ft_apply_rrarb_b(t_swap **a, t_swap **b, int nbr);
 int		ft_apply_rarrb_b(t_swap **a, t_swap **b, int nbr);
-
+int		ft_cost_rarb_a(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rrarrb_a(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rarrb_a(t_swap *a, t_swap *b, int nbr);
+int		ft_cost_rrarb_a(t_swap *a, t_swap *b, int nbr);
 
 #endif
