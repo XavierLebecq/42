@@ -12,29 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_int_three(t_swap **a)
-{
-	if (ft_int_min(*a) == (*a)->nbr)
-	{
-
-		ft_rra(a);
-		ft_sa(a);
-	}
-	else if (ft_int_max(*a) == (*a)->nbr)
-	{
-		ft_ra(a);
-		if (ft_check_order(*a) == 1)
-			ft_sa(a);
-	}
-	else
-	{
-		if(ft_index_nbr(*a, ft_int_max(*a)) == 1)
-			ft_rra(a);
-		else
-			ft_sa(a);
-	}
-}
-
 void	ft_sort(t_swap **a, t_swap **b)
 {
 	if (ft_lstsize2(*a) == 2)
@@ -46,6 +23,7 @@ void	ft_sort(t_swap **a, t_swap **b)
 	}
 	printf("test sorti de ft_sort\n");
 }
+
 void	ft_push_b(t_swap **a, t_swap **b)
 {
 	if(ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
@@ -56,7 +34,8 @@ void	ft_push_b(t_swap **a, t_swap **b)
 		ft_sort_more_3(a, b);
 	if (ft_check_order(*a) == 1)
 		ft_int_three(a);
-} 
+}
+
 void	ft_sort_more_3(t_swap **a, t_swap **b)
 {
 	int	index;
@@ -83,8 +62,8 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 				temp = temp->next;
 		}
 	}
-
 }
+
 int	ft_cost_b(t_swap *a, t_swap *b)
 {
 	int index;
@@ -153,5 +132,28 @@ int	ft_cost_a(t_swap *a, t_swap *b)
 		temp = temp->next;
 
 	}
-	return (index)
+	return (index);
+}
+
+void	ft_int_three(t_swap **a)
+{
+	if (ft_int_min(*a) == (*a)->nbr)
+	{
+
+		ft_rra(a);
+		ft_sa(a);
+	}
+	else if (ft_int_max(*a) == (*a)->nbr)
+	{
+		ft_ra(a);
+		if (ft_check_order(*a) == 1)
+			ft_sa(a);
+	}
+	else
+	{
+		if(ft_position(*a, ft_int_max(*a)) == 1)
+			ft_rra(a);
+		else
+			ft_sa(a);
+	}
 }

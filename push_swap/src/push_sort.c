@@ -56,3 +56,47 @@ int ft_apply_rarrb_b(t_swap **a, t_swap **b, int nbr)
     ft_pb(a, b);
     return (-1);
 }
+
+int ft_apply_rarb_a(t_swap **a, t_swap **b, int nbr)
+{
+    while ((*b)->nbr != nbr && ft_index_b(*a, nbr))
+        ft_rr(a, b);
+    while ((*b)->nbr != nbr)
+        ft_rb(b);
+    while (ft_index_a(*a, nbr) > 0)
+        ft_rb(b);
+    ft_pa(a, b);
+    return (-1);
+}
+
+int ft_apply_rrarrb_a(t_swap **a, t_swap **b, int nbr)
+{
+    while ((*b)->nbr != nbr && ft_index_b(*a, nbr) > 0)
+        ft_rrr(a, b);
+    while ((*b)->nbr != nbr)
+        ft_rrb(b);
+    while (ft_index_a(*a, nbr) > 0)
+        ft_rra(a);
+    ft_pa(a, b);
+    return (-1);
+}
+
+int ft_apply_rrarb_a(t_swap **a, t_swap **b, int nbr)
+{
+    while (ft_index_b(*a, nbr) > 0)
+        ft_rra(a);
+    while ((*b)->nbr != nbr)
+        ft_rb(b);
+    ft_pa(a, b);
+    return (-1);
+}
+
+int ft_apply_rarrb_a(t_swap **a, t_swap **b, int nbr)
+{
+    while (ft_index_a(*a, nbr) > 0)
+        ft_ra(a);
+    while ((*b)->nbr != nbr)
+        ft_rrb(b);
+    ft_pa(a, b);
+    return (-1);
+}

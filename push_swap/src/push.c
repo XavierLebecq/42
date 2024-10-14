@@ -24,3 +24,16 @@ void    ft_pb(t_swap **a, t_swap **b)
     (*b)->next = temp;
     write(1, "pb\n", 3);
 }
+
+void    ft_pa(t_swap **a, t_swap **b)
+{
+    t_swap *temp;
+    
+    if (!*b)
+        return;
+    temp = *a;
+    *a = *b;
+    *b = (*b)->next;
+    (*a)->next = temp;
+    write (1, "pa\n", 3);
+}

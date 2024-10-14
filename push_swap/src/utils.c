@@ -18,39 +18,6 @@ void	ft_error_msg(void)
 	exit(1);
 }
 
-void	ft_lstaddback(t_swap **stack, t_swap *stack_new)
-{
-	if (!stack)
-		return ;
-	if (!*stack)
-		*stack = stack_new;
-	else
-		(ft_lstlast2(*stack))->next = stack_new;
-}
-
-t_swap	*ft_stack_new(int content)
-{
-	t_swap	*new;
-
-	new = malloc(sizeof (t_swap));
-	if (!new)
-		ft_error_msg();
-	new->nbr = content;
-	new->next = NULL;
-	printf("Allocated: %p\n", (void *)new);
-	return (new);
-}
-
-t_swap	*ft_lstlast2(t_swap *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-
 int	ft_atoi_check(char *str)
 {
 	int	i;
@@ -80,6 +47,38 @@ int	ft_atoi_check(char *str)
 	if (result > 2147483647 || result < -2147483648)
 		ft_error_msg();
 	return (result);
+}
+
+void	ft_lstaddback(t_swap **stack, t_swap *stack_new)
+{
+	if (!stack)
+		return ;
+	if (!*stack)
+		*stack = stack_new;
+	else
+		(ft_lstlast2(*stack))->next = stack_new;
+}
+
+t_swap	*ft_lstlast2(t_swap *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+t_swap	*ft_stack_new(int content)
+{
+	t_swap	*new;
+
+	new = malloc(sizeof (t_swap));
+	if (!new)
+		ft_error_msg();
+	new->nbr = content;
+	new->next = NULL;
+	printf("Allocated: %p\n", (void *)new);
+	return (new);
 }
 
 void	ft_free_tab(char **tab)
@@ -128,6 +127,21 @@ int	ft_lstsize2(t_swap *lst)
 	return (i);
 }
 
+int	ft_check_order(t_swap *a)
+{
+	int	i;
+
+	i = a->nbr;
+	while (a)
+	{
+		if (i > a->nbr)
+			return (1);
+		i = a->nbr;
+		a = a->next;
+	}
+	return (0);
+}
+
 int	ft_int_min(t_swap *a)
 {
 	int i;
@@ -156,33 +170,6 @@ int	ft_int_max(t_swap *a)
 	return (i);
 }
 
-int	ft_index_nbr(t_swap *a, int nbr)
-{
-	int	i;
-
-	i = 0;
-	while (a->nbr != nbr)
-	{
-		i++;
-		a = a->next;
-	}
-	return (i);
-}
-
-int	ft_check_order(t_swap *a)
-{
-	int	i;
-
-	i = a->nbr;
-	while (a)
-	{
-		if (i > a->nbr)
-			return (1);
-		i = a->nbr;
-		a = a->next;
-	}
-	return (0);
-}
 void	ft_free_list(t_swap **lst)
 {
 	t_swap *temp;

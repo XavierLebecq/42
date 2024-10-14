@@ -11,6 +11,37 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+	
+int main(int argc, char **argv)
+{
+	t_swap *a;
+	t_swap *b;
+
+	a = NULL;
+	b = NULL;
+	a = init_list(argc, argv);
+	if (ft_check_order(a) == 1)
+		ft_sort(&a, &b);
+	ft_free_list(&a);
+}
+
+t_swap	*init_list(int argc, char **argv)
+{
+	t_swap	*a;
+	a = NULL;
+	if (argc < 2)
+		ft_error_msg();
+	else if (argc == 2)
+		a = ft_single_arg(argv);
+	else
+		a = ft_multi_arg(argc, argv);
+	if (!a || ft_check_double(a))
+	{
+		ft_free_list(&a);
+		ft_error_msg();
+	}
+	return (a);
+}
 
 t_swap	*ft_single_arg(char **argv)
 {
@@ -50,36 +81,4 @@ t_swap	*ft_multi_arg(int argc, char **argv)
 		ft_lstaddback(&a, ft_stack_new(nbr));
 	}
 	return (a);
-}
-
-
-t_swap	*init_list(int argc, char **argv)
-{
-	t_swap	*a;
-	a = NULL;
-	if (argc < 2)
-		ft_error_msg();
-	else if (argc == 2)
-		a = ft_single_arg(argv);
-	else
-		a = ft_multi_arg(argc, argv);
-	if (!a || ft_check_double(a))
-	{
-		ft_free_list(&a);
-		ft_error_msg();
-	}
-	return (a);
-}	
-	
-int main(int argc, char **argv)
-{
-	t_swap *a;
-	t_swap *b;
-
-	a = NULL;
-	b = NULL;
-	a = init_list(argc, argv);
-	if (ft_check_order(a) == 1)
-		ft_sort(&a, &b);
-	ft_free_list(&a);
 }

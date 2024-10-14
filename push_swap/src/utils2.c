@@ -35,6 +35,31 @@ int ft_index_b(t_swap *b, int nbr)
     return (index);
 }
 
+int ft_index_a(t_swap *a, int nbr)
+{
+    int index;
+    t_swap *temp;
+
+    index = 1;
+    if (nbr < a->nbr && nbr > ft_lstlast2(a)->nbr)
+        index = 0;
+    else if (nbr > ft_max(a) || nbr < ft_min(a))
+        index = ft_position(a, ft_min(a));
+    else
+    {
+        temp = a->next;
+        while (a->nbr > nbr || temp->nbr < nbr)
+        {
+            a = a->next;
+            temp = a->next;
+            index++;
+        }
+    }
+    return (index);
+}
+
+
+
 int ft_position(t_swap *a, int nbr)
 {
     int index;
