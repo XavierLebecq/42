@@ -43,8 +43,8 @@ int ft_index_a(t_swap *a, int nbr)
     index = 1;
     if (nbr < a->nbr && nbr > ft_lstlast2(a)->nbr)
         index = 0;
-    else if (nbr > ft_max(a) || nbr < ft_min(a))
-        index = ft_position(a, ft_min(a));
+    else if (nbr > ft_int_max(a) || nbr < ft_int_min(a))
+        index = ft_position(a, ft_int_min(a));
     else
     {
         temp = a->next;

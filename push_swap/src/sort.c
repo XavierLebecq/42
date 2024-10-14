@@ -118,7 +118,7 @@ int	ft_cost_a(t_swap *a, t_swap *b)
 	t_swap	*temp;
 
 	temp = 0;
-	index = ft_case_rrarrb_a(a, b, b->nbr);
+	index = ft_cost_rrarrb_a(a, b, b->nbr);
 	while (temp)
 	{
 		if (index > ft_cost_rarb_a(a, b, temp->nbr))

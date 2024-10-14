@@ -52,6 +52,7 @@ int		ft_int_min(t_swap *a);
 int		ft_int_max(t_swap *a);
 void    ft_ra(t_swap **a);
 void	ft_pb(t_swap **a, t_swap **b);
+void    ft_pa(t_swap **a, t_swap **b);
 void	ft_push_b(t_swap **a, t_swap **b);
 void	ft_push_a(t_swap **a, t_swap **b);
 void	ft_sort_more_3(t_swap **a, t_swap **b);
@@ -72,5 +73,9 @@ int		ft_cost_rarb_a(t_swap *a, t_swap *b, int nbr);
 int		ft_cost_rrarrb_a(t_swap *a, t_swap *b, int nbr);
 int		ft_cost_rarrb_a(t_swap *a, t_swap *b, int nbr);
 int		ft_cost_rrarb_a(t_swap *a, t_swap *b, int nbr);
+int		ft_apply_rarb_a(t_swap **a, t_swap **b, int nbr);
+int		ft_apply_rrarrb_a(t_swap **a, t_swap **b, int nbr);
+int		ft_apply_rrarb_a(t_swap **a, t_swap **b, int nbr);
+int		ft_apply_rarrb_a(t_swap **a, t_swap **b, int nbr);
 
 #endif
