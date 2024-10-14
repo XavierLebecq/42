@@ -6,20 +6,35 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/11 17:46:18 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:51:00 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// 5 1 2 3 4 6 43 98 23 888888 22222 3333 1111
+
 void	ft_sort(t_swap **a, t_swap **b)
 {
+	int	index;
+	
 	if (ft_lstsize2(*a) == 2)
 		ft_sa(a);
 	else
 	{
 		ft_push_b(a, b);
 		ft_push_a(a, b);
+		index = ft_position(*a, ft_int_min(*a));
+		if (index < ft_lstsize2(*a) - index)
+		{
+			while ((*a)->nbr != ft_int_min(*a))
+				ft_ra(a);
+		}
+		else
+		{
+			while ((*a)->nbr != ft_int_min(*a))
+				ft_rra(a);
+		}
 	}
 	printf("test sorti de ft_sort\n");
 }

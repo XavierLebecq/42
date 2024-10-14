@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/11 13:55:36 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/14 21:38:59 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_rr(t_swap **a, t_swap **b)
 	*a = temp->next;
 	temp->next = NULL;
 	temp = *b;
-	(*b) = ft_lstlast2(*b);
+	*b = ft_lstlast2(*b);
 	(*b)->next = temp;
 	*b = temp->next;
 	write(1, "rr\n", 3);
