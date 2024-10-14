@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 22:47:59 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/11 13:55:16 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 00:18:36 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_swap	*ft_lstlast2(t_swap *lst);
 int		ft_atoi_check(char *str);
 t_swap	*ft_stack_new(int content);
 void    ft_free_tab(char **tab);
-t_swap	*ft_stack_new(int content);
 int		ft_check_double(t_swap *a);
 t_swap	*ft_multi_arg(int argc, char **argv);
 void	ft_free_list(t_swap **lst);
@@ -42,6 +41,7 @@ int		ft_check_order(t_swap *a);
 void	ft_sa(t_swap **a);
 void	ft_rr(t_swap **a, t_swap **b);
 void	ft_rrr(t_swap **a, t_swap **b);
+void	ft_rrr2(t_swap **b);
 void	ft_sort(t_swap **a, t_swap **b);
 int		ft_lstsize2(t_swap *lst);
 void	ft_rra(t_swap **a);

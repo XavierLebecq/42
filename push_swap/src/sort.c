@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/14 20:51:00 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/14 23:35:16 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_sort(t_swap **a, t_swap **b)
 				ft_rra(a);
 		}
 	}
-	printf("test sorti de ft_sort\n");
 }
 
 void	ft_push_b(t_swap **a, t_swap **b)
@@ -55,9 +54,7 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 {
 	int	index;
 	t_swap *temp;
-	printf("a->nbr = %ld\n", (*a)->nbr);
-	printf("sizelist = %d\n", ft_lstsize2(*a));
-	printf("check_order = %d\n", ft_check_order(*a));
+
 	while (ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 	{
 		temp = *a;
@@ -86,19 +83,19 @@ int	ft_cost_b(t_swap *a, t_swap *b)
 	
 	temp = a;
 	index = ft_cost_rrarrb_b(a, b, a->nbr);
-	printf("rrarrb index = %d\n", index); 
+
 	while (temp)
 	{
-		printf("temp->nbr =%ld\n", temp->nbr);
 		if (index > ft_cost_rarb_b(a, b, temp->nbr))
 			index = ft_cost_rarb_b(a, b, temp->nbr);
 		if (index > ft_cost_rrarrb_b(a, b, temp->nbr))
 			index = ft_cost_rrarrb_b(a, b, temp->nbr);
+		if (index > ft_cost_rarrb_b(a, b, temp->nbr))
+			index = ft_cost_rarrb_b(a, b, temp->nbr);
 		if	(index > ft_cost_rrarb_b(a, b, temp->nbr))
 			index = ft_cost_rrarb_b(a, b, temp->nbr);
 		temp = temp->next;
 	}
-	printf("ft_cost index = %d\n", index);
 	return (index);
 }
 
@@ -132,7 +129,7 @@ int	ft_cost_a(t_swap *a, t_swap *b)
 	int index;
 	t_swap	*temp;
 
-	temp = 0;
+	temp = b;
 	index = ft_cost_rrarrb_a(a, b, b->nbr);
 	while (temp)
 	{

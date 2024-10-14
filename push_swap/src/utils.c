@@ -6,11 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/11 17:45:31 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 00:04:59 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "push_swap.h"
 
 void	ft_error_msg(void)
 {
@@ -77,7 +77,6 @@ t_swap	*ft_stack_new(int content)
 		ft_error_msg();
 	new->nbr = content;
 	new->next = NULL;
-	printf("Allocated: %p\n", (void *)new);
 	return (new);
 }
 
@@ -180,7 +179,6 @@ void	ft_free_list(t_swap **lst)
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
 		free(*lst);
 		*lst = NULL;
 		*lst = temp;

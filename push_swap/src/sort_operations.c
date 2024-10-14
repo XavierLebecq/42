@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/14 21:38:59 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:51:59 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_rr(t_swap **a, t_swap **b)
 	*b = ft_lstlast2(*b);
 	(*b)->next = temp;
 	*b = temp->next;
+	temp->next = NULL;
 	write(1, "rr\n", 3);
 }
 void	ft_rrr(t_swap **a, t_swap **b)
@@ -100,6 +101,29 @@ void	ft_rrr(t_swap **a, t_swap **b)
 		i--;
 	}
 	temp->next = NULL;
+	ft_rrr2(b);
+}
+
+void	ft_rrr2(t_swap **b)
+{
+	t_swap *temp;
+	int	i;
+	
+	i = 0;
+	temp = *b;
+	while ((*b)->next)
+	{
+		i++;
+		*b = (*b)->next;
+	}
+	(*b)->next = temp;
+	while (i > 1)
+	{
+		temp = temp->next;
+		i--;
+	}
+	temp->next = NULL;
+	write(1, "rrr\n", 4);
 }
 
 void	ft_rb(t_swap **b)
