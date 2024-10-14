@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 00:04:59 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 00:56:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void	ft_free_list(t_swap **lst)
 	while (*lst)
 	{
 		temp = (*lst)->next;
+		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
 		free(*lst);
 		*lst = NULL;
 		*lst = temp;

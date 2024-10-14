@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/14 23:35:16 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 00:52:14 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 		index = ft_cost_b(*a, *b);
 		while (index >= 0)
 		{
-			printf("cost_rarb = %d\n", ft_cost_rarb_b(*a, *b, temp->nbr));
 			if (index == ft_cost_rarb_b(*a, *b, temp->nbr))
 				index = ft_apply_rarb_b(a, b, temp->nbr);
 			else if (index == ft_cost_rrarrb_b(*a, *b, temp->nbr))

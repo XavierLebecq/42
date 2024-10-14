@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:31:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/10 17:20:03 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 00:35:37 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int ft_cost_rrarb_a(t_swap *a, t_swap *b, int nbr)
     int index;
 
     index = 0;
-    if (ft_position(a, nbr))
+    if (ft_index_a(a, nbr))
         index = ft_lstsize2(a) - ft_index_a(a, nbr);
     index = ft_position(b, nbr) + index;
     return (index);

@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 00:11:48 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 01:00:13 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ t_swap	*ft_multi_arg(int argc, char **argv)
 	t_swap *a;
 	int i;
 	int nbr;
-	t_swap *intermediaire;
 
 	i = 1;
 	nbr = 0;
@@ -80,11 +79,7 @@ t_swap	*ft_multi_arg(int argc, char **argv)
 	while(i < argc)
 	{
 		nbr = ft_atoi_check(argv[i]);
-		intermediaire = ft_stack_new(nbr);
-		if (!intermediaire)
-			return NULL;
-		ft_lstaddback(&a, intermediaire);
-		free(intermediaire);
+		ft_lstaddback(&a, ft_stack_new(nbr));
 		i++;
 	}
 	return (a);
