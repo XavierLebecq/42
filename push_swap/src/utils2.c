@@ -6,16 +6,16 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:39:12 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 00:31:02 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_index_b(t_swap *b, int nbr)
+int ft_index_b(stack *b, int nbr)
 {
     int index;
-    t_swap *temp;
+    stack *temp;
     
     index = 1;
     if(nbr > b->nbr && nbr < ft_lstlast2(b)->nbr)
@@ -35,10 +35,10 @@ int ft_index_b(t_swap *b, int nbr)
     return (index);
 }
 
-int ft_index_a(t_swap *a, int nbr)
+int ft_index_a(stack *a, int nbr)
 {
     int index;
-    t_swap *temp;
+    stack *temp;
 
     index = 1;
     if (nbr < a->nbr && nbr > ft_lstlast2(a)->nbr)
@@ -60,7 +60,7 @@ int ft_index_a(t_swap *a, int nbr)
 
 
 
-int ft_position(t_swap *a, int nbr)
+int ft_position(stack *a, int nbr)
 {
     int index;
 

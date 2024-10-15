@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 01:00:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 	
 int main(int argc, char **argv)
 {
-	t_swap *a;
-	t_swap *b;
+	stack *a;
+	stack *b;
 
 	a = NULL;
 	b = NULL;
@@ -26,12 +26,12 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-t_swap	*init_list(int argc, char **argv)
+stack	*init_list(int argc, char **argv)
 {
-	t_swap	*a;
+	stack	*a;
 	a = NULL;
 	if (argc < 2)
-		ft_error_msg();
+		exit (1);
 	else if (argc == 2)
 		a = ft_single_arg(argv);
 	else
@@ -44,9 +44,9 @@ t_swap	*init_list(int argc, char **argv)
 	return (a);
 }
 
-t_swap	*ft_single_arg(char **argv)
+stack	*ft_single_arg(char **argv)
 {
-	t_swap *a;
+	stack *a;
 	char **tab;
 	int	i;
 	int nbr;
@@ -67,9 +67,9 @@ t_swap	*ft_single_arg(char **argv)
 	return (a);
 }
 
-t_swap	*ft_multi_arg(int argc, char **argv)
+stack	*ft_multi_arg(int argc, char **argv)
 {
-	t_swap *a;
+	stack *a;
 	int i;
 	int nbr;
 

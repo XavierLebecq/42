@@ -6,15 +6,15 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/14 22:51:59 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sa(t_swap **a)
+void	ft_sa(stack **a)
 {
-	t_swap *temp;
+	stack *temp;
 
 	if (!*a || !((*a)->next))
 		return;
@@ -25,9 +25,9 @@ void	ft_sa(t_swap **a)
 	write(1, "sa\n", 3);
 }
 
-void	ft_rra(t_swap **a)
+void	ft_rra(stack **a)
 {
-	t_swap	*temp;
+	stack	*temp;
 	int	i;
 
 	if (!a || !(*a)->next)
@@ -49,12 +49,12 @@ void	ft_rra(t_swap **a)
 	write(1, "rra\n", 4);
 }
 
-void	ft_ra(t_swap **a)
+void	ft_ra(stack **a)
 {
 	if (!*a || !(*a)->next)
 		return;
 
-	t_swap	*temp;
+	stack	*temp;
 	temp = *a;
 	*a = ft_lstlast2(*a);
 	(*a)->next = temp;
@@ -62,9 +62,9 @@ void	ft_ra(t_swap **a)
 	temp->next = NULL;
 	write(1, "ra\n", 3);
 }
-void	ft_rr(t_swap **a, t_swap **b)
+void	ft_rr(stack **a, stack **b)
 {
-	t_swap *temp;
+	stack *temp;
 
 	if (!a || !((*a)->next) || !*b || !((*b)->next))
 		return ;
@@ -80,9 +80,9 @@ void	ft_rr(t_swap **a, t_swap **b)
 	temp->next = NULL;
 	write(1, "rr\n", 3);
 }
-void	ft_rrr(t_swap **a, t_swap **b)
+void	ft_rrr(stack **a, stack **b)
 {
-	t_swap *temp;
+	stack *temp;
 	int	i;
 	
 	if (!*a || !((*a)->next) || !*b || ! ((*b)->next))
@@ -104,9 +104,9 @@ void	ft_rrr(t_swap **a, t_swap **b)
 	ft_rrr2(b);
 }
 
-void	ft_rrr2(t_swap **b)
+void	ft_rrr2(stack **b)
 {
-	t_swap *temp;
+	stack *temp;
 	int	i;
 	
 	i = 0;
@@ -126,9 +126,9 @@ void	ft_rrr2(t_swap **b)
 	write(1, "rrr\n", 4);
 }
 
-void	ft_rb(t_swap **b)
+void	ft_rb(stack **b)
 {
-	t_swap *temp;
+	stack *temp;
 
 	if (!b || !(*b)->next)
 		return ;
@@ -139,9 +139,9 @@ void	ft_rb(t_swap **b)
 	temp->next = NULL;
 	write (1, "rb\n", 3);
 }
-void	ft_rrb(t_swap **b)
+void	ft_rrb(stack **b)
 {
-	t_swap *temp;
+	stack *temp;
 	int	index;
 
 	if (!*b || !(*b)->next)

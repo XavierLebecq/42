@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:31:55 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/14 23:11:45 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_apply_rarb_b(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rarb_b(stack **a, stack **b, int nbr)
 {
     while ((*a)->nbr != nbr && ft_index_b(*b, nbr) > 0)
         ft_rr(a, b);
@@ -23,7 +23,7 @@ int ft_apply_rarb_b(t_swap **a, t_swap **b, int nbr)
     ft_pb(a, b);
     return (-1);
 }
-int ft_apply_rrarrb_b(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rrarrb_b(stack **a, stack **b, int nbr)
 {
     while ((*a)->nbr != nbr && ft_index_b(*b, nbr) > 0)
         ft_rrr(a, b);
@@ -34,7 +34,7 @@ int ft_apply_rrarrb_b(t_swap **a, t_swap **b, int nbr)
     ft_pb(a, b);
     return (-1);
 }
-int ft_apply_rrarb_b(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rrarb_b(stack **a, stack **b, int nbr)
 {
     while ((*a)->nbr != nbr)
         ft_rra(a);
@@ -44,7 +44,7 @@ int ft_apply_rrarb_b(t_swap **a, t_swap **b, int nbr)
     return (-1);
 }
 
-int ft_apply_rarrb_b(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rarrb_b(stack **a, stack **b, int nbr)
 {
     while ((*a)->nbr != nbr)
         ft_ra(a);
@@ -54,7 +54,7 @@ int ft_apply_rarrb_b(t_swap **a, t_swap **b, int nbr)
     return (-1);
 }
 
-int ft_apply_rarb_a(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rarb_a(stack **a, stack **b, int nbr)
 {
     while ((*b)->nbr != nbr && ft_index_a(*a, nbr) > 0)
         ft_rr(a, b);
@@ -66,7 +66,7 @@ int ft_apply_rarb_a(t_swap **a, t_swap **b, int nbr)
     return (-1);
 }
 
-int ft_apply_rrarrb_a(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rrarrb_a(stack **a, stack **b, int nbr)
 {
     while ((*b)->nbr != nbr && ft_index_a(*a, nbr) > 0)
         ft_rrr(a, b);
@@ -78,7 +78,7 @@ int ft_apply_rrarrb_a(t_swap **a, t_swap **b, int nbr)
     return (-1);
 }
 
-int ft_apply_rrarb_a(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rrarb_a(stack **a, stack **b, int nbr)
 {
     while (ft_index_a(*a, nbr) > 0)
         ft_rra(a);
@@ -88,7 +88,7 @@ int ft_apply_rrarb_a(t_swap **a, t_swap **b, int nbr)
     return (-1);
 }
 
-int ft_apply_rarrb_a(t_swap **a, t_swap **b, int nbr)
+int ft_apply_rarrb_a(stack **a, stack **b, int nbr)
 {
     while (ft_index_a(*a, nbr) > 0)
         ft_ra(a);

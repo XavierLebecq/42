@@ -6,15 +6,15 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/11 13:17:57 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_pb(t_swap **a, t_swap **b)
+void    ft_pb(stack **a, stack **b)
 {
-    t_swap *temp;
+    stack *temp;
 
     if(!*a)
         return;
@@ -25,9 +25,9 @@ void    ft_pb(t_swap **a, t_swap **b)
     write(1, "pb\n", 3);
 }
 
-void    ft_pa(t_swap **a, t_swap **b)
+void    ft_pa(stack **a, stack **b)
 {
-    t_swap *temp;
+    stack *temp;
     
     if (!*b)
         return;

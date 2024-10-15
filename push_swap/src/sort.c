@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 00:52:14 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // 5 1 2 3 4 6 43 98 23 888888 22222 3333 1111
 
-void	ft_sort(t_swap **a, t_swap **b)
+void	ft_sort(stack **a, stack **b)
 {
 	int	index;
 	
@@ -38,7 +38,7 @@ void	ft_sort(t_swap **a, t_swap **b)
 	}
 }
 
-void	ft_push_b(t_swap **a, t_swap **b)
+void	ft_push_b(stack **a, stack **b)
 {
 	if(ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 		ft_pb(a, b);
@@ -50,10 +50,10 @@ void	ft_push_b(t_swap **a, t_swap **b)
 		ft_int_three(a);
 }
 
-void	ft_sort_more_3(t_swap **a, t_swap **b)
+void	ft_sort_more_3(stack **a, stack **b)
 {
 	int	index;
-	t_swap *temp;
+	stack *temp;
 
 	while (ft_lstsize2(*a) > 3 && ft_check_order(*a) == 1)
 	{
@@ -75,10 +75,10 @@ void	ft_sort_more_3(t_swap **a, t_swap **b)
 	}
 }
 
-int	ft_cost_b(t_swap *a, t_swap *b)
+int	ft_cost_b(stack *a, stack *b)
 {
 	int index;
-	t_swap	*temp;
+	stack	*temp;
 	
 	temp = a;
 	index = ft_cost_rrarrb_b(a, b, a->nbr);
@@ -98,10 +98,10 @@ int	ft_cost_b(t_swap *a, t_swap *b)
 	return (index);
 }
 
-void	ft_push_a(t_swap **a, t_swap **b)
+void	ft_push_a(stack **a, stack **b)
 {
 	int	index;
-	t_swap	*temp;
+	stack	*temp;
 
 	while (*b)
 	{
@@ -123,10 +123,10 @@ void	ft_push_a(t_swap **a, t_swap **b)
 	}
 }
 
-int	ft_cost_a(t_swap *a, t_swap *b)
+int	ft_cost_a(stack *a, stack *b)
 {
 	int index;
-	t_swap	*temp;
+	stack	*temp;
 
 	temp = b;
 	index = ft_cost_rrarrb_a(a, b, b->nbr);
@@ -146,7 +146,7 @@ int	ft_cost_a(t_swap *a, t_swap *b)
 	return (index);
 }
 
-void	ft_int_three(t_swap **a)
+void	ft_int_three(stack **a)
 {
 	if (ft_int_min(*a) == (*a)->nbr)
 	{
