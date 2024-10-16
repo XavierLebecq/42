@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "name": "(lldb) Launch",
+        "type": "lldb",
+        "request": "launch",
+        "program": "${workspaceFolder}/push_swap", // Remplace par le chemin vers ton programme
+        "args": ["4", "3", "2", "5"], // Les arguments pour ton programme
+        "cwd": "${workspaceFolder}", // Répertoire de travail
+        "stopAtEntry": false,
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
+      }
+    ]
+  }
+  
