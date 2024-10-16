@@ -6,81 +6,66 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/16 21:51:18 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-	
-int main(int argc, char **argv)
-{
-	stack *a;
-	stack *b;
 
-	a = NULL;
-	b = NULL;
-	a = init_list(argc, argv);
-	if (ft_check_order(a) == 1)
-		ft_sort(&a, &b);
-	ft_free_list(&a);
+
+int	main(int argc, char **argv)
+{
+	stacks	stack;
+
+	stack.a = NULL;
+	stack.b = NULL;
+	if (argc < 2)
+		exit (1);
+	if (argc == 2)
+		ft_split_single_arg(&stack.a, argv);
+	else
+		ft_parse_multi_arg(&stack.a, argc, argv, NULL);
+	if (ft_has_duplicates(stack.a) || !stack.a)
+	{
+		ft_free_stack(&stack.a);
+		ft_error_and_exit();
+	}
+	if (ft_is_unsorted(stack.a))
+		ft_sort_stack(&stack.a, &stack.b);
+	ft_free_stack(&stack.a);
 	return (0);
 }
 
-stack	*init_list(int argc, char **argv)
-{
-	stack	*a;
-	a = NULL;
-	if (argc < 2)
-		exit (1);
-	else if (argc == 2)
-		a = ft_single_arg(argv);
-	else
-		a = ft_multi_arg(argc, argv);
-	if (!a || ft_check_double(a))
-	{
-		ft_free_list(&a);
-		ft_error_msg();
-	}
-	return (a);
-}
 
-stack	*ft_single_arg(char **argv)
+void	ft_split_single_arg(stack_node **a, char **argv)
 {
-	stack *a;
-	char **tab;
-	int	i;
-	int nbr;
+	char	**args_split;
+	int		i;
+	int		nbr;
 
 	i = 0;
-	nbr = 0;
-	a = NULL;
-	tab = ft_split(argv[1], ' ');
-	if(!tab)
-		ft_error_msg();
-	while(tab[i])
+	args_split = ft_split(argv[1], ' ');
+	if (!args_split)
+		ft_error_and_exit();
+	while (args_split[i])
 	{
-		nbr = ft_atoi_check(tab[i]);
-		ft_lstaddback(&a, ft_stack_new(nbr));
+		nbr = ft_atoi_check(args_split[i], args_split);
+		ft_stack_add_back(a, ft_stack_new_node(nbr));
 		i++;
 	}
-	ft_free_tab(tab);
-	return (a);
+	ft_free_split_result(args_split);
 }
 
-stack	*ft_multi_arg(int argc, char **argv)
+void	ft_parse_multi_arg(stack_node **a, int argc, char **argv, char **args_split)
 {
-	stack *a;
-	int i;
-	int nbr;
+	int	i;
+	int	nbr;
 
 	i = 1;
-	nbr = 0;
-	a = NULL;
-	while(i < argc)
+	while (i < argc)
 	{
-		nbr = ft_atoi_check(argv[i]);
-		ft_lstaddback(&a, ft_stack_new(nbr));
+		nbr = ft_atoi_check(argv[i], args_split);
+		ft_stack_add_back(a, ft_stack_new_node(nbr));
 		i++;
 	}
-	return (a);
 }

@@ -6,15 +6,15 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/15 21:30:01 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sa(stack **a)
+void	ft_sa(stack_node **a)
 {
-	stack *temp;
+	stack_node *temp;
 
 	if (!*a || !((*a)->next))
 		return;
@@ -25,9 +25,9 @@ void	ft_sa(stack **a)
 	write(1, "sa\n", 3);
 }
 
-void	ft_rra(stack **a)
+void	ft_rra(stack_node **a)
 {
-	stack	*temp;
+	stack_node	*temp;
 	int	i;
 
 	if (!a || !(*a)->next)
@@ -49,40 +49,40 @@ void	ft_rra(stack **a)
 	write(1, "rra\n", 4);
 }
 
-void	ft_ra(stack **a)
+void	ft_ra(stack_node **a)
 {
 	if (!*a || !(*a)->next)
 		return;
 
-	stack	*temp;
+	stack_node	*temp;
 	temp = *a;
-	*a = ft_lstlast2(*a);
+	*a = ft_stack_last_node(*a);
 	(*a)->next = temp;
 	*a = temp->next;
 	temp->next = NULL;
 	write(1, "ra\n", 3);
 }
-void	ft_rr(stack **a, stack **b)
+void	ft_rr(stack_node **a, stack_node **b)
 {
-	stack *temp;
+	stack_node *temp;
 
 	if (!a || !((*a)->next) || !*b || !((*b)->next))
 		return ;
 	temp = *a;
-	*a = ft_lstlast2(*a);
+	*a = ft_stack_last_node(*a);
 	(*a)->next = temp;
 	*a = temp->next;
 	temp->next = NULL;
 	temp = *b;
-	*b = ft_lstlast2(*b);
+	*b = ft_stack_last_node(*b);
 	(*b)->next = temp;
 	*b = temp->next;
 	temp->next = NULL;
 	write(1, "rr\n", 3);
 }
-void	ft_rrr(stack **a, stack **b)
+void	ft_rrr(stack_node **a, stack_node **b)
 {
-	stack *temp;
+	stack_node *temp;
 	int	i;
 	
 	if (!*a || !((*a)->next) || !*b || ! ((*b)->next))
@@ -104,9 +104,9 @@ void	ft_rrr(stack **a, stack **b)
 	ft_rrr2(b);
 }
 
-void	ft_rrr2(stack **b)
+void	ft_rrr2(stack_node **b)
 {
-	stack *temp;
+	stack_node *temp;
 	int	i;
 	
 	i = 0;
@@ -126,38 +126,38 @@ void	ft_rrr2(stack **b)
 	write(1, "rrr\n", 4);
 }
 
-void	ft_rb(stack **b)
+void	ft_rb(stack_node **b)
 {
-	stack *temp;
+	stack_node *temp;
 
 	if (!b || !(*b)->next)
 		return ;
 	temp = *b;
-	*b = ft_lstlast2(*b);
+	*b = ft_stack_last_node(*b);
 	(*b)->next = temp;
 	*b = temp->next;
 	temp->next = NULL;
 	write (1, "rb\n", 3);
 }
-void	ft_rrb(stack **b)
+void	ft_rrb(stack_node **b)
 {
-	stack *temp;
-	int	index;
+	stack_node *temp;
+	int	i;
 
 	if (!*b || !(*b)->next)
 		return ;
-	index = 0;
+	i = 0;
 	temp = *b;
 	while ((*b)->next)
 	{
-		index++;
+		i++;
 		*b = (*b)->next;
 	}
 	(*b)->next = temp;
-	while (index > 1)
+	while (i > 1)
 	{
 		temp = temp->next;
-		index--;
+		i--;
 	}
 	temp->next = NULL;
 	write(1, "rrb\n", 4);

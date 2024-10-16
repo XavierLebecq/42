@@ -6,142 +6,99 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 03:10:33 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/16 21:52:07 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error_msg(void)
+int	ft_atoi_check(const char *input_args, char **args_split)
 {
-	write(1, "Error\n", 6);
-	exit(1);
-}
-
-int	ft_atoi_check(char *str)
-{
-	int	i;
-	int sign;
 	long long result;
-
-	i = 0;
-	sign = 1;
+	int sign;
+	int i;
+	int digit;
+	
 	result = 0;
-	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+	sign = 1;
+	i = 0;
+	while (input_args[i] == ' ' || (input_args[i] >= 9 && input_args[i] <= 13))
 		i++;
-	if (str[i] == '-')
+	if (input_args[i] == '-')
 	{
-		sign = -1;
+			sign = -1;
+			i++;
+	} 
+	else if (input_args[i] == '+')
+		i++;
+
+	if(!ft_isdigit(input_args[i]))
+		ft_error_and_exit();
+	
+	while (input_args[i] && ft_isdigit(input_args[i]))
+	{
+		digit = input_args[i] - '0';
+		
+		if((sign == 1 && result > (INT_MAX - digit) / 10) || (sign == -1 && -result < (INT_MIN + digit) / 10))
+		{
+			ft_free_split_result(args_split);
+			ft_error_and_exit();			
+		}
+		result = result * 10 + digit;
 		i++;
 	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if(ft_isdigit(str[i]) == 0)
-			ft_error_msg();
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	result = (sign * result);
-	if (result > 2147483647 || result < -2147483648)
-		ft_error_msg();
-	return (result);
+	if (input_args[i] != '\0')
+		ft_error_and_exit();
+	return (int)(result * sign);
 }
 
-void	ft_lstaddback(stack **head, stack *new_node)
+void	ft_stack_add_back(stack_node **head, stack_node *new_node)
 {
-	if (!head)
+	if (!head || !new_node)
 		return ;
 	if (!*head)
 		*head = new_node;
 	else
-		(ft_lstlast2(*head))->next = new_node;
+		(ft_stack_last_node(*head))->next = new_node;
 }
 
-stack	*ft_lstlast2(stack *lst)
+
+stack_node	*ft_stack_last_node(stack_node *node)
 {
-	if (!lst)
+	if (!node)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	while (node->next)
+		node = node->next;
+	return (node);
 }
 
-stack	*ft_stack_new(int content)
+stack_node	*ft_stack_new_node(int content)
 {
-	stack	*new;
+	stack_node	*new_node;
 
-	new = malloc(sizeof (stack));
-	if (!new)
-		ft_error_msg();
-	new->nbr = content;
-	new->next = NULL;
-	return (new);
+	new_node = malloc(sizeof (stack_node));
+	if (!new_node)
+		ft_error_and_exit();
+	new_node->nbr = content;
+	new_node->next = NULL;
+	return (new_node);
 }
 
-void	ft_free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if(!tab)
-		return;
-	while(tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-int	ft_check_double(stack *a)
-{
-	stack *temp;
-
-	while(a)
-	{
-		temp = a->next;
-		while(temp)
-		{
-			if(temp->nbr == a->nbr)
-				return (1);
-			temp = temp->next;
-		}
-		a = a->next;
-	}
-	return (0);
-}
-
-int	ft_lstsize2(stack *lst)
+int	ft_stack_size(stack_node *node)
 {
 	size_t i;
 
 	i = 0;
-	while (lst)
+	while (node)
 	{
-		lst = lst->next;
+		node = node->next;
 		i++;
 	}
 	return (i);
 }
 
-int	ft_check_order(stack *a)
-{
-	int	i;
 
-	i = a->nbr;
-	while (a)
-	{
-		if (i > a->nbr)
-			return (1);
-		i = a->nbr;
-		a = a->next;
-	}
-	return (0);
-}
-
-int	ft_int_min(stack *a)
+int	ft_find_min_value(stack_node *a)
 {
 	int i;
 
@@ -155,7 +112,7 @@ int	ft_int_min(stack *a)
 	return (i);
 }
 
-int	ft_int_max(stack *a)
+int	ft_find_max_value(stack_node *a)
 {
 	int i;
 
@@ -167,21 +124,4 @@ int	ft_int_max(stack *a)
 		a = a->next;
 	}
 	return (i);
-}
-
-void	ft_free_list(stack **lst)
-{
-	stack *temp;
-
-	if (!lst)
-		return;
-	temp = NULL;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-//		printf("%ld Freeing: %p\n", (*lst)->nbr, (void *)*lst);
-		free(*lst);
-		*lst = NULL;
-		*lst = temp;
-	}
 }

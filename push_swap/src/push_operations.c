@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   push_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:06 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/15 03:05:08 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/16 20:52:22 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_pb(stack **a, stack **b)
+void    ft_pb(stack_node **a, stack_node **b)
 {
-    stack *temp;
+    stack_node *temp;
 
-    if(!*a)
+    if(!*a || !*a)
         return;
     temp = *b;
     *b = *a;
@@ -25,11 +25,11 @@ void    ft_pb(stack **a, stack **b)
     write(1, "pb\n", 3);
 }
 
-void    ft_pa(stack **a, stack **b)
+void    ft_pa(stack_node **a, stack_node **b)
 {
-    stack *temp;
+    stack_node *temp;
     
-    if (!*b)
+    if (!*b || !*b)
         return;
     temp = *a;
     *a = *b;
