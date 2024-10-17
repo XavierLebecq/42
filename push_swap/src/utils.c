@@ -6,13 +6,41 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:23:25 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:06:16 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi_check(const char *input_args, char **args_split)
+void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
+{
+	t_stack_node	*next_node;
+	size_t i;
+	
+	i = 0;
+	if (a || *a)
+	{
+		while (*a)
+		{
+			next_node = (*a)->next;
+			free(*a);
+			*a = next_node;
+		}
+	}
+	if (args_split)
+	{
+		while (args_split[i])
+		{
+			free(args_split[i]);
+			i++;
+		}
+		free(args_split);
+	}
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_atoi_and_push(const char *input_args, char **args_split, t_stack_node **a)
 {
 	long long	result;
 	int			sign;
@@ -23,29 +51,27 @@ int	ft_atoi_check(const char *input_args, char **args_split)
 	sign = 1;
 	i = 0;
 	ft_handle_sign(input_args, &i, &sign);
-	if (!ft_isdigit(input_args[i]))
-		ft_error_and_exit();
 	while (input_args[i] && ft_isdigit(input_args[i]))
 	{
 		digit = input_args[i] - '0';
-		ft_overflow(result, sign, digit, args_split);
+		if (ft_overflow(result, sign, digit))
+			ft_error_and_exit_and_free_all(args_split, a);
 		result = result * 10 + digit;
 		i++;
 	}
 	if (input_args[i] != '\0')
-		ft_error_and_exit();
-	return ((int)(result * sign));
+		ft_error_and_exit_and_free_all(args_split, a);
+	result = ((int)(result * sign));
+	ft_stack_add_back(a, ft_stack_new_node(result));
 }
 
-void	ft_overflow(long long result, int sign, int digit, char **args_split)
+int	ft_overflow(long long result, int sign, int digit)
 {
 	if ((sign == 1 && result > (INT_MAX - digit) / 10)
 		|| (sign == -1 && - result < (INT_MIN + digit) / 10))
-	{
-		ft_free_split_result(args_split);
-		ft_error_and_exit();
-	}		
-}
+		return (1);
+	return (0);
+}		
 
 void	ft_handle_sign(const char *input_args, int *i, int *sign)
 {
@@ -61,9 +87,9 @@ void	ft_handle_sign(const char *input_args, int *i, int *sign)
 		(*i)++;
 }
 
-int	ft_find_min_value(stack_node *a)
+int	ft_find_min_value(t_stack_node *a)
 {
-	int	i;
+	int	i;	{
 
 	i = a->nbr;
 	while (a)
@@ -75,7 +101,7 @@ int	ft_find_min_value(stack_node *a)
 	return (i);
 }
 
-int	ft_find_max_value(stack_node *a)
+int	ft_find_max_value(t_stack_node *a)
 {
 	int	i;
 

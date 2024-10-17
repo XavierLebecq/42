@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:19:12 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:30:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stack_add_back(stack_node **head, stack_node *new_node)
+void	ft_stack_add_back(t_stack_node **head, t_stack_node *new_node)
 {
 	if (!head || !new_node)
 		return ;
@@ -22,7 +22,7 @@ void	ft_stack_add_back(stack_node **head, stack_node *new_node)
 		(ft_stack_last_node(*head))->next = new_node;
 }
 
-stack_node	*ft_stack_last_node(stack_node *node)
+t_stack_node	*ft_stack_last_node(t_stack_node *node)
 {
 	if (!node)
 		return (NULL);
@@ -31,11 +31,11 @@ stack_node	*ft_stack_last_node(stack_node *node)
 	return (node);
 }
 
-stack_node	*ft_stack_new_node(int content)
+t_stack_node	*ft_stack_new_node(int content)
 {
-	stack_node	*new_node;
+	t_stack_node	*new_node;
 
-	new_node = malloc(sizeof (stack_node));
+	new_node = malloc(sizeof (t_stack_node));
 	if (!new_node)
 		ft_error_and_exit();
 	new_node->nbr = content;
@@ -43,7 +43,7 @@ stack_node	*ft_stack_new_node(int content)
 	return (new_node);
 }
 
-int	ft_stack_size(stack_node *node)
+int	ft_stack_size(t_stack_node *node)
 {
 	size_t	i;
 

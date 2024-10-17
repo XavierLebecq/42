@@ -6,16 +6,16 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:13:46 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 11:14:28 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_elements_to_a(stack_node **a, stack_node **b)
+void	ft_push_elements_to_a(t_stack_node **a, t_stack_node **b)
 {
-	int			i;
-	stack_node	*temp;
+	int				i;
+	t_stack_node	*temp;
 
 	while (*b)
 	{
@@ -37,10 +37,10 @@ void	ft_push_elements_to_a(stack_node **a, stack_node **b)
 	}
 }
 
-int	ft_calculate_push_cost_a(stack_node *a, stack_node *b)
+int	ft_calculate_push_cost_a(t_stack_node *a, t_stack_node *b)
 {
-	int			i;
-	stack_node	*temp;
+	int				i;
+	t_stack_node	*temp;
 
 	temp = b;
 	i = ft_cost_rrarrb_a(a, b, b->nbr);
@@ -59,7 +59,7 @@ int	ft_calculate_push_cost_a(stack_node *a, stack_node *b)
 	return (i);
 }
 
-void	ft_sort_stack_of_three(stack_node **a)
+void	ft_sort_stack_of_three(t_stack_node **a)
 {
 	if (ft_find_min_value(*a) == (*a)->nbr)
 	{

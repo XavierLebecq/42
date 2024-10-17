@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:06:19 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:31:01 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_stack(stack_node **a, stack_node **b)
+void	ft_sort_stack(t_stack_node **a, t_stack_node **b)
 {
 	if (ft_stack_size(*a) == 2)
 		ft_sa(a);
@@ -26,7 +26,7 @@ void	ft_sort_stack(stack_node **a, stack_node **b)
 	}
 }
 
-void	ft_push_elements_to_b(stack_node **a, stack_node **b)
+void	ft_push_elements_to_b(t_stack_node **a, t_stack_node **b)
 {
 	if (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
 		ft_pb(a, b);
@@ -38,10 +38,10 @@ void	ft_push_elements_to_b(stack_node **a, stack_node **b)
 		ft_sort_stack_of_three(a);
 }
 
-void	ft_sort_stack_over_three(stack_node **a, stack_node **b)
+void	ft_sort_stack_over_three(t_stack_node **a, t_stack_node **b)
 {
-	int			i;
-	stack_node	*temp;
+	int				i;
+	t_stack_node	*temp;
 
 	while (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
 	{
@@ -63,10 +63,10 @@ void	ft_sort_stack_over_three(stack_node **a, stack_node **b)
 	}
 }
 
-int	ft_calculate_push_cost_b(stack_node *a, stack_node *b)
+int	ft_calculate_push_cost_b(t_stack_node *a, t_stack_node *b)
 {
-	int			i;
-	stack_node	*temp;
+	int				i;
+	t_stack_node	*temp;
 
 	temp = a;
 	i = ft_cost_rrarrb_b(a, b, a->nbr);

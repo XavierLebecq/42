@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:23:13 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:04:31 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	stacks	stack;
+	t_stacks	stack;
 
 	stack.a = NULL;
 	stack.b = NULL;
@@ -35,35 +35,31 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-void	ft_split_single_arg(stack_node **a, char **argv)
+void	ft_split_single_arg(t_stack_node **a, char **argv)
 {
 	char	**args_split;
 	int		i;
-	int		nbr;
 
 	i = 0;
 	args_split = ft_split(argv[1], ' ');
 	if (!args_split)
-		ft_error_and_exit();
+		ft_error_and_exit_and_free_all(args_split, a);
 	while (args_split[i])
 	{
-		nbr = ft_atoi_check(args_split[i], args_split);
-		ft_stack_add_back(a, ft_stack_new_node(nbr));
+		ft_atoi_and_push(args_split[i], args_split, a);
 		i++;
 	}
 	ft_free_split_result(args_split);
 }
 
-void	ft_multi_arg(stack_node **a, int argc, char **argv, char **args_split)
+void	ft_multi_arg(t_stack_node **a, int argc, char **argv, char **args_split)
 {
 	int	i;
-	int	nbr;
 
 	i = 1;
 	while (i < argc)
 	{
-		nbr = ft_atoi_check(argv[i], args_split);
-		ft_stack_add_back(a, ft_stack_new_node(nbr));
+		ft_atoi_and_push(argv[i], args_split, a);
 		i++;
 	}
 }

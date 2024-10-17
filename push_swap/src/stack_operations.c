@@ -6,15 +6,15 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:11:27 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:00 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:30:46 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sa(stack_node **a)
+void	ft_sa(t_stack_node **a)
 {
-	stack_node	*temp;
+	t_stack_node	*temp;
 
 	if (!*a || !((*a)->next))
 		return ;
@@ -25,10 +25,10 @@ void	ft_sa(stack_node **a)
 	write(1, "sa\n", 3);
 }
 
-void	ft_rra(stack_node **a)
+void	ft_rra(t_stack_node **a)
 {
-	stack_node	*temp;
-	int			i;
+	t_stack_node	*temp;
+	int				i;
 
 	if (!a || !(*a)->next)
 		return ;
@@ -49,9 +49,9 @@ void	ft_rra(stack_node **a)
 	write(1, "rra\n", 4);
 }
 
-void	ft_ra(stack_node **a)
+void	ft_ra(t_stack_node **a)
 {
-	stack_node	*temp;
+	t_stack_node	*temp;
 
 	if (!*a || !(*a)->next)
 		return ;
@@ -63,9 +63,9 @@ void	ft_ra(stack_node **a)
 	write(1, "ra\n", 3);
 }
 
-void	ft_rr(stack_node **a, stack_node **b)
+void	ft_rr(t_stack_node **a, t_stack_node **b)
 {
-	stack_node	*temp;
+	t_stack_node	*temp;
 
 	if (!a || !((*a)->next) || !*b || !((*b)->next))
 		return ;
@@ -82,10 +82,10 @@ void	ft_rr(stack_node **a, stack_node **b)
 	write(1, "rr\n", 3);
 }
 
-void	ft_rrr(stack_node **a, stack_node **b)
+void	ft_rrr(t_stack_node **a, t_stack_node **b)
 {
-	stack_node	*temp;
-	int			i;
+	t_stack_node	*temp;
+	int				i;
 
 	if (!*a || !((*a)->next) || !*b || !((*b)->next))
 		return ;

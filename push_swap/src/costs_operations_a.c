@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:31:32 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:30:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_cost_rarb_a(stack_node *a, stack_node *b, int nbr)
+int	ft_cost_rarb_a(t_stack_node *a, t_stack_node *b, int nbr)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	ft_cost_rarb_a(stack_node *a, stack_node *b, int nbr)
 	return (i);
 }
 
-int	ft_cost_rrarrb_a(stack_node *a, stack_node *b, int nbr)
+int	ft_cost_rrarrb_a(t_stack_node *a, t_stack_node *b, int nbr)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	ft_cost_rrarrb_a(stack_node *a, stack_node *b, int nbr)
 	return (i);
 }
 
-int	ft_cost_rarrb_a(stack_node *a, stack_node *b, int nbr)
+int	ft_cost_rarrb_a(t_stack_node *a, t_stack_node *b, int nbr)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	ft_cost_rarrb_a(stack_node *a, stack_node *b, int nbr)
 	return (i);
 }
 
-int	ft_cost_rrarb_a(stack_node *a, stack_node *b, int nbr)
+int	ft_cost_rrarb_a(t_stack_node *a, t_stack_node *b, int nbr)
 {
 	int	i;
 

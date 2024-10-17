@@ -6,13 +6,13 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:16:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:30:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_execute_rarb_a(stack_node **a, stack_node **b, int nbr)
+int	ft_execute_rarb_a(t_stack_node **a, t_stack_node **b, int nbr)
 {
 	while ((*b)->nbr != nbr && ft_find_insert_position_a(*a, nbr) > 0)
 		ft_rr(a, b);
@@ -24,7 +24,7 @@ int	ft_execute_rarb_a(stack_node **a, stack_node **b, int nbr)
 	return (-1);
 }
 
-int	ft_execute_rrarrb_a(stack_node **a, stack_node **b, int nbr)
+int	ft_execute_rrarrb_a(t_stack_node **a, t_stack_node **b, int nbr)
 {
 	while ((*b)->nbr != nbr && ft_find_insert_position_a(*a, nbr) > 0)
 		ft_rrr(a, b);
@@ -36,7 +36,7 @@ int	ft_execute_rrarrb_a(stack_node **a, stack_node **b, int nbr)
 	return (-1);
 }
 
-int	ft_execute_rrarb_a(stack_node **a, stack_node **b, int nbr)
+int	ft_execute_rrarb_a(t_stack_node **a, t_stack_node **b, int nbr)
 {
 	while (ft_find_insert_position_a(*a, nbr) > 0)
 		ft_rra(a);
@@ -46,7 +46,7 @@ int	ft_execute_rrarb_a(stack_node **a, stack_node **b, int nbr)
 	return (-1);
 }
 
-int	ft_execute_rarrb_a(stack_node **a, stack_node **b, int nbr)
+int	ft_execute_rarrb_a(t_stack_node **a, t_stack_node **b, int nbr)
 {
 	while (ft_find_insert_position_a(*a, nbr) > 0)
 		ft_ra(a);

@@ -6,16 +6,16 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:39:12 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:31:16 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_find_insert_position_b(stack_node *b, int insert_value)
+int	ft_find_insert_position_b(t_stack_node *b, int insert_value)
 {
-	int			i;
-	stack_node	*next_node;
+	int				i;
+	t_stack_node	*next_node;
 
 	i = 1;
 	if (insert_value > b->nbr && insert_value < ft_stack_last_node(b)->nbr)
@@ -36,10 +36,10 @@ int	ft_find_insert_position_b(stack_node *b, int insert_value)
 	return (i);
 }
 
-int	ft_find_insert_position_a(stack_node *a, int insert_value)
+int	ft_find_insert_position_a(t_stack_node *a, int insert_value)
 {
-	int			i;
-	stack_node	*next_node;
+	int				i;
+	t_stack_node	*next_node;
 
 	i = 1;
 	if (insert_value < a->nbr && insert_value > ft_stack_last_node(a)->nbr)
@@ -60,7 +60,7 @@ int	ft_find_insert_position_a(stack_node *a, int insert_value)
 	return (i);
 }
 
-int	ft_find_index_in_stack(stack_node *a, int target_value)
+int	ft_find_index_in_stack(t_stack_node *a, int target_value)
 {
 	int	i;
 
@@ -73,7 +73,7 @@ int	ft_find_index_in_stack(stack_node *a, int target_value)
 	return (i);
 }
 
-void	ft_move_min_to_top(stack_node **a)
+void	ft_move_min_to_top(t_stack_node **a)
 {
 	int	i;
 

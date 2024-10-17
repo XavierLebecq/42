@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:43:47 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 10:24:23 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:30:09 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_error_and_exit(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_free_stack(stack_node **node)
+void	ft_free_stack(t_stack_node **node)
 {
-	stack_node	*next_node;
+	t_stack_node	*next_node;
 
 	if (!node || !*node)
 		return ;
@@ -47,7 +47,7 @@ void	ft_free_split_result(char **args_split)
 	free(args_split);
 }
 
-int	ft_is_unsorted(stack_node *a)
+int	ft_is_unsorted(t_stack_node *a)
 {
 	int	i;
 
@@ -61,9 +61,9 @@ int	ft_is_unsorted(stack_node *a)
 	return (0);
 }
 
-int	ft_has_duplicates(stack_node *a)
+int	ft_has_duplicates(t_stack_node *a)
 {
-	stack_node	*next_node;
+	t_stack_node	*next_node;
 
 	while (a)
 	{
