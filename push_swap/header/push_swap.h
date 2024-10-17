@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 22:47:59 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 09:36:56 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 10:22:52 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct	s_stack_node
+typedef struct s_stack_node
 {
-	int				nbr;
-	struct s_stack_node	 *next;
-	struct s_stack_node	 *prev;
+	int					nbr;
+	struct s_stack_node	*next;
+	struct s_stack_node	*prev;
 }	stack_node;
 
 typedef struct	s_stacks

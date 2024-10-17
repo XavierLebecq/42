@@ -6,7 +6,7 @@
 #    By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 22:31:54 by xlebecq           #+#    #+#              #
-#    Updated: 2024/10/17 09:21:30 by xlebecq          ###   ########.fr        #
+#    Updated: 2024/10/17 10:29:02 by xlebecq          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = ./src/
 
 SRC = $(addprefix $(SRC_DIR), $(C_FILES))
 
-C_FILES = main.c utils.c stack_operations.c sort_stack.c push_execution.c costs_operations.c position_utils.c push_operations.c stack_management.c node_utils.c
+C_FILES = main.c utils.c stack_operations.c sort_stack.c push_execution_b.c push_execution_a.c costs_operations_a.c costs_operations_b.c position_utils.c push_operations.c stack_management.c node_utils.c stack_operations2.c sort_stack2.c
 
 OBJ = $(C_FILES:.c=.o)
 
