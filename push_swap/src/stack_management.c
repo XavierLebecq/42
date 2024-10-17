@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_utils.c                                    :+:      :+:    :+:   */
+/*   stack_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:43:47 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/16 20:46:44 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 09:24:08 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_error_and_exit(void)
 
 void	ft_free_stack(stack_node **node)
 {
-	stack_node *next_node;
+	stack_node	*next_node;
 
 	if (!node || !*node)
-		return;
+		return ;
 	while (*node)
 	{
 		next_node = (*node)->next;
@@ -31,13 +31,14 @@ void	ft_free_stack(stack_node **node)
 		*node = next_node;
 	}
 }
+
 void	ft_free_split_result(char **args_split)
 {
 	size_t	i;
 
 	i = 0;
 	if (!args_split)
-		return;
+		return ;
 	while (args_split[i])
 	{
 		free(args_split[i]);
@@ -62,14 +63,14 @@ int	ft_is_unsorted(stack_node *a)
 
 int	ft_has_duplicates(stack_node *a)
 {
-	stack_node *next_node;
+	stack_node	*next_node;
 
-	while(a)
+	while (a)
 	{
 		next_node = a->next;
-		while(next_node)
+		while (next_node)
 		{
-			if(next_node->nbr == a->nbr)
+			if (next_node->nbr == a->nbr)
 				return (1);
 			next_node = next_node->next;
 		}

@@ -6,12 +6,11 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 23:04:20 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/16 21:51:18 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 09:11:19 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -24,7 +23,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		ft_split_single_arg(&stack.a, argv);
 	else
-		ft_parse_multi_arg(&stack.a, argc, argv, NULL);
+		ft_multi_arg(&stack.a, argc, argv, NULL);
 	if (ft_has_duplicates(stack.a) || !stack.a)
 	{
 		ft_free_stack(&stack.a);
@@ -35,7 +34,6 @@ int	main(int argc, char **argv)
 	ft_free_stack(&stack.a);
 	return (0);
 }
-
 
 void	ft_split_single_arg(stack_node **a, char **argv)
 {
@@ -56,7 +54,7 @@ void	ft_split_single_arg(stack_node **a, char **argv)
 	ft_free_split_result(args_split);
 }
 
-void	ft_parse_multi_arg(stack_node **a, int argc, char **argv, char **args_split)
+void	ft_multi_arg(stack_node **a, int argc, char **argv, char **args_split)
 {
 	int	i;
 	int	nbr;

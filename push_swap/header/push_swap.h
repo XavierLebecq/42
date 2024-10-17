@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 22:47:59 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/16 21:50:10 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 09:36:56 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ stack_node	*ft_stack_new_node(int content);
 void    ft_free_split_result(char **args_split);
 int		ft_stack_size(stack_node *node);
 int		ft_has_duplicates(stack_node *a);
-void	ft_parse_multi_arg(stack_node **a, int argc, char **argv, char **args_split);
+void	ft_multi_arg(stack_node **a, int argc, char **argv, char **args_split);
 void	ft_free_stack(stack_node **node);
 int		ft_is_unsorted(stack_node *a);
 void	ft_sa(stack_node **a);
@@ -83,5 +83,6 @@ int		ft_execute_rrarrb_a(stack_node **a, stack_node **b, int nbr);
 int		ft_execute_rrarb_a(stack_node **a, stack_node **b, int nbr);
 int		ft_execute_rarrb_a(stack_node **a, stack_node **b, int nbr);
 void 	ft_move_min_to_top(stack_node **a);
-
+void	ft_overflow(long long result, int sign, int digit, char **args_split);
+void	ft_handle_sign(const char *input_args, int *i, int *sign);
 #endif
