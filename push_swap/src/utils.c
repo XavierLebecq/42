@@ -6,7 +6,7 @@
 /*   By: xlebecq <xlebecq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:44:53 by xlebecq           #+#    #+#             */
-/*   Updated: 2024/10/17 18:06:16 by xlebecq          ###   ########.fr       */
+/*   Updated: 2024/10/17 20:27:24 by xlebecq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_handle_sign(const char *input_args, int *i, int *sign)
 
 int	ft_find_min_value(t_stack_node *a)
 {
-	int	i;	{
+	int	i;
 
 	i = a->nbr;
 	while (a)
