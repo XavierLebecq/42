@@ -52,10 +52,11 @@ int	ft_is_unsorted(t_stack_node *a)
 	int	i;
 
 	i = a->nbr;
-	while (a && a->next)
+	while (a && a->nbr)
 	{
-		if (a->nbr > a->next->nbr)
+		if (i > a->nbr)
 			return (1);
+		i = a->nbr;
 		a = a->next;
 	}
 	return (0);
