@@ -19,16 +19,13 @@ int	main(int argc, char **argv)
 	stack.a = NULL;
 	stack.b = NULL;
 	if (argc < 2)
-		exit (1);
+		exit (EXIT_FAILURE);
 	if (argc == 2)
 		ft_split_single_arg(&stack.a, argv);
 	else
 		ft_multi_arg(&stack.a, argc, argv, NULL);
 	if (ft_has_duplicates(stack.a) || !stack.a)
-	{
-		ft_free_stack(&stack.a);
-		ft_error_and_exit();
-	}
+		ft_error_and_exit_and_free_all(NULL, &stack.a);
 	if (ft_is_unsorted(stack.a))
 		ft_sort_stack(&stack.a, &stack.b);
 	ft_free_stack(&stack.a);

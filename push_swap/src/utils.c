@@ -12,34 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
-{
-	t_stack_node	*next_node;
-	size_t i;
-	
-	i = 0;
-	if (a || *a)
-	{
-		while (*a)
-		{
-			next_node = (*a)->next;
-			free(*a);
-			*a = next_node;
-		}
-	}
-	if (args_split)
-	{
-		while (args_split[i])
-		{
-			free(args_split[i]);
-			i++;
-		}
-		free(args_split);
-	}
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
 void	ft_atoi_and_push(const char *input_args, char **args_split, t_stack_node **a)
 {
 	long long	result;
@@ -68,7 +40,7 @@ void	ft_atoi_and_push(const char *input_args, char **args_split, t_stack_node **
 int	ft_overflow(long long result, int sign, int digit)
 {
 	if ((sign == 1 && result > (INT_MAX - digit) / 10)
-		|| (sign == -1 && - result < (INT_MIN + digit) / 10))
+		|| (sign == -1 && result > (-(INT_MIN + digit)) / 10))
 		return (1);
 	return (0);
 }		

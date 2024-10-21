@@ -12,6 +12,34 @@
 
 #include "push_swap.h"
 
+void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
+{
+	t_stack_node	*next_node;
+	size_t i;
+	
+	i = 0;
+	if (a && *a)
+	{
+		while (*a)
+		{
+			next_node = (*a)->next;
+			free(*a);
+			*a = next_node;
+		}
+	}
+	if (args_split)
+	{
+		while (args_split[i])
+		{
+			free(args_split[i]);
+			i++;
+		}
+		free(args_split);
+	}
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
 void	ft_error_and_exit(void)
 {
 	write(2, "Error\n", 6);
