@@ -73,3 +73,30 @@ int	ft_find_index_in_stack(t_stack_node *a, int target_value)
 	return (i);
 }
 
+int	ft_find_min_value(t_stack_node *a)
+{
+	int	i;
+
+	i = a->nbr;
+	while (a)
+	{
+		if (i > a->nbr)
+			i = a->nbr;
+		a = a->next;
+	}
+	return (i);
+}
+
+int	ft_find_max_value(t_stack_node *a)
+{
+	int	i;
+
+	i = a->nbr;
+	while (a)
+	{
+		if (i < a->nbr)
+			i = a->nbr;
+		a = a->next;
+	}
+	return (i);
+}

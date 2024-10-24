@@ -60,30 +60,25 @@ void	ft_handle_sign(const char *input_args, int *i, int *sign)
 		(*i)++;
 }
 
-int	ft_find_min_value(t_stack_node *a)
+void	ft_free_args_split_stack_exit(char **args_split,
+	t_stack_node **a, int exit_flag)
 {
-	int	i;
+	t_stack_node	*next_node;
+	size_t			i;
 
-	i = a->nbr;
-	while (a)
+	i = 0;
+	while (a && *a)
 	{
-		if (i > a->nbr)
-			i = a->nbr;
-		a = a->next;
+		next_node = (*a)->next;
+		free(*a);
+		*a = next_node;
 	}
-	return (i);
-}
-
-int	ft_find_max_value(t_stack_node *a)
-{
-	int	i;
-
-	i = a->nbr;
-	while (a)
+	while (args_split && args_split[i])
+		free(args_split[i++]);
+	free(args_split);
+	if (exit_flag == 1)
 	{
-		if (i < a->nbr)
-			i = a->nbr;
-		a = a->next;
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
 	}
-	return (i);
 }
