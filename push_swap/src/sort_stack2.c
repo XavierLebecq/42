@@ -59,24 +59,19 @@ int	ft_calculate_push_cost_a(t_stack_node *a, t_stack_node *b)
 	return (i);
 }
 
-void	ft_sort_stack_of_three(t_stack_node **a)
+void	ft_move_min_to_top(t_stack_node **a)
 {
-	if (ft_find_min_value(*a) == (*a)->nbr)
+	int	i;
+
+	i = ft_find_index_in_stack(*a, ft_find_min_value(*a));
+	if (i < ft_stack_size(*a) - i)
 	{
-		ft_rra(a);
-		ft_sa(a);
-	}
-	else if (ft_find_max_value(*a) == (*a)->nbr)
-	{
-		ft_ra(a);
-		if (ft_is_unsorted(*a))
-			ft_sa(a);
+		while ((*a)->nbr != ft_find_min_value(*a))
+			ft_ra(a);
 	}
 	else
 	{
-		if (ft_find_index_in_stack(*a, ft_find_max_value(*a)) == 1)
+		while ((*a)->nbr != ft_find_min_value(*a))
 			ft_rra(a);
-		else
-			ft_sa(a);
 	}
 }

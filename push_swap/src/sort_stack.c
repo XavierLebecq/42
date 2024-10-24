@@ -18,22 +18,17 @@ void	ft_sort_stack(t_stack_node **a, t_stack_node **b)
 		ft_sa(a);
 	if (ft_stack_size(*a) > 2)
 	{
-		ft_push_elements_to_b(a, b);
+		if (ft_stack_size(*a) > 3)
+			ft_pb(a, b);
+		if (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
+			ft_pb(a, b);
+		if (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
+			ft_sort_stack_over_three(a, b);
+		if (ft_is_unsorted(*a))
+			ft_sort_stack_of_three(a);
 		ft_push_elements_to_a(a, b);
 		ft_move_min_to_top(a);
 	}
-}
-
-void	ft_push_elements_to_b(t_stack_node **a, t_stack_node **b)
-{
-	if (ft_stack_size(*a) > 3)
-		ft_pb(a, b);
-	if (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
-		ft_pb(a, b);
-	if (ft_stack_size(*a) > 3 && ft_is_unsorted(*a))
-		ft_sort_stack_over_three(a, b);
-	if (ft_is_unsorted(*a))
-		ft_sort_stack_of_three(a);
 }
 
 void	ft_sort_stack_over_three(t_stack_node **a, t_stack_node **b)
@@ -81,4 +76,26 @@ int	ft_calculate_push_cost_b(t_stack_node *a, t_stack_node *b)
 		temp = temp->next;
 	}
 	return (i);
+}
+
+void	ft_sort_stack_of_three(t_stack_node **a)
+{
+	if (ft_find_min_value(*a) == (*a)->nbr)
+	{
+		ft_rra(a);
+		ft_sa(a);
+	}
+	else if (ft_find_max_value(*a) == (*a)->nbr)
+	{
+		ft_ra(a);
+		if (ft_is_unsorted(*a))
+			ft_sa(a);
+	}
+	else
+	{
+		if (ft_find_index_in_stack(*a, ft_find_max_value(*a)) == 1)
+			ft_rra(a);
+		else
+			ft_sa(a);
+	}
 }

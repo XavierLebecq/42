@@ -73,19 +73,3 @@ int	ft_find_index_in_stack(t_stack_node *a, int target_value)
 	return (i);
 }
 
-void	ft_move_min_to_top(t_stack_node **a)
-{
-	int	i;
-
-	i = ft_find_index_in_stack(*a, ft_find_min_value(*a));
-	if (i < ft_stack_size(*a) - i)
-	{
-		while ((*a)->nbr != ft_find_min_value(*a))
-			ft_ra(a);
-	}
-	else
-	{
-		while ((*a)->nbr != ft_find_min_value(*a))
-			ft_rra(a);
-	}
-}

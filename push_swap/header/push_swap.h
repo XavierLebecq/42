@@ -57,7 +57,6 @@ int				ft_find_max_value(t_stack_node *a);
 void			ft_ra(t_stack_node **a);
 void			ft_pb(t_stack_node **a, t_stack_node **b);
 void			ft_pa(t_stack_node **a, t_stack_node **b);
-void			ft_push_elements_to_b(t_stack_node **a, t_stack_node **b);
 void			ft_push_elements_to_a(t_stack_node **a, t_stack_node **b);
 void			ft_sort_stack_over_three(t_stack_node **a, t_stack_node **b);
 int				ft_calculate_push_cost_b(t_stack_node *a, t_stack_node *b);
