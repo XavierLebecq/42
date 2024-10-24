@@ -12,7 +12,8 @@
 
 #include "push_swap.h"
 
-void	ft_atoi_and_push(const char *input_args, char **args_split, t_stack_node **a)
+void	ft_atoi_and_push(const char *input_args, char **args_split,
+			t_stack_node **a)
 {
 	long long	result;
 	int			sign;
@@ -43,7 +44,7 @@ int	ft_overflow(long long result, int sign, int digit)
 		|| (sign == -1 && result > (-(INT_MIN + digit)) / 10))
 		return (1);
 	return (0);
-}		
+}
 
 void	ft_handle_sign(const char *input_args, int *i, int *sign)
 {
@@ -52,8 +53,8 @@ void	ft_handle_sign(const char *input_args, int *i, int *sign)
 		(*i)++;
 	if (input_args[*i] == '-')
 	{
-			*sign = -1;
-			(*i)++;
+		*sign = -1;
+		(*i)++;
 	}
 	else if (input_args[*i] == '+')
 		(*i)++;

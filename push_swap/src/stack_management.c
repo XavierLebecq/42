@@ -15,8 +15,8 @@
 void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
 {
 	t_stack_node	*next_node;
-	size_t i;
-	
+	size_t			i;
+
 	i = 0;
 	if (a && *a)
 	{

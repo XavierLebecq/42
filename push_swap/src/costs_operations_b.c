@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	 ft_cost_rrarrb_b(t_stack_node *a, t_stack_node *b, int nbr)
+int	ft_cost_rrarrb_b(t_stack_node *a, t_stack_node *b, int nbr)
 {
 	int	i;
 

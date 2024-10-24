@@ -34,7 +34,8 @@ typedef struct s_stacks
 
 void			ft_split_single_arg(t_stack_node **a, char **argv);
 void			ft_error_and_exit(void);
-void			ft_atoi_and_push(const char *input_args, char **args_split, t_stack_node **a);
+void			ft_atoi_and_push(const char *input_args, char **args_split,
+					t_stack_node **a);
 void			ft_stack_add_back(t_stack_node **head, t_stack_node *new_node);
 t_stack_node	*ft_stack_last_node(t_stack_node *node);
 t_stack_node	*ft_stack_new_node(int content);
@@ -88,5 +89,6 @@ int				ft_execute_rarrb_a(t_stack_node **a, t_stack_node **b, int nbr);
 void			ft_move_min_to_top(t_stack_node **a);
 int				ft_overflow(long long result, int sign, int digit);
 void			ft_handle_sign(const char *input_args, int *i, int *sign);
-void			ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a);
+void			ft_error_and_exit_and_free_all(char **args_split,
+					t_stack_node **a);
 #endif
