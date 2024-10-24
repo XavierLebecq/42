@@ -37,7 +37,7 @@ t_stack_node	*ft_stack_new_node(int content)
 
 	new_node = malloc(sizeof (t_stack_node));
 	if (!new_node)
-		ft_error_and_exit();
+		ft_error_and_exit_and_free_all(NULL, &new_node);
 	new_node->nbr = content;
 	new_node->next = NULL;
 	return (new_node);

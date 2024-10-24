@@ -33,7 +33,6 @@ typedef struct s_stacks
 }	t_stacks;
 
 void			ft_split_single_arg(t_stack_node **a, char **argv);
-void			ft_error_and_exit(void);
 void			ft_atoi_and_push(const char *input_args, char **args_split,
 					t_stack_node **a);
 void			ft_stack_add_back(t_stack_node **head, t_stack_node *new_node);

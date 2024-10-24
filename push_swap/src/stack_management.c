@@ -40,12 +40,6 @@ void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_error_and_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
 void	ft_free_stack(t_stack_node **node)
 {
 	t_stack_node	*next_node;
