@@ -24,6 +24,8 @@ void	ft_atoi_and_push(const char *input_args, char **args_split,
 	sign = 1;
 	i = 0;
 	ft_handle_sign(input_args, &i, &sign);
+	if (!ft_isdigit(input_args[i]))
+		ft_free_args_split_stack_exit(args_split, a, 1);
 	while (input_args[i] && ft_isdigit(input_args[i]))
 	{
 		digit = input_args[i] - '0';

@@ -40,8 +40,7 @@ t_stack_node	*ft_stack_last_node(t_stack_node *node);
 t_stack_node	*ft_stack_new_node(int content);
 int				ft_stack_size(t_stack_node *node);
 int				ft_has_duplicates(t_stack_node *a);
-void			ft_multi_arg(t_stack_node **a, int argc, char **argv,
-					char **args_split);
+void			ft_multi_arg(t_stack_node **a, int argc, char **argv);
 int				ft_is_unsorted(t_stack_node *a);
 void			ft_sa(t_stack_node **a);
 void			ft_rr(t_stack_node **a, t_stack_node **b);

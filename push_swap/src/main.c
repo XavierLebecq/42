@@ -23,7 +23,9 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		ft_split_single_arg(&stack.a, argv);
 	else
-		ft_multi_arg(&stack.a, argc, argv, NULL);
+		ft_multi_arg(&stack.a, argc, argv);
+	if (!stack.a)
+		ft_free_args_split_stack_exit(NULL, &stack.a, 1);
 	if (ft_has_duplicates(stack.a))
 		ft_free_args_split_stack_exit(NULL, &stack.a, 1);
 	if (ft_is_unsorted(stack.a))
@@ -46,13 +48,13 @@ void	ft_split_single_arg(t_stack_node **a, char **argv)
 	ft_free_args_split_stack_exit(args_split, NULL, 0);
 }
 
-void	ft_multi_arg(t_stack_node **a, int argc, char **argv, char **args_split)
+void	ft_multi_arg(t_stack_node **a, int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
-		ft_atoi_and_push(argv[i++], args_split, a);
+		ft_atoi_and_push(argv[i++], NULL, a);
 }
 
 int	ft_has_duplicates(t_stack_node *a)
@@ -78,7 +80,7 @@ int	ft_is_unsorted(t_stack_node *a)
 	int	i;
 
 	i = a->nbr;
-	while (a && a->nbr)
+	while (a)
 	{
 		if (i > a->nbr)
 			return (1);
