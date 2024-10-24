@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 	else
 		ft_multi_arg(&stack.a, argc, argv, NULL);
 	if (ft_has_duplicates(stack.a) || !stack.a)
-		ft_error_and_exit_and_free_all(NULL, &stack.a);
+		ft_free_args_split_stack_exit(NULL, &stack.a, 1);
 	if (ft_is_unsorted(stack.a))
 		ft_sort_stack(&stack.a, &stack.b);
-	ft_free_stack(&stack.a);
+	ft_free_args_split_stack_exit(NULL, &stack.a, 0);
 	return (0);
 }
 
@@ -40,13 +40,13 @@ void	ft_split_single_arg(t_stack_node **a, char **argv)
 	i = 0;
 	args_split = ft_split(argv[1], ' ');
 	if (!args_split)
-		ft_error_and_exit_and_free_all(args_split, a);
+		ft_free_args_split_stack_exit(args_split, NULL, 1);
 	while (args_split[i])
 	{
 		ft_atoi_and_push(args_split[i], args_split, a);
 		i++;
 	}
-	ft_free_split_result(args_split);
+	ft_free_args_split_stack_exit(args_split, NULL, 0);
 }
 
 void	ft_multi_arg(t_stack_node **a, int argc, char **argv, char **args_split)

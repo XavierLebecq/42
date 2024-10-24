@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
+void	ft_free_args_split_stack_exit(char **args_split, t_stack_node **a, int exit_flag)
 {
 	t_stack_node	*next_node;
 	size_t			i;
@@ -36,37 +36,11 @@ void	ft_error_and_exit_and_free_all(char **args_split, t_stack_node **a)
 		}
 		free(args_split);
 	}
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_free_stack(t_stack_node **node)
-{
-	t_stack_node	*next_node;
-
-	if (!node || !*node)
-		return ;
-	while (*node)
+	if (exit_flag == 1)
 	{
-		next_node = (*node)->next;
-		free(*node);
-		*node = next_node;
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
 	}
-}
-
-void	ft_free_split_result(char **args_split)
-{
-	size_t	i;
-
-	i = 0;
-	if (!args_split)
-		return ;
-	while (args_split[i])
-	{
-		free(args_split[i]);
-		i++;
-	}
-	free(args_split);
 }
 
 int	ft_is_unsorted(t_stack_node *a)

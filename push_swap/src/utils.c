@@ -28,12 +28,12 @@ void	ft_atoi_and_push(const char *input_args, char **args_split,
 	{
 		digit = input_args[i] - '0';
 		if (ft_overflow(result, sign, digit))
-			ft_error_and_exit_and_free_all(args_split, a);
+			ft_free_args_split_stack_exit(args_split, a, 1);
 		result = result * 10 + digit;
 		i++;
 	}
 	if (input_args[i] != '\0')
-		ft_error_and_exit_and_free_all(args_split, a);
+		ft_free_args_split_stack_exit(args_split, a, 1);
 	result = ((int)(result * sign));
 	ft_stack_add_back(a, ft_stack_new_node(result));
 }
