@@ -26,7 +26,7 @@ int	ft_find_insert_position_b(t_stack_node *b, int insert_value)
 	else
 	{
 		next_node = b->next;
-		while (b->nbr < insert_value || next_node->nbr > insert_value)
+		while ( insert_value > b->nbr || insert_value < next_node->nbr)
 		{
 			b = b->next;
 			next_node = b->next;
@@ -50,7 +50,7 @@ int	ft_find_insert_position_a(t_stack_node *a, int insert_value)
 	else
 	{
 		next_node = a->next;
-		while (a->nbr > insert_value || next_node->nbr < insert_value)
+		while (insert_value < a->nbr || insert_value > next_node->nbr)
 		{
 			a = a->next;
 			next_node = a->next;

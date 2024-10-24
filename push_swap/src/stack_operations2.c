@@ -71,3 +71,29 @@ void	ft_rrr2(t_stack_node **b)
 	temp->next = NULL;
 	write(1, "rrr\n", 4);
 }
+
+void	ft_pb(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*temp;
+
+	if (!*a || !*a)
+		return ;
+	temp = *b;
+	*b = *a;
+	*a = (*a)->next;
+	(*b)->next = temp;
+	write(1, "pb\n", 3);
+}
+
+void	ft_pa(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*temp;
+
+	if (!*b || !*b)
+		return ;
+	temp = *a;
+	*a = *b;
+	*b = (*b)->next;
+	(*a)->next = temp;
+	write(1, "pa\n", 3);
+}
